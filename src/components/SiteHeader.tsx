@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "What's On", href: "/whats-on" },
   { label: "Venues", href: "/venues" },
   { label: "Venue Hire", href: "/venue-hire" },
-  { label: "Members", href: "/members" },
+  { label: "Members", href: "/" },
   { label: "About", href: "/about" },
 ] as const;
 
@@ -19,7 +19,7 @@ const MENU_ITEMS = [
   { label: "The Quadrant", href: "#quadrant" },
   { label: "What's On", href: "#whats-on" },
   { label: "Venue Hire", href: "#venue-hire" },
-  { label: "Members", href: "/members" },
+  { label: "Members", href: "/" },
   { label: "About Club Y", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;
