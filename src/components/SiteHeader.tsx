@@ -7,11 +7,11 @@ import { Menu, X } from "lucide-react";
 import { SearchIcon } from "@/components/icons";
 
 const NAV_LINKS = [
-  { label: "What's On", href: "/whats-on" },
-  { label: "Venues", href: "/venues" },
-  { label: "Venue Hire", href: "/venue-hire" },
+  { label: "What's On", href: "/" },
+  { label: "Venues", href: "/" },
+  { label: "Venue Hire", href: "/" },
   { label: "Members", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/" },
 ] as const;
 
 const MENU_ITEMS = [
