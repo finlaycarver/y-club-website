@@ -4,7 +4,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://club-y.vercel.app"),
-  title: "Club Y — Guildford's Late-Night Quarter",
+  title: "Y — Guildford's Late-Night Quarter",
   description:
     "Two venues in the heart of Guildford. The Cornerhouse for the late nights. The Quadrant for the long summer evenings.",
   icons: {
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     apple: "/seo/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Club Y — Guildford's Late-Night Quarter",
+    title: "Y — Guildford's Late-Night Quarter",
     description: "Two venues in the heart of Guildford. The Cornerhouse for the late nights. The Quadrant for the long summer evenings.",
     images: [{ url: "/seo/og-image.png", width: 1200, height: 630 }],
     url: "https://club-y.vercel.app",
-    siteName: "Club Y",
+    siteName: "Y",
   },
   twitter: {
     card: "summary_large_image",

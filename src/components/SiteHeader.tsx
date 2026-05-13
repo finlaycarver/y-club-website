@@ -20,7 +20,7 @@ const MENU_ITEMS = [
   { label: "What's On", href: "#whats-on" },
   { label: "Venue Hire", href: "#venue-hire" },
   { label: "Members", href: "/" },
-  { label: "About Club Y", href: "#about" },
+  { label: "About Y", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -137,10 +137,10 @@ export function SiteHeader() {
         />
 
         <div style={{ width: "184px", height: "80px", display: "flex", alignItems: "center" }}>
-          <Link href="/" aria-label="Club Y home">
+          <Link href="/" aria-label="Y home">
             <Image
               src="/images/logo/y-white-no-background.webp"
-              alt="Club Y"
+              alt="Y"
               width={80}
               height={60}
               style={{ height: "60px", width: "auto" }}

@@ -15,11 +15,11 @@ interface EventItem {
 }
 
 const events: EventItem[] = [
-  { title: "Live DJ Set", venue: "Club Y", date: "Fri 29 May", imageUrl: "/images/13.webp", href: "#" },
-  { title: "Saturday Sessions", venue: "Club Y", date: "Sat 16 May", imageUrl: "/images/9.webp", href: "#" },
-  { title: "Bass Drop Friday", venue: "Club Y", date: "Fri 22 May", imageUrl: "/images/nadine-180.jpg", href: "#" },
-  { title: "Student Night", venue: "Club Y", date: "Wed 27 May", imageUrl: "/images/img-1917.jpg", href: "#" },
-  { title: "Summer Garden Party", venue: "Club Y", date: "Sat 13 Jun", imageUrl: "/images/441900351_371148019313956_2396615588718096493_n-2-copy.webp", href: "#" },
+  { title: "Live DJ Set", venue: "Y", date: "Fri 29 May", imageUrl: "/images/13.webp", href: "#" },
+  { title: "Saturday Sessions", venue: "Y", date: "Sat 16 May", imageUrl: "/images/9.webp", href: "#" },
+  { title: "Bass Drop Friday", venue: "Y", date: "Fri 22 May", imageUrl: "/images/nadine-180.jpg", href: "#" },
+  { title: "Student Night", venue: "Y", date: "Wed 27 May", imageUrl: "/images/img-1917.jpg", href: "#" },
+  { title: "Summer Garden Party", venue: "Y", date: "Sat 13 Jun", imageUrl: "/images/441900351_371148019313956_2396615588718096493_n-2-copy.webp", href: "#" },
 ]
 
 // Per-breakpoint carousel geometry — precomputed to keep CSS values clean

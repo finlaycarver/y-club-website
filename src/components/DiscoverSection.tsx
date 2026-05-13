@@ -135,7 +135,7 @@ export function DiscoverSection() {
           color: "rgba(8,8,8,0.45)",
           margin: "0 0 14px",
         }}>
-          Inside Club Y
+          Inside Y
         </p>
 
         <h2
@@ -148,7 +148,7 @@ export function DiscoverSection() {
             margin: "0 0 32px",
           }}
         >
-          Discover Club Y
+          Discover Y
         </h2>
 
         <div

@@ -48,7 +48,7 @@ export function VideoSection() {
           margin: "0 0 16px",
         }}
       >
-        A night at Club Y
+        A night at Y
       </h2>
 
       {/* Video placeholder — full section width, no extra horizontal margins */}

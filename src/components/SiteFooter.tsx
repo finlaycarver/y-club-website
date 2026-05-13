@@ -30,8 +30,8 @@ export function SiteFooter() {
 
         {/* LEFT — Logo + tagline */}
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          <Link href="/" aria-label="Club Y home" style={{ display: "inline-block" }}>
-            <Image src="/images/logo/y-white-no-background.webp" alt="Club Y" width={72} height={54} style={{ height: "54px", width: "auto" }} />
+          <Link href="/" aria-label="Y home" style={{ display: "inline-block" }}>
+            <Image src="/images/logo/y-white-no-background.webp" alt="Y" width={72} height={54} style={{ height: "54px", width: "auto" }} />
           </Link>
           <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.45)", lineHeight: "1.6", maxWidth: "320px" }}>
             Guildford's Late-Night Quarter — two venues, one walk apart.
@@ -88,7 +88,7 @@ export function SiteFooter() {
         </nav>
 
         <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", whiteSpace: "nowrap" }}>
-          Club Y &copy; 2026. All rights reserved.
+          Y &copy; 2026. All rights reserved.
         </p>
 
         <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
