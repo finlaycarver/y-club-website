@@ -51,7 +51,7 @@ const panels: VenuePanel[] = [
     directionsUrl: "/",
     cta: "Explore Y Bar & Lounge",
     href: "#y-bar-lounge",
-    imageUrl: "/images/img-1901.jpg",
+    imageUrl: "/images/nadine-195.jpg",
     imageAlt: "Y Bar & Lounge",
     textLeft: true,
     light: false,
