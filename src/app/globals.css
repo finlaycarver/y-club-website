@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── KOKO Custom Fonts ─────────────────────────────────────────── */
+@font-face {
+  font-family: "haas";
+  src: url("/fonts/NeueHaasDisplay_Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "haas";
+  src: url("/fonts/NeueHaasDisplay_Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "haas";
+  src: url("/fonts/NeueHaasDisplay_Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "birdie";
+  src: url("/fonts/TAYBirdieRegular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "haas", "Arial", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "haas", "Arial", ui-sans-serif, system-ui, sans-serif;
+  --font-birdie: "birdie", "Arial", ui-sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  /* KOKO custom colours */
+  --color-koko-black: #000000;
+  --color-koko-white: #fafafa;
+  --color-koko-near-black: #080808;
+  --color-koko-gray-venue: #b1b1b1;
+  --color-koko-border-light: #e8e8e8;
+  --color-koko-dark-bg: #000000;
+}
+
+/* ── Light mode (matches KOKO's white sections) ─────────────────── */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.05 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.05 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.05 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* ── Dark mode (KOKO's black sections) ─────────────────────────── */
+.dark {
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.1 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.15 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.985 0 0);
+  --sidebar-primary-foreground: oklch(0.1 0 0);
+  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "haas", "Arial", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 24px;
+    letter-spacing: 0.48px;
+  }
+  html {
+    font-family: "haas", "Arial", ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+/* ── KOKO Typography Scale ──────────────────────────────────────── */
+@layer base {
+  h1 {
+    font-size: 90px;
+    font-weight: 700;
+    line-height: 90px;
+    letter-spacing: 0.9px;
+  }
+  h2 {
+    font-size: 67px;
+    font-weight: 700;
+    line-height: 73.7px;
+    letter-spacing: 0.67px;
+  }
+  h3 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 55px;
+    letter-spacing: 0.5px;
+  }
+  h4 {
+    font-size: 37px;
+    font-weight: 700;
+    line-height: 44.4px;
+    letter-spacing: 0.37px;
+  }
+  h6 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26.4px;
+    letter-spacing: 0.22px;
+  }
+}
+
+/* ── Hero animations ─────────────────────────────────────────────── */
+@keyframes ken-burns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+.ken-burns {
+  animation: ken-burns 14s ease-out forwards;
+  transform-origin: center center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns { animation: none; }
+}
+
+
+/* ── Discover Y tile stagger entrance ───────────────────────────── */
+@keyframes tile-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.discover-visible .discover-tile {
+  animation: tile-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.discover-tile { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .discover-tile { opacity: 1; animation: none; }
+}
+
+
+/* ── Custom cursor (pointer devices only) ────────────────────────── */
+@media (pointer: fine) {
+  html, body, a, button, [role="button"], input, label { cursor: none !important; }
+}
+
+/* ── Discover grid — responsive tile height ─────────────────────── */
+.discover-grid { grid-auto-rows: 50vh; }
+@media (min-width: 768px) { .discover-grid { grid-auto-rows: 72vh; } }
+
+/* ── Footer grain overlay ───────────────────────────────────────── */
+.footer-grain {
+  position: relative;
+  overflow: hidden;
+}
+.footer-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ── KOKO Layout Utilities ──────────────────────────────────────── */
+@layer utilities {
+  /* Standard section wrapper */
+  .koko-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 64px;
+    width: 100%;
+  }
+  /* Dark section variant */
+  .koko-section-dark {
+    background-color: #000;
+    color: #fafafa;
+  }
+  /* Inner content container */
+  .koko-content {
+    width: 100%;
+    max-width: 1072px;
+  }
+  /* Wide inner content (for full-bleed dark sections) */
+  .koko-content-wide {
+    width: 100%;
+    max-width: 1200px;
+  }
+  /* Colorhover: image scale on hover */
+  .colorhover img {
+    transition: transform 0.5s ease;
+  }
+  .colorhover:hover img {
+    transform: scale(1.05);
+  }
+}
