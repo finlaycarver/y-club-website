@@ -157,7 +157,7 @@ export function SiteHeader() {
           >
             {NAV_LINKS.map(({ label, href }) => (
               <a
-                key={href}
+                key={label}
                 href={href}
                 className="underline underline-offset-[6px] decoration-[1.5px] decoration-transparent hover:decoration-white transition-[text-decoration-color] duration-200 ease-in-out"
                 style={{
