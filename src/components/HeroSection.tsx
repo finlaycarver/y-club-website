@@ -50,10 +50,10 @@ export function HeroSection() {
         </p>
 
         <h1
-          className="text-[46px] md:text-[90px]"
+          className="text-[46px] md:text-[90px] md:whitespace-nowrap"
           style={{ fontWeight: 700, lineHeight: 1, letterSpacing: "0.9px", margin: "0 0 24px", color: "white" }}
         >
-          Two Venues.<br /><span className="whitespace-nowrap">One Y.</span>
+          Two Venues.<br className="md:hidden" /><span className="whitespace-nowrap"> One Y.</span>
         </h1>
 
         <p
