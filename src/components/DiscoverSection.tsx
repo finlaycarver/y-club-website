@@ -13,8 +13,8 @@ interface Signpost {
 const signposts: Signpost[] = [
   // Row 1 — wide left
   { title: "Y Club",             subtitle: "Late nights, big floors",           imageUrl: "/images/club-y-image-5.webp",   href: "#y-club",         wide: true },
-  { title: "Y Terrace",         subtitle: "Outdoor terrace under the stars",   imageUrl: "/images/club-y-image-6.webp",   href: "#y-terrace" },
-  { title: "The Line-up",        subtitle: "Every Friday and Saturday",         imageUrl: "/images/10.webp",               href: "#whats-on" },
+  { title: "Y Terrace",         subtitle: "Outdoor terrace under the stars",   imageUrl: "/images/10.webp",               href: "#y-terrace" },
+  { title: "The Line-up",        subtitle: "Every Friday and Saturday",         imageUrl: "/images/club-y-image-6.webp",   href: "#whats-on" },
   // Row 2 — wide middle
   { title: "Birthdays",         subtitle: "Tables, hosts & bottle service",    imageUrl: "/images/img-0961.jpeg",         href: "#birthdays" },
   { title: "Venue Hire",        subtitle: "Up to 1,000 capacity",              imageUrl: "/images/nadine-195.jpg",        href: "#venue-hire",     wide: true },
