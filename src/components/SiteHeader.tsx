@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Venues", href: "/" },
   { label: "Venue Hire", href: "/" },
   { label: "Members", href: "/" },
-  { label: "About", href: "/" },
+  { label: "About Y", href: "/" },
 ] as const;
 
 const MENU_ITEMS = [
