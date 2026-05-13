@@ -53,14 +53,14 @@ export function HeroSection() {
           className="text-[46px] md:text-[90px] md:whitespace-nowrap"
           style={{ fontWeight: 700, lineHeight: 1, letterSpacing: "0.9px", margin: "0 0 24px", color: "white" }}
         >
-          Two Venues.<br className="md:hidden" /><span className="whitespace-nowrap"> One Y.</span>
+          Three Venues.<br className="md:hidden" /><span className="whitespace-nowrap"> One Y.</span>
         </h1>
 
         <p
           className="text-[18px] md:text-[22px]"
           style={{ fontWeight: 400, lineHeight: 1.4, letterSpacing: "-0.005em", color: "rgba(255,255,255,0.75)", margin: "0 0 36px", maxWidth: "600px" }}
         >
-          An indoor dancefloor and an open-air terrace. A short walk apart.
+          Three venues in the heart of Guildford. All a short walk apart.
         </p>
 
         {/* CTAs — full-width stacked on mobile, side-by-side on desktop */}

@@ -34,7 +34,7 @@ export function SiteFooter() {
             <Image src="/images/logo/y-white-no-background.webp" alt="Y" width={72} height={54} style={{ height: "54px", width: "auto" }} />
           </Link>
           <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.45)", lineHeight: "1.6", maxWidth: "320px" }}>
-            Guildford's Late-Night Quarter — two venues, one walk apart.
+            Guildford's Late-Night Quarter — three venues, one walk apart.
           </p>
         </div>
 

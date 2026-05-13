@@ -15,8 +15,9 @@ const NAV_LINKS = [
 ] as const;
 
 const MENU_ITEMS = [
-  { label: "The Cornerhouse", href: "#cornerhouse" },
-  { label: "The Quadrant", href: "#quadrant" },
+  { label: "Y Club", href: "#y-club" },
+  { label: "Y Terrace", href: "#y-terrace" },
+  { label: "Y Bar & Lounge", href: "#y-bar-lounge" },
   { label: "What's On", href: "#whats-on" },
   { label: "Venue Hire", href: "#venue-hire" },
   { label: "Members", href: "/" },
