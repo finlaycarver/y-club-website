@@ -169,6 +169,15 @@
   html {
     font-family: "haas", "Arial", ui-sans-serif, system-ui, sans-serif;
   }
+  /* Branded focus-visible ring — keyboard users only.
+     White inner outline + black halo so it contrasts on both
+     dark and light sections without needing per-section overrides. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid #FAFAFA;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.85);
+    border-radius: 0;
+  }
 }
 
 /* ── KOKO Typography Scale ──────────────────────────────────────── */
@@ -196,6 +205,12 @@
     font-weight: 700;
     line-height: 44.4px;
     letter-spacing: 0.37px;
+  }
+  h5 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 33.6px;
+    letter-spacing: 0.28px;
   }
   h6 {
     font-size: 22px;
@@ -230,6 +245,109 @@
 .discover-tile { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .discover-tile { opacity: 1; animation: none; }
+}
+
+/* 9-tile cascade — 80ms between each tile */
+.discover-visible .discover-tile:nth-child(1) { animation-delay:   0ms; }
+.discover-visible .discover-tile:nth-child(2) { animation-delay:  80ms; }
+.discover-visible .discover-tile:nth-child(3) { animation-delay: 160ms; }
+.discover-visible .discover-tile:nth-child(4) { animation-delay: 240ms; }
+.discover-visible .discover-tile:nth-child(5) { animation-delay: 320ms; }
+.discover-visible .discover-tile:nth-child(6) { animation-delay: 400ms; }
+.discover-visible .discover-tile:nth-child(7) { animation-delay: 480ms; }
+.discover-visible .discover-tile:nth-child(8) { animation-delay: 560ms; }
+.discover-visible .discover-tile:nth-child(9) { animation-delay: 640ms; }
+
+/* ── Discover grid — desaturate non-hovered tiles ────────────────── */
+/* On pointer-fine devices, hovering the grid dims all sibling tiles
+   via grayscale so the hovered tile holds full attention. */
+@media (pointer: fine) {
+  .discover-grid:hover .discover-tile {
+    filter: grayscale(0.45);
+    transition: filter 0.5s ease;
+  }
+  .discover-grid:hover .discover-tile:hover {
+    filter: grayscale(0);
+    transition: filter 0.2s ease;
+  }
+}
+
+/* ── Discover tile — alternate grain texture rhythm ─────────────── */
+/* Even-indexed tiles receive a slightly heavier noise layer,
+   creating subtle texture variation across the bento grid. */
+.discover-tile:nth-child(even)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+/* ── What's On live ticker ──────────────────────────────────────────
+   Full-section-width scrolling text bar above the carousel heading.
+   Two identical spans + translateX(-50%) create a seamless loop. */
+@keyframes whatson-ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.whatson-ticker {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.whatson-ticker-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  animation: whatson-ticker-scroll 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatson-ticker-track { animation: none; }
+}
+
+/* ── What's On scroll track — hide scrollbar across all engines ─────
+   The carousel uses overflow-x: auto for scroll-snap; scrollbar must
+   be invisible so the UX feels like a native swipe track. */
+.whatson-scroll-track {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge legacy */
+}
+.whatson-scroll-track::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari */
+}
+
+
+/* ── What's On carousel tile stagger entrance ───────────────────────
+   Tiles start invisible; .whatson-carousel-visible is added by an
+   IntersectionObserver in WhatsonSection when the section enters the
+   viewport. nth-child delays create the cascade. */
+@keyframes whatson-tile-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.whatson-tile { opacity: 0; }
+.whatson-carousel-visible .whatson-tile {
+  animation: whatson-tile-fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.whatson-carousel-visible .whatson-tile:nth-child(1) { animation-delay: 0ms;   }
+.whatson-carousel-visible .whatson-tile:nth-child(2) { animation-delay: 75ms;  }
+.whatson-carousel-visible .whatson-tile:nth-child(3) { animation-delay: 150ms; }
+.whatson-carousel-visible .whatson-tile:nth-child(4) { animation-delay: 225ms; }
+.whatson-carousel-visible .whatson-tile:nth-child(5) { animation-delay: 300ms; }
+@media (prefers-reduced-motion: reduce) {
+  .whatson-tile { opacity: 1; animation: none; }
 }
 
 
@@ -292,4 +410,142 @@
   .colorhover:hover img {
     transform: scale(1.05);
   }
+}
+
+/* ── Hero H1 word stagger ──────────────────────────────────────────
+   Each word in the hero H1 is wrapped in <span class="hero-word">
+   and fades + slides up on mount. Per-word animation-delay is set
+   inline so React can drive the cascade order. */
+@keyframes hero-word-pull-up {
+  from { opacity: 0; transform: translateY(0.55em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em);
+  animation: hero-word-pull-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Animation-delay set inline in the JSX (props-driven cascade). */
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-word {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* "Y." in italic editorial display face (already loaded). Keeps Y's
+   wordmark distinct without changing the rest of the headline. */
+.hero-word-italic {
+  font-family: var(--font-birdie), "haas", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Hero grain — bump opacity at xl viewports for more texture. */
+.hero-grain {
+  opacity: 0.03;
+}
+@media (min-width: 1280px) {
+  .hero-grain { opacity: 0.05; }
+}
+
+/* ── Hero text block — responsive bottom offset ───────────────────── */
+/* Default 80px clears the bottom comfortably on tall viewports. On
+   shorter screens (landscape phones, small laptops with persistent
+   browser UI) push up to 120px so the cookie banner can't cover the
+   secondary CTA. */
+.hero-text-block {
+  bottom: 80px;
+}
+@media (max-height: 760px) {
+  .hero-text-block {
+    bottom: 120px;
+  }
+}
+
+/* ── Hero live-status pulse ───────────────────────────────────────── */
+@keyframes hero-live-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+  50%      { opacity: 1;    transform: scale(1.08); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+}
+.hero-live-dot {
+  animation: hero-live-pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-live-dot { animation: none; }
+}
+
+/* ── Hero scroll affordance — gentle bob ──────────────────────────── */
+@keyframes hero-scroll-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(4px); }
+}
+.hero-scroll-chevron {
+  animation: hero-scroll-bob 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-chevron { animation: none; }
+}
+
+/* Vertical-min breakpoint helper for the hero scroll affordance. The
+   chevron only shows when there's vertical room (avoids overlap with
+   the CTAs on landscape phones / very short viewports). */
+@media (min-height: 700px) {
+  .min-h-\[700px\]\:flex { display: flex; }
+}
+
+/* ── Inline links inside dangerouslySetInnerHTML answers (FAQ / Privacy)
+   Source content lives in /src/data/*.ts and ships with `class='underline'`
+   on each <a>; we re-style here so link colour, opacity and hover match
+   the surrounding dark surface. */
+.faq-answer a,
+.policy-body a {
+  color: #FAFAFA;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+.faq-answer a:hover,
+.policy-body a:hover {
+  color: #FAFAFA;
+  text-decoration-color: rgba(255, 255, 255, 1);
+}
+.faq-answer strong {
+  color: #FAFAFA;
+}
+
+/* ── Form inputs — shared across forms with a light card surface ──── */
+/* Used by /venue-hire (and any other light-surface form). For dark
+   forms, set the wrapper text colour and override .form-input on the
+   parent if needed. */
+.form-input {
+  width: 100%;
+  height: 50px;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: inherit;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  color: #080808;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus {
+  border-color: #080808;
+}
+textarea.form-input {
+  height: auto;
+}
+select.form-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23080808' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 36px;
 }

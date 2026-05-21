@@ -1,41 +1,103 @@
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+"use client"
+
+import { useEffect, useRef } from "react"
+import Image from "next/image"
+import { ArrowUpRight } from "lucide-react"
 
 interface Signpost {
-  title: string;
-  subtitle?: string;
-  imageUrl: string;
-  href: string;
-  wide?: boolean;
-  imagePosition?: string;
+  title: string
+  subtitle?: string
+  imageUrl: string
+  href: string
+  wide?: boolean
+  imagePosition?: string
+  /** Preload the image (above-the-fold tiles on first paint). */
+  priority?: boolean
 }
 
 const signposts: Signpost[] = [
-  // Row 1 — wide left
-  { title: "Y Club",             subtitle: "Late nights, big floors",           imageUrl: "/images/club-y-image-5.webp",   href: "#y-club",         wide: true },
-  { title: "Y Terrace",         subtitle: "Outdoor terrace under the stars",   imageUrl: "/images/10.webp",               href: "#y-terrace" },
-  { title: "The Line-up",        subtitle: "Every Friday and Saturday",         imageUrl: "/images/club-y-image-6.webp",   href: "#whats-on" },
+  // Row 1 — wide left. First-row tiles preload to improve LCP.
+  { title: "Y Club",            subtitle: "Late nights, big floors",          imageUrl: "/images/club-y-image-5.webp",    href: "/venues/y-club",    wide: true, priority: true },
+  { title: "Y Terrace",         subtitle: "Outdoor terrace under the stars",  imageUrl: "/images/10.webp",                href: "/venues/y-terrace",             priority: true },
+  { title: "The Line-up",       subtitle: "Every Friday and Saturday",        imageUrl: "/images/club-y-image-6.webp",    href: "/whats-on",                     priority: true },
   // Row 2 — wide middle
-  { title: "Birthdays",         subtitle: "Tables, hosts & bottle service",    imageUrl: "/images/img-0961.jpeg",         href: "#birthdays" },
-  { title: "Venue Hire",        subtitle: "Up to 1,000 capacity",              imageUrl: "/images/nadine-195.jpg",        href: "#venue-hire",     wide: true },
-  { title: "Student Nights",    subtitle: "Midweek with Surrey Uni",           imageUrl: "/images/img-0841.jpeg",         href: "#student" },
+  { title: "Birthdays",         subtitle: "Tables, hosts & bottle service",   imageUrl: "/images/img-0961.jpeg",          href: "/venue-hire" },
+  { title: "Venue Hire",        subtitle: "Up to 1,000 capacity",             imageUrl: "/images/nadine-195.jpg",         href: "/venue-hire",       wide: true },
+  { title: "Student Nights",    subtitle: "Midweek with Surrey Uni",          imageUrl: "/images/img-0841.jpeg",          href: "/whats-on" },
   // Row 3 — wide right
-  { title: "Bottle Service",    subtitle: "Premium tables in the club",        imageUrl: "/images/tempimage0cgvsr.jpg",   href: "#bottle-service" },
+  { title: "Bottle Service",    subtitle: "Premium tables in the club",       imageUrl: "/images/tempimage0cgvsr.jpg",    href: "/venue-hire" },
   // [CONFIRM] swap to evening sports / indoor crowd image when Y delivers assets
-  { title: "Sports Screening",  subtitle: "Big games on the big screen",       imageUrl: "/images/tempimagetpo0ye5.webp", href: "#sports" },
-  { title: "Christmas Parties", subtitle: "Book your festive night",           imageUrl: "/images/img-1907.jpg",          href: "#christmas",      wide: true, imagePosition: "right center" },
-];
+  { title: "Sports Screening",  subtitle: "Big games on the big screen",      imageUrl: "/images/tempimagetpo0ye5.webp",  href: "/whats-on" },
+  { title: "Christmas Parties", subtitle: "Book your festive night",          imageUrl: "/images/img-1907.jpg",           href: "/venue-hire",       wide: true, imagePosition: "right center" },
+]
 
-function SignpostCard({ title, subtitle, imageUrl, href, wide, imagePosition }: Signpost) {
+// ── SignpostCard ────────────────────────────────────────────────────
+function SignpostCard({
+  title,
+  subtitle,
+  imageUrl,
+  href,
+  wide,
+  imagePosition,
+  priority,
+  index,
+}: Signpost & { index: number }) {
+  const cardRef = useRef<HTMLAnchorElement>(null)
+  const rafRef  = useRef<number | null>(null)
+
+  // 3D card tilt — wide tiles only, pointer-fine devices, no reduced-motion
+  useEffect(() => {
+    const card = cardRef.current
+    if (!card || !wide) return
+    if (!window.matchMedia("(pointer: fine)").matches) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const onMove = (e: MouseEvent) => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      rafRef.current = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect()
+        const dx   = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2)
+        const dy   = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2)
+        card.style.transition = "transform 0.08s ease-out"
+        card.style.transform  = `perspective(1200px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg)`
+      })
+    }
+
+    const onLeave = () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      card.style.transition = "transform 0.5s ease-out"
+      card.style.transform  = "perspective(1200px) rotateX(0deg) rotateY(0deg)"
+    }
+
+    card.addEventListener("mousemove", onMove)
+    card.addEventListener("mouseleave", onLeave)
+    return () => {
+      card.removeEventListener("mousemove", onMove)
+      card.removeEventListener("mouseleave", onLeave)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [wide])
+
+  // Wide tiles get a larger title at desktop to mirror the tile-size hierarchy.
+  // 42px wide vs 28px regular gives clear visual weight separation.
+  const titleSizeClass = wide ? "text-[28px] lg:text-[42px]" : "text-[28px]"
+  const numeral = String(index + 1).padStart(2, "0")
+
   return (
     <a
+      ref={cardRef}
       href={href}
-      className={`group relative block overflow-hidden cursor-pointer${wide ? " lg:col-span-2" : ""}`}
-      style={{ textDecoration: "none" }}
+      className={`discover-tile group relative block overflow-hidden cursor-pointer${wide ? " lg:col-span-2" : ""}`}
+      style={{
+        textDecoration: "none",
+        // hint compositor for GPU layer on tilt-capable tiles
+        willChange: wide ? "transform" : undefined,
+      } as React.CSSProperties}
     >
       {/* Background image */}
       <Image
         fill
+        priority={priority}
         src={imageUrl}
         alt={title}
         style={{ objectFit: "cover", objectPosition: imagePosition ?? "center" }}
@@ -63,6 +125,24 @@ function SignpostCard({ title, subtitle, imageUrl, href, wide, imagePosition }: 
         style={{ zIndex: 1 }}
       />
 
+      {/* Editorial numeral counter — top-left */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "14px",
+          left: "16px",
+          fontSize: "12px",
+          fontWeight: 700,
+          letterSpacing: "0.1em",
+          color: "rgba(255,255,255,0.28)",
+          zIndex: 3,
+          fontVariantNumeric: "tabular-nums",
+        }}
+      >
+        {numeral}
+      </span>
+
       {/* Text overlay — lifts on hover */}
       <div
         className="transition-transform duration-300 ease-out group-hover:-translate-y-1 motion-reduce:transition-none"
@@ -75,33 +155,35 @@ function SignpostCard({ title, subtitle, imageUrl, href, wide, imagePosition }: 
           zIndex: 2,
         }}
       >
-        <div
+        <h3
+          className={titleSizeClass}
           style={{
-            fontSize: "28px",
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
             color: "white",
+            margin: 0,
           }}
         >
           {title}
-        </div>
+        </h3>
         {subtitle && (
-          <div
+          <p
             style={{
               fontSize: "16px",
               fontWeight: 450,
               lineHeight: "24px",
               letterSpacing: "0.48px",
-              color: "white",
+              color: "rgba(255,255,255,0.75)",
+              margin: 0,
             }}
           >
             {subtitle}
-          </div>
+          </p>
         )}
       </div>
 
-      {/* Arrow affordance — bottom-right, shifts right on hover */}
+      {/* Arrow affordance — bottom-right, shifts on hover */}
       <div
         className="absolute text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
         style={{ bottom: "16px", right: "16px", zIndex: 3 }}
@@ -109,10 +191,31 @@ function SignpostCard({ title, subtitle, imageUrl, href, wide, imagePosition }: 
         <ArrowUpRight size={24} />
       </div>
     </a>
-  );
+  )
 }
 
+// ── DiscoverSection ─────────────────────────────────────────────────
 export function DiscoverSection() {
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  // Stagger entrance — IntersectionObserver adds .discover-visible to the
+  // grid when it enters the viewport. CSS nth-child delays then cascade
+  // the tile animations 80ms apart.
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          grid.classList.add("discover-visible")
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 },
+    )
+    observer.observe(grid)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
@@ -127,10 +230,11 @@ export function DiscoverSection() {
       }}
     >
       <div style={{ width: "100%" }}>
+        {/* Kicker — letter-spacing widened for stronger all-caps rhythm */}
         <p style={{
           fontSize: "13px",
           fontWeight: 500,
-          letterSpacing: "0.14em",
+          letterSpacing: "0.18em",
           textTransform: "uppercase",
           color: "rgba(8,8,8,0.45)",
           margin: "0 0 14px",
@@ -152,14 +256,15 @@ export function DiscoverSection() {
         </h2>
 
         <div
+          ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 discover-grid"
           style={{ columnGap: "20px", rowGap: "30px" }}
         >
-          {signposts.map((signpost) => (
-            <SignpostCard key={signpost.title} {...signpost} />
+          {signposts.map((signpost, i) => (
+            <SignpostCard key={signpost.title} {...signpost} index={i} />
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }

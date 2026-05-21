@@ -48,3 +48,6 @@ next-env.d.ts
 # Local temp files
 temp/
 .claude/
+
+# Raw video source files (not for production)
+/_raw-videos

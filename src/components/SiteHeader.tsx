@@ -3,29 +3,42 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { SearchIcon } from "@/components/icons";
 
 const NAV_LINKS = [
-  { label: "What's On", href: "/" },
-  { label: "Venues", href: "/" },
-  { label: "Venue Hire", href: "/" },
-  { label: "Members", href: "/" },
-  { label: "About Y", href: "/" },
+  { label: "What's On",  href: "/whats-on"   },
+  { label: "Venues",     href: "/venues"      },
+  { label: "Venue Hire", href: "/venue-hire"  },
+  { label: "Members",    href: "/members"     },
+  { label: "About Y",    href: "/about"       },
 ] as const;
 
 const MENU_ITEMS = [
-  { label: "Y Club", href: "#y-club" },
-  { label: "Y Terrace", href: "#y-terrace" },
-  { label: "Y Bar & Lounge", href: "#y-bar-lounge" },
-  { label: "What's On", href: "#whats-on" },
-  { label: "Venue Hire", href: "#venue-hire" },
-  { label: "Members", href: "/" },
-  { label: "About Y", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Y Club",         href: "/venues/y-club"        },
+  { label: "Y Terrace",      href: "/venues/y-terrace"     },
+  { label: "Y Bar & Lounge", href: "/venues/y-bar-lounge"  },
+  { label: "What's On",      href: "/whats-on"             },
+  { label: "Venue Hire",     href: "/venue-hire"           },
+  { label: "Members",        href: "/members"              },
+  { label: "About Y",        href: "/about"                },
+  { label: "FAQs",           href: "/faqs"                 },
+  { label: "Contact",        href: "/about#contact"        },
 ] as const;
 
+// Helper: returns true if the current pathname matches the link (or is a sub-route of it).
+// Special-cased so "/" only matches the home page exactly.
+function isActiveRoute(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  // Strip hash for comparison
+  const cleanHref = href.split("#")[0];
+  if (cleanHref === "/") return false;
+  return pathname === cleanHref || pathname.startsWith(`${cleanHref}/`);
+}
+
 export function SiteHeader() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -141,7 +154,7 @@ export function SiteHeader() {
           <Link href="/" aria-label="Y home">
             <Image
               src="/images/logo/y-white-no-background.webp"
-              alt="Y"
+              alt="Y Guildford"
               width={80}
               height={60}
               style={{ height: "60px", width: "auto" }}
@@ -156,22 +169,29 @@ export function SiteHeader() {
             className="hidden min-[1024px]:flex flex-row items-center"
             style={{ gap: "32px" }}
           >
-            {NAV_LINKS.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                className="underline underline-offset-[6px] decoration-[1.5px] decoration-transparent hover:decoration-white transition-[text-decoration-color] duration-200 ease-in-out"
-                style={{
-                  fontSize: "22px",
-                  fontWeight: 500,
-                  color: "#FAFAFA",
-                  letterSpacing: "-0.01em",
-                  lineHeight: "24px",
-                }}
-              >
-                {label}
-              </a>
-            ))}
+            {NAV_LINKS.map(({ label, href }) => {
+              const active = isActiveRoute(pathname ?? "/", href);
+              return (
+                <Link
+                  key={label}
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  className={`underline underline-offset-[6px] decoration-[2px] transition-[text-decoration-color,color] duration-200 ease-in-out hover:text-white ${active ? "decoration-white" : "decoration-transparent hover:decoration-white"}`}
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: 500,
+                    // Inactive items dim to 0.7; active stays pure white so
+                    // the current page reads at a glance even without the
+                    // underline as the only cue.
+                    color: active ? "#FAFAFA" : "rgba(255,255,255,0.7)",
+                    letterSpacing: "-0.01em",
+                    lineHeight: "24px",
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
 
             {/* Search icon — desktop only */}
             <button
@@ -211,6 +231,7 @@ export function SiteHeader() {
           inset: 0,
           zIndex: 50,
           backgroundColor: "rgb(0,0,0)",
+          overflowY: "auto",
           opacity: isMenuOpen ? 1 : 0,
           pointerEvents: isMenuOpen ? "auto" : "none",
           transition: isMenuOpen ? "opacity 300ms ease-out" : "opacity 200ms ease-in",
@@ -232,24 +253,29 @@ export function SiteHeader() {
           className="flex flex-col pt-[100px] pb-16 pl-8 pr-8 lg:pt-[120px] lg:pl-[120px]"
           style={{ gap: "16px" }}
         >
-          {MENU_ITEMS.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              onClick={closeMenu}
-              className="block text-[40px] md:text-[48px] lg:text-[80px] hover:opacity-50 transition-opacity duration-200 ease-in-out"
-              style={{
-                fontFamily: '"haas", Arial, sans-serif',
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-                color: "#FAFAFA",
-                textDecoration: "none",
-              }}
-            >
-              {label}
-            </a>
-          ))}
+          {MENU_ITEMS.map(({ label, href }) => {
+            const active = isActiveRoute(pathname ?? "/", href);
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={closeMenu}
+                aria-current={active ? "page" : undefined}
+                className="block text-[40px] md:text-[48px] lg:text-[80px] hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                style={{
+                  fontFamily: '"haas", Arial, sans-serif',
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.02em",
+                  color: "#FAFAFA",
+                  textDecoration: "none",
+                  opacity: active ? 0.55 : 1,
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
 

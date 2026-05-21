@@ -1,0 +1,26 @@
+{
+  "name": "Y — Guildford's Late-Night Quarter",
+  "short_name": "Y",
+  "description": "Three venues in the heart of Guildford. Y Club, Y Terrace, and Y Bar & Lounge — all a short walk apart.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/seo/favicon-y.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/seo/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
