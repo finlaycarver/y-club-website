@@ -15,7 +15,7 @@
     "first-aid"
   ],
   "engines": {
-    "node": ">=24"
+    "node": ">=22"
   },
   "scripts": {
     "dev": "next dev",
