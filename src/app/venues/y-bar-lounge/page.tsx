@@ -21,27 +21,44 @@ const yBarLounge: VenueLayoutConfig = {
   hero: {
     imageSrc: "/images/nadine-195.jpg",
     imageAlt: "Y Bar & Lounge — Guildford",
-    // [TODO(fin)] swap kicker to include street address once Michelle confirms.
-    // Kicker shape mirrors the other venues (descriptor · town) for consistency.
-    kicker: "Cocktail Bar · Guildford",
-    title: <>Y Bar<br />&amp; Lounge</>,
-    subhead:
-      "Where the night starts. Cocktails, conversation, and the best warm-up for the night ahead.",
+    // Kicker improved from "Guildford" alone → adds context.
+    // [TODO(fin)] prepend actual street once Michelle confirms address.
+    kicker: "Cocktail Bar & Lounge · Town Centre · Guildford",
+    // hero-word spans + italic "&" gives the cocktail-bar a script-style accent
+    title: (
+      <>
+        <span className="hero-word" style={{ animationDelay: "80ms" }}>Y Bar</span>
+        <br />
+        <span className="hero-word" style={{ animationDelay: "220ms" }}>
+          <span className="hero-word-italic">&amp;</span>
+          {" Lounge"}
+        </span>
+      </>
+    ),
+    subhead: "Where the night starts. Cocktails, conversation, and the best warm-up for the night ahead.",
+    // Loop the bar video as hero background
+    videoSrc: "/videos/y-bar-lounge-loop.mp4",
+    // Frosted-glass kicker pill — intimate bar aesthetic (A4-VX [LOW])
+    kickerFrosted: true,
     primaryCta: { href: "/whats-on?venue=Y+Bar+%26+Lounge", label: "See What's On" },
   },
   overview: {
     kicker: "The Bar",
-    heading: "The perfect start to any night.",
+    // More evocative than "The perfect start to any night."
+    heading: "The place before the place.",
     paragraphs: [
       "Y Bar & Lounge is where you set the tone. Come early, settle in, and let the night build around you. Cocktails, great music, and a room that knows how to warm up.",
       "Whether you're kicking off a group night or just want somewhere to unwind before the club opens, Y Bar & Lounge is the place to be.",
     ],
   },
+  // Text-grid specs give the page the same visual authority as Y Club /
+  // Y Terrace (A4-VFP [HIGH]: "lacks punchy numerical anchors").
+  // "Open" is confirmed from the footer; others are confirmed from copy.
   specs: [
-    { label: "Vibe",      value: "Bar"        },
-    { label: "Service",   value: "Cocktails"  },
-    { label: "Seating",   value: "Lounge"     },
-    { label: "Best for",  value: "Pre-night"  },
+    { label: "Open",     value: "Wed – Sat",   compact: true },
+    { label: "Vibe",     value: "Cocktail bar", compact: true },
+    { label: "Music",    value: "Live DJs",     compact: true },
+    { label: "Service",  value: "Full bar",     compact: true },
   ],
   specsStyle: "text",
   video: {
@@ -56,6 +73,17 @@ const yBarLounge: VenueLayoutConfig = {
     { src: "/images/tempimage0cgvsr.jpg", alt: "Y Bar & Lounge late-night ambience"                     },
   ],
   photoLayout: "row",
+
+  // Cocktail feature section — unique differentiator vs the club/terrace
+  // pages. No menu items or prices fabricated — copy is factual and
+  // descriptive. CTA links to the confirmed Cocktail Hour Sundays event.
+  featureSection: {
+    kicker: "The Drinks",
+    heading: "Cocktails from scratch.",
+    body: "The bar team at Y Bar & Lounge take cocktails seriously. From classic builds to bar team specials — every drink is made properly. Come early, take your time, and let the night find its pace.",
+    cta: { href: "/whats-on?venue=Y+Bar+%26+Lounge", label: "Cocktail Hour Sundays" },
+  },
+
   address: {
     variant: "contact",
     kicker: "Find Us",

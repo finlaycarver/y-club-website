@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
 import { BRAND } from "@/lib/site";
+import { ShareButton } from "./ShareButton";
 
 export const metadata: Metadata = {
   title: "Enquiry received — Thanks",
@@ -119,6 +120,8 @@ export default async function VenueHireThankYouPage({ searchParams }: ThankYouPr
               See What&apos;s On
               <ChevronRightIcon className="size-4 group-hover:translate-x-0.5 transition-transform duration-200 motion-reduce:transition-none" />
             </Link>
+            {/* Native share — client island, only renders when API is available */}
+            <ShareButton />
           </div>
         </div>
       </main>

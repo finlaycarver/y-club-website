@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { SearchIcon } from "@/components/icons";
 
@@ -39,6 +39,7 @@ function isActiveRoute(pathname: string, href: string): boolean {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const router   = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -150,14 +151,28 @@ export function SiteHeader() {
           }}
         />
 
+        {/* Logo container — fixed width reserves left gutter so nav
+            doesn't shift. Logo itself is smaller at mobile (42px tall)
+            so the Y wordmark doesn't dominate the 375px viewport. */}
         <div style={{ width: "184px", height: "80px", display: "flex", alignItems: "center" }}>
-          <Link href="/" aria-label="Y home">
+          <Link
+            href="/"
+            aria-label="Y home"
+            onClick={(e) => {
+              e.preventDefault();
+              // Use router.push with scroll:false then force top manually —
+              // prevents App Router scroll-restoration landing mid-page.
+              router.push("/", { scroll: false });
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
+          >
             <Image
               src="/images/logo/y-white-no-background.webp"
               alt="Y Guildford"
               width={80}
               height={60}
-              style={{ height: "60px", width: "auto" }}
+              className="h-[42px] md:h-[60px] w-auto"
+              style={{ height: undefined, width: "auto" }}
               priority
             />
           </Link>

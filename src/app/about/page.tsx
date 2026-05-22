@@ -3,6 +3,8 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialProof } from "@/components/SocialProof";
+import { AboutStatsGrid } from "@/components/AboutStatsGrid";
+import { AboutImageryGrid } from "@/components/AboutImageryGrid";
 import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
 import { BRAND, VENUES } from "@/lib/site";
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
 const STATS = [
   { label: "Venues",        value: "3"      },
   { label: "Bars",          value: "6+"     },
-  { label: "Capacity",      value: "1,000"  },
+  { label: "Capacity",      value: "1,500"  },
   { label: "Late nights",   value: "Fri+Sat" },
 ];
 
@@ -83,11 +85,11 @@ export default function AboutPage() {
         {/* ── HERO ───────────────────────────────────────────────────── */}
         <section className="relative bg-black overflow-hidden flex items-end" style={{ minHeight: "70svh" }}>
           <Image
-            src="/images/14.webp"
+            src="/images/_MG_7964.jpg"
             alt="About Y"
             fill
             priority
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center 40%" }}
           />
           <div
             className="absolute inset-0"
@@ -157,8 +159,6 @@ export default function AboutPage() {
         </section>
 
         {/* ── TEAM VOICE ─────────────────────────────────────────────── */}
-        {/* Adds brand presence without depending on a founder photo asset.
-            Voice / quote treatment so the page doesn't read corporate. */}
         <section
           aria-label="From the team"
           className="bg-black text-white"
@@ -200,67 +200,15 @@ export default function AboutPage() {
           </figure>
         </section>
 
-        {/* ── STATS ──────────────────────────────────────────────────── */}
-        <section
-          id="stats"
-          className="bg-black text-white scroll-mt-20"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.08)", padding: "0 24px 96px" }}
-        >
-          <div
-            className="grid grid-cols-2 lg:grid-cols-4"
-            style={{ maxWidth: "1280px", margin: "0 auto", border: "1px solid rgba(255,255,255,0.1)" }}
-          >
-            {STATS.map(({ label, value }) => (
-              <div
-                key={label}
-                style={{
-                  padding: "40px 24px",
-                  borderBottom: "1px solid rgba(255,255,255,0.08)",
-                  borderRight: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                <p style={{ fontSize: "56px", fontWeight: 700, lineHeight: 1, color: "#FAFAFA", marginBottom: "10px" }}>
-                  {value}
-                </p>
-                <p style={{
-                  fontSize: "12px", fontWeight: 500, letterSpacing: "0.12em",
-                  textTransform: "uppercase", color: "rgba(255,255,255,0.4)",
-                }}>
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* ── IMAGERY ─────────────────────────────────────────────────── */}
         <section
           id="imagery"
           className="bg-black scroll-mt-20"
-          style={{ paddingBottom: "2px" }}
+          style={{ paddingBottom: "64px" }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: "2px" }}>
-            {[
-              { src: "/images/12.webp",                                              alt: "Y Club"          },
-              { src: "/images/club-y-image-4.webp",                                  alt: "Y Terrace"       },
-              { src: "/images/nadine-195.jpg",                                       alt: "Y Bar & Lounge"  },
-              { src: "/images/img-1901.jpg",                                         alt: "Y crowd"         },
-              { src: "/images/441900351_371148019313956_2396615588718096493_n-2-copy.webp", alt: "Y night" },
-              { src: "/images/img-0959.jpeg",                                        alt: "Y atmosphere"    },
-            ].map((photo) => (
-              <div key={photo.src} className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  style={{ objectFit: "cover" }}
-                  className="hover:scale-105 transition-transform duration-700 ease-out"
-                />
-              </div>
-            ))}
-          </div>
+          <AboutImageryGrid />
         </section>
+
 
         {/* ── SOCIAL PROOF ───────────────────────────────────────────── */}
         <SocialProof
@@ -321,6 +269,7 @@ export default function AboutPage() {
                 {VACANCIES.map((vac) => (
                   <div
                     key={vac.title}
+                    className="about-career-card"
                     style={{
                       border: "1px solid rgba(255,255,255,0.1)",
                       padding: "32px 28px",
@@ -419,20 +368,43 @@ export default function AboutPage() {
                 <p style={{ fontSize: "13px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: "8px" }}>
                   {VENUES.yClub.name}
                 </p>
-                <p style={{ fontSize: "18px", color: "#080808", lineHeight: 1.5 }}>
+                <p style={{ fontSize: "18px", color: "#080808", lineHeight: 1.5, marginBottom: "16px" }}>
                   {VENUES.yClub.streetAddress}<br />
                   {VENUES.yClub.locality}, {VENUES.yClub.postalCode}
                 </p>
+                {/* Map embed — dark-filtered iframe, no API key required */}
+                <div style={{ border: "1px solid rgba(0,0,0,0.1)", overflow: "hidden" }}>
+                  <iframe
+                    title="Y Club map"
+                    src="https://maps.google.com/maps?q=Y+Club+Corner+House+Onslow+Street+Guildford+GU1+4SQ&output=embed&z=16"
+                    width="100%"
+                    height="180"
+                    style={{ display: "block", border: 0, filter: "grayscale(0.35) contrast(1.05)" }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
               </div>
 
               <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px", marginTop: "24px" }}>
                 <p style={{ fontSize: "13px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: "8px" }}>
                   {VENUES.yTerrace.name}
                 </p>
-                <p style={{ fontSize: "18px", color: "#080808", lineHeight: 1.5 }}>
+                <p style={{ fontSize: "18px", color: "#080808", lineHeight: 1.5, marginBottom: "16px" }}>
                   {VENUES.yTerrace.streetAddress}<br />
                   {VENUES.yTerrace.locality}, {VENUES.yTerrace.postalCode}
                 </p>
+                <div style={{ border: "1px solid rgba(0,0,0,0.1)", overflow: "hidden" }}>
+                  <iframe
+                    title="Y Terrace map"
+                    src="https://maps.google.com/maps?q=Y+Terrace+2-4+The+Quadrant+Bridge+Street+Guildford+GU1+4SG&output=embed&z=16"
+                    width="100%"
+                    height="180"
+                    style={{ display: "block", border: 0, filter: "grayscale(0.35) contrast(1.05)" }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
               </div>
 
               <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px", marginTop: "24px" }}>

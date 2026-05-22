@@ -16,7 +16,7 @@ interface TrustItem {
 const ITEMS: ReadonlyArray<TrustItem> = [
   { value: "3",       label: "Venues, one Y" },
   { value: "6+",      label: "Bars across the quarter" },
-  { value: "1,000",   label: "Combined capacity" },
+  { value: "1,500",   label: "Combined capacity" },
   { value: "Fri+Sat", label: "Open late" },
 ];
 

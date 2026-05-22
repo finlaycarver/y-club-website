@@ -21,6 +21,9 @@ export const BRAND = {
   instagram: "https://instagram.com/y_bar_",
   facebook: "https://facebook.com/guildford.y.bar",
   tiktok: "https://tiktok.com/@y_bar_",
+  /** Brand-level opening hours summary. Shown in the footer Contact block.
+   *  Per-venue hours live on their respective venue pages. */
+  hoursDisplay: "Wed–Sat, 8pm onwards",
 } as const;
 
 /**

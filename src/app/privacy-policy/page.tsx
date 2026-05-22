@@ -28,52 +28,62 @@ interface PolicySection {
   heading: string;
   /** Body may contain inline HTML — pair with `.policy-body` styles. */
   body: string;
+  /** Optional "last reviewed" label shown as a small badge beside the heading. */
+  lastReviewed?: string;
 }
 
 const POLICY_SECTIONS: ReadonlyArray<PolicySection> = [
   {
     slug: "who-we-are",
     heading: "Who we are",
+    lastReviewed: "May 2025",
     body: `Y is the trading name for the venue group operating ${VENUES.yClub.name} (${VENUES.yClub.streetAddress}, ${VENUES.yClub.locality}), ${VENUES.yTerrace.name} (${VENUES.yTerrace.streetAddress}, ${VENUES.yTerrace.locality}), and ${VENUES.yBarLounge.name} (${VENUES.yBarLounge.locality}). References in this policy to &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo; refer to Y. We are the data controller for personal information collected through this website and in our venues.`,
   },
   {
     slug: "what-we-collect",
     heading: "What we collect",
+    lastReviewed: "May 2025",
     body:
       "When you contact us, sign up to our mailing list, become a member, or submit an enquiry, we collect the personal data you provide — typically your name, email address, phone number, and (where relevant) date of birth. When you visit our venues, CCTV operates throughout for safety and security. We may also collect basic device and usage data (such as IP address and pages viewed) through this website's analytics.",
   },
   {
     slug: "how-we-use-it",
     heading: "How we use your information",
+    lastReviewed: "May 2025",
     body:
       "We use your details to: respond to enquiries; deliver and improve our services; send marketing communications you have opted in to receive; manage your membership; and operate our venues safely. Where we rely on consent, you can withdraw that consent at any time. Where we rely on legitimate interests (such as venue security), we balance those interests against your privacy rights.",
   },
   {
     slug: "who-we-share-with",
     heading: "Who we share with",
+    lastReviewed: "May 2025",
     body:
       "We do not sell your data. We share personal information only with trusted service providers operating on our behalf (such as our email platform, ticketing platform, or hosting provider), with law enforcement where legally required, and with professional advisers where necessary. Any third-party processors are bound by data-processing agreements.",
   },
   {
     slug: "data-retention",
     heading: "Data retention",
+    lastReviewed: "May 2025",
     body:
       "We keep personal data only as long as we need it for the purposes described above, after which we delete or anonymise it. See the retention table below for typical periods. Some data may be retained for longer where required by law (for example, employment or accounting records).",
   },
   {
     slug: "your-rights",
     heading: "Your rights",
+    lastReviewed: "May 2025",
     body: `Under UK GDPR you have the right to access, correct, or delete the personal data we hold about you; to object to or restrict its processing; and to portability. To exercise any right, email <a href='mailto:${BRAND.email}?subject=Privacy%20request'>${BRAND.email}</a> with your request and we will respond within one month. You also have the right to complain to the Information Commissioner's Office at <a href='https://ico.org.uk/concerns' target='_blank' rel='noopener noreferrer'>ico.org.uk/concerns</a>.`,
   },
   {
     slug: "cookies",
     heading: "Cookies",
+    lastReviewed: "May 2025",
     body:
       "Our website uses essential cookies to function and may use analytics cookies to help us understand how the site is used. You can manage cookies through your browser settings and through the consent banner on first visit.",
   },
   {
     slug: "changes-to-this-policy",
     heading: "Changes to this policy",
+    lastReviewed: "May 2025",
     body:
       "We may update this policy from time to time. The latest version will always be available on this page, with the date of the most recent revision shown at the top. We recommend reviewing this page periodically.",
   },
@@ -216,15 +226,35 @@ export default function PrivacyPolicyPage() {
                 className="scroll-mt-20"
                 style={{ marginBottom: "48px" }}
               >
-                <h2
-                  className="text-[24px] md:text-[28px]"
-                  style={{
-                    fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em",
-                    color: "#FAFAFA", marginBottom: "16px",
-                  }}
-                >
-                  {section.heading}
-                </h2>
+                <div className="flex items-baseline gap-3" style={{ marginBottom: "16px" }}>
+                  <h2
+                    className="text-[24px] md:text-[28px]"
+                    style={{
+                      fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em",
+                      color: "#FAFAFA",
+                    }}
+                  >
+                    {section.heading}
+                  </h2>
+                  {section.lastReviewed && (
+                    <span
+                      aria-label={`Last reviewed ${section.lastReviewed}`}
+                      style={{
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        letterSpacing: "0.10em",
+                        textTransform: "uppercase",
+                        color: "rgba(255,255,255,0.35)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        padding: "2px 7px",
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
+                      }}
+                    >
+                      Reviewed {section.lastReviewed}
+                    </span>
+                  )}
+                </div>
                 <p
                   className="policy-body"
                   style={{ fontSize: "17px", color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}

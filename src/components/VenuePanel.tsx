@@ -14,7 +14,7 @@ import { GRAIN_SVG } from "@/lib/grain";
  * them once both surfaces are stable.
  */
 
-export type VenuePanelHeight = "screen" | "viewport-80" | "viewport-70";
+export type VenuePanelHeight = "screen" | "viewport-80" | "viewport-70" | "viewport-55";
 
 export interface VenuePanelProps {
   /** Optional anchor id for in-page links (e.g. /venues#y-club). */
@@ -25,8 +25,10 @@ export interface VenuePanelProps {
   imageSide?: "left" | "right";
   /** Light or dark text column. Defaults to "dark". */
   variant?: "dark" | "light";
-  /** Desktop panel height. "viewport-70" keeps long indices to a sensible scroll. */
+  /** Desktop panel height. "viewport-55" for a tighter venue-index. */
   desktopHeight?: VenuePanelHeight;
+  /** Decorative ordinal overlaid on the image column (e.g. "01"). */
+  ordinal?: string;
   /** Text content for the panel — owns its own typography. */
   children: ReactNode;
 }
@@ -35,6 +37,7 @@ const HEIGHT_CLASS: Record<VenuePanelHeight, string> = {
   "screen":      "md:h-screen",
   "viewport-80": "md:h-[80vh]",
   "viewport-70": "md:h-[70vh]",
+  "viewport-55": "md:h-[55vh]",
 };
 
 export function VenuePanel({
@@ -44,6 +47,7 @@ export function VenuePanel({
   imageSide = "left",
   variant = "dark",
   desktopHeight = "screen",
+  ordinal,
   children,
 }: VenuePanelProps) {
   const heightClass = HEIGHT_CLASS[desktopHeight];
@@ -55,9 +59,11 @@ export function VenuePanel({
   const textOrderClass  = imageSide === "right" ? "md:order-1" : "md:order-2";
 
   return (
+    // group — enables group-hover:scale-105 on the image so the whole
+    // panel triggers the scale, not just the image column.
     <div
       id={id}
-      className={`flex flex-col md:grid md:grid-cols-2 ${heightClass}`}
+      className={`group flex flex-col md:grid md:grid-cols-2 ${heightClass}`}
     >
       {/* Image column */}
       <div className={`relative h-72 md:h-full overflow-hidden ${imageOrderClass}`}>
@@ -67,7 +73,29 @@ export function VenuePanel({
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
           sizes="(max-width: 768px) 100vw, 50vw"
+          className="transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform"
         />
+        {/* Decorative ordinal — large ghost numeral bottom-right of image */}
+        {ordinal && (
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              bottom: "16px",
+              right: "20px",
+              fontSize: "clamp(80px, 10vw, 140px)",
+              fontWeight: 700,
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
+              color: "rgba(255,255,255,0.07)",
+              pointerEvents: "none",
+              userSelect: "none",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {ordinal}
+          </span>
+        )}
       </div>
 
       {/* Text column */}

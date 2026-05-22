@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { VenueLayout, type VenueLayoutConfig } from "@/components/VenueLayout";
+import { YLogoMark } from "@/components/YLogoMark";
 
 export const metadata: Metadata = {
   title: "Y Terrace — Open-Air Venue, Guildford",
@@ -19,35 +20,58 @@ export const metadata: Metadata = {
 
 const yTerrace: VenueLayoutConfig = {
   hero: {
-    imageSrc: "/images/club-y-image-4.webp",
+    // Lighter outdoor image — the previous club-y-image-4.webp was near-black
+    // in the upper section. This image shows the venue with better visual punch.
+    imageSrc: "/images/10.webp",
     imageAlt: "Y Terrace — The Quadrant, Guildford",
     kicker: "The Quadrant · Bridge Street · Guildford",
-    title: "Y Terrace",
-    subhead:
-      "Open-air. All season. Guildford's outdoor terrace — cocktails, sport on the big screen, late summer evenings.",
-    // Hero CTA deep-links to the What's On listing pre-filtered to this venue.
+    // "Y" in birdie italic matches the brand wordmark treatment
+    title: (
+      <>
+        <YLogoMark height="0.78em" />
+        {" Terrace"}
+      </>
+    ),
+    // Tighter subhead — was 3 lines at desktop, now 2
+    subhead: "Guildford's outdoor terrace. Cocktails, sport on the big screen, open all summer.",
+    // Looped video as hero background — check if daytime moments present
+    videoSrc: "/videos/y-terrace-loop.mp4",
+    // Seasonal badge — communicates outdoor/seasonal nature immediately
+    seasonalBadge: "Open: April – September",
+    // Vertical line draw-in under H1 — outdoor editorial feel
+    showVerticalLine: true,
     primaryCta: { href: "/whats-on?venue=Y+Terrace", label: "See What's On" },
   },
   overview: {
     kicker: "The Terrace",
-    heading: "Guildford's finest outdoor experience.",
+    // Tighter heading — was too long and verbose
+    heading: "Open-air, every weekend.",
     paragraphs: [
       "Y Terrace is Guildford's go-to outdoor venue. Four bars — including the VIP Roof Terrace — two DJ booths, and a large dance floor that stays open into the night.",
       "From long summer days to big sport screenings, Y Terrace is built for those nights that spill into the early hours. Up to 500 guests under the open sky.",
     ],
   },
   specs: [
-    { label: "Capacity",  value: "500"     },
-    { label: "Bars",      value: "4"       },
-    { label: "DJ booths", value: "2"       },
-    { label: "Season",    value: "Summer"  },
+    { label: "Capacity",  value: "500"                              },
+    { label: "Bars",      value: "4"                                },
+    { label: "DJ booths", value: "2"                                },
+    // compact: true + accentBadge — "Summer only" pill at accent colour
+    { label: "Season",    value: "Summer", compact: true, accentBadge: "Summer only" },
   ],
   specsStyle: "numeric",
+  // cropTimestamp: true scales up + crops top-right corner to hide the
+  // burned-in "10-07-2024 20:34:27" timestamp (A4-VX [HIGH]).
+  // playbackRate: 0.7 makes the raw event footage feel more cinematic.
+  // overlayOpacity: 0.4 mutes the raw documentary look.
+  // Replace src with branded footage when available.
   video: {
     src: "/videos/y-terrace-loop.mp4",
-    posterSrc: "/images/club-y-image-4.webp",
+    posterSrc: "/images/10.webp",
     kicker: "Sports & Summer",
     caption: "The outdoor terrace, alive.",
+    cropTimestamp: true,
+    playbackRate: 0.7,
+    overlayOpacity: 0.4,
   },
   photos: [
     { src: "/images/9.webp",                                                       alt: "Y Terrace open-air bar in the evening sun" },
@@ -55,7 +79,9 @@ const yTerrace: VenueLayoutConfig = {
     { src: "/images/img-1917.jpg",                                                 alt: "Friends drinking cocktails on Y Terrace"   },
     { src: "/images/club-y-image-6.webp",                                          alt: "Y Terrace at night under the disco lights" },
   ],
-  photoLayout: "split",
+  // "quad" — clean 2×2 grid, no row-span. Fixes the height mismatch
+  // the old "split" layout created with the 3/4 feature photo (A4-VS [HIGH]).
+  photoLayout: "quad",
   address: {
     variant: "street",
     kicker: "Find Us",

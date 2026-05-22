@@ -29,6 +29,15 @@ export interface EventItem {
   /** Full external ticket URL (typically Skiddle). [TODO(fin)]: replace venue-search fallbacks with real event-specific URLs. */
   ticketUrl: string;
   featured?: boolean;
+  /** When true: greyscale image + diagonal "SOLD OUT" stamp. */
+  soldOut?: boolean;
+  /**
+   * 0–100 representing % of capacity sold. Drives the capacity bar
+   * at the card foot. Omit to hide the bar. [CONFIRM with Michelle]
+   */
+  capacityPercent?: number;
+  /** Override the default CTA label ("Get tickets" / "View event"). */
+  ctaLabel?: string;
 }
 
 /** Skiddle search URLs scoped to each venue — used as a fallback when a

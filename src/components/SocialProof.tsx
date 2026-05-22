@@ -31,7 +31,7 @@ interface SocialProofProps {
 const STATS = [
   { value: "3",      label: "Venues"        },
   { value: "6+",     label: "Bars"          },
-  { value: "1,000",  label: "Combined capacity" },
+  { value: "1,500",  label: "Combined capacity" },
 ] as const;
 
 export function SocialProof({

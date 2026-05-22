@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, X } from "lucide-react"
 
 interface Signpost {
   title: string
@@ -22,7 +22,7 @@ const signposts: Signpost[] = [
   { title: "The Line-up",       subtitle: "Every Friday and Saturday",        imageUrl: "/images/club-y-image-6.webp",    href: "/whats-on",                     priority: true },
   // Row 2 — wide middle
   { title: "Birthdays",         subtitle: "Tables, hosts & bottle service",   imageUrl: "/images/img-0961.jpeg",          href: "/venue-hire" },
-  { title: "Venue Hire",        subtitle: "Up to 1,000 capacity",             imageUrl: "/images/nadine-195.jpg",         href: "/venue-hire",       wide: true },
+  { title: "Venue Hire",        subtitle: "Up to 1,500 capacity",             imageUrl: "/images/nadine-195.jpg",         href: "/venue-hire",       wide: true },
   { title: "Student Nights",    subtitle: "Midweek with Surrey Uni",          imageUrl: "/images/img-0841.jpeg",          href: "/whats-on" },
   // Row 3 — wide right
   { title: "Bottle Service",    subtitle: "Premium tables in the club",       imageUrl: "/images/tempimage0cgvsr.jpg",    href: "/venue-hire" },
@@ -41,11 +41,13 @@ function SignpostCard({
   imagePosition,
   priority,
   index,
-}: Signpost & { index: number }) {
+  onMobileTap,
+}: Signpost & { index: number; onMobileTap: () => void }) {
   const cardRef = useRef<HTMLAnchorElement>(null)
   const rafRef  = useRef<number | null>(null)
 
-  // 3D card tilt — wide tiles only, pointer-fine devices, no reduced-motion
+  // 3D card tilt — wide tiles only, pointer-fine (desktop) only, no reduced-motion.
+  // pointer:fine already excludes touch; no separate mobile guard needed.
   useEffect(() => {
     const card = cardRef.current
     if (!card || !wide) return
@@ -78,15 +80,25 @@ function SignpostCard({
     }
   }, [wide])
 
-  // Wide tiles get a larger title at desktop to mirror the tile-size hierarchy.
+  // Wide tiles get a larger title at desktop to mirror tile-size hierarchy.
   // 42px wide vs 28px regular gives clear visual weight separation.
   const titleSizeClass = wide ? "text-[28px] lg:text-[42px]" : "text-[28px]"
   const numeral = String(index + 1).padStart(2, "0")
+
+  function handleClick(e: React.MouseEvent) {
+    // On touch/coarse devices: intercept the tap and open the bottom sheet.
+    // Desktop pointer-fine users navigate normally via the href.
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      e.preventDefault()
+      onMobileTap()
+    }
+  }
 
   return (
     <a
       ref={cardRef}
       href={href}
+      onClick={handleClick}
       className={`discover-tile group relative block overflow-hidden cursor-pointer${wide ? " lg:col-span-2" : ""}`}
       style={{
         textDecoration: "none",
@@ -183,12 +195,13 @@ function SignpostCard({
         )}
       </div>
 
-      {/* Arrow affordance — bottom-right, shifts on hover */}
+      {/* Arrow affordance — 28px on mobile for easier tap target, 24px on desktop */}
       <div
         className="absolute text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
         style={{ bottom: "16px", right: "16px", zIndex: 3 }}
       >
-        <ArrowUpRight size={24} />
+        <ArrowUpRight size={28} className="md:hidden" aria-hidden="true" />
+        <ArrowUpRight size={24} className="hidden md:block" aria-hidden="true" />
       </div>
     </a>
   )
@@ -197,6 +210,13 @@ function SignpostCard({
 // ── DiscoverSection ─────────────────────────────────────────────────
 export function DiscoverSection() {
   const gridRef = useRef<HTMLDivElement>(null)
+  const [activeSheet, setActiveSheet] = useState<Signpost | null>(null)
+
+  // Body scroll lock while bottom sheet is open
+  useEffect(() => {
+    document.body.style.overflow = activeSheet ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [activeSheet])
 
   // Stagger entrance — IntersectionObserver adds .discover-visible to the
   // grid when it enters the viewport. CSS nth-child delays then cascade
@@ -255,16 +275,121 @@ export function DiscoverSection() {
           Discover Y
         </h2>
 
+        {/* Grid on desktop / horizontal scroll carousel on mobile.
+            discover-carousel-mobile (globals.css) overrides display:grid
+            with display:flex + scroll-snap-type:x mandatory on <768px. */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 discover-grid"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 discover-grid discover-carousel-mobile"
           style={{ columnGap: "20px", rowGap: "30px" }}
         >
           {signposts.map((signpost, i) => (
-            <SignpostCard key={signpost.title} {...signpost} index={i} />
+            <SignpostCard
+              key={signpost.title}
+              {...signpost}
+              index={i}
+              onMobileTap={() => setActiveSheet(signpost)}
+            />
           ))}
         </div>
       </div>
+
+      {/* ── Mobile bottom sheet ──────────────────────────────────────── */}
+      {/* Tap backdrop to dismiss. md:hidden — never shown on desktop. */}
+      {activeSheet && (
+        <div
+          className="fixed inset-0 z-50 md:hidden"
+          onClick={() => setActiveSheet(null)}
+          style={{ background: "rgba(0,0,0,0.65)" }}
+        >
+          <div
+            className="absolute bottom-0 left-0 right-0"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "#0c0c0c",
+              borderTop: "1px solid rgba(255,255,255,0.1)",
+              padding: "20px 24px 48px",
+            }}
+          >
+            {/* Drag handle */}
+            <div
+              aria-hidden="true"
+              className="mx-auto mb-5 h-1 w-10 rounded-full"
+              style={{ background: "rgba(255,255,255,0.18)" }}
+            />
+
+            {/* Close button */}
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => setActiveSheet(null)}
+              className="absolute top-4 right-4 flex items-center justify-center"
+              style={{
+                width: "36px",
+                height: "36px",
+                background: "transparent",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: "50%",
+                color: "rgba(255,255,255,0.6)",
+                cursor: "pointer",
+              }}
+            >
+              <X size={16} />
+            </button>
+
+            {/* Content */}
+            <p style={{
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.35)",
+              marginBottom: "8px",
+            }}>
+              Discover
+            </p>
+            <h3 style={{
+              fontSize: "32px",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+              color: "#FAFAFA",
+              margin: "0 0 6px",
+            }}>
+              {activeSheet.title}
+            </h3>
+            {activeSheet.subtitle && (
+              <p style={{
+                fontSize: "15px",
+                color: "rgba(255,255,255,0.5)",
+                marginBottom: "24px",
+                lineHeight: "1.5",
+              }}>
+                {activeSheet.subtitle}
+              </p>
+            )}
+
+            {/* Navigation CTA */}
+            <a
+              href={activeSheet.href}
+              className="flex items-center justify-center gap-2 w-full transition-opacity duration-150 active:opacity-75"
+              style={{
+                padding: "16px 24px",
+                background: "#FAFAFA",
+                color: "#080808",
+                fontWeight: 700,
+                fontSize: "14px",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+            >
+              Explore {activeSheet.title}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

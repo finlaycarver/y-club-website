@@ -4,7 +4,7 @@ import { VenueHireClient } from "./VenueHireClient";
 export const metadata: Metadata = {
   title: "Venue Hire — Birthdays, Corporate, Christmas Parties",
   description:
-    "Hire Y Club, Y Terrace or Y Bar & Lounge for your event. Up to 1,000 capacity combined. Birthdays, corporate, NYE, Christmas, sport screenings.",
+    "Hire Y Club, Y Terrace or Y Bar & Lounge for your event. Up to 1,500 capacity combined. Birthdays, corporate, NYE, Christmas, sport screenings.",
   alternates: { canonical: "/venue-hire" },
   openGraph: {
     title: "Hire Y — Birthdays, Corporate, Christmas Parties",

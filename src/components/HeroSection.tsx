@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ChevronDown, Phone, Share2 } from "lucide-react";
 import { ChevronRightIcon } from "@/components/icons";
+import { YLogoMark } from "@/components/YLogoMark";
 import { GRAIN_SVG } from "@/lib/grain";
 
 /* ──────────────────────────────────────────────────────────────────────
@@ -15,13 +16,16 @@ interface HeroWord {
   lineBreakBefore?: boolean;
   /** Render in the italic editorial typeface. */
   italic?: boolean;
+  /** Render the Y logo mark image before the text content. */
+  logoMark?: boolean;
 }
 
 const HERO_WORDS: ReadonlyArray<HeroWord> = [
   { text: "Three" },
   { text: "Venues." },
   { text: "One", lineBreakBefore: true },
-  { text: "Y.", italic: true },
+  // Logo mark replaces the italic Birdie "Y" — period follows inline.
+  { text: ".", logoMark: true },
 ];
 
 /* ──────────────────────────────────────────────────────────────────────
@@ -46,7 +50,6 @@ export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const primaryCtaRef = useRef<HTMLAnchorElement>(null);
   const cursorLightRef = useRef<HTMLDivElement>(null);
-  const scrollAffordanceRef = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   /* Live status text is computed on mount so SSR markup is stable.
@@ -58,6 +61,7 @@ export function HeroSection() {
      static <picture> hero (cheap, no autoplay surprises). */
   const [videoMode, setVideoMode] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [hasShareAPI, setHasShareAPI] = useState(false);
 
   // ── Parallax scroll ──────────────────────────────────────────────
   useEffect(() => {
@@ -97,37 +101,31 @@ export function HeroSection() {
     setLiveStatus(getLiveStatus(new Date()));
   }, []);
 
-  // ── Video upgrade gate ───────────────────────────────────────────
-  // Only enable the looped hero video when the device can handle it:
-  //   - viewport ≥ 768px (saves mobile data, matches art-direction
-  //     fallback)
-  //   - prefers-reduced-motion is OFF (otherwise the still poster
-  //     should respect the user's preference)
-  //   - Save-Data is not requested
+  // Video upgrade disabled — static <picture> hero is used instead.
+  // The y-club-loop.mp4 quality was not suitable for the home page.
+  // Re-enable by restoring the videoMode gate if a high-quality reel
+  // becomes available.
+
+  // ── Web Share API availability detect ────────────────────────────
+  // navigator.share is a mobile-browser API; checking on mount keeps
+  // the share button invisible on browsers that don't support it.
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (window.matchMedia("(max-width: 767px)").matches) return;
-    const conn = (navigator as Navigator & { connection?: NetworkConnection })
-      .connection;
-    if (conn?.saveData) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setVideoMode(true);
+    setHasShareAPI(typeof navigator !== "undefined" && !!navigator.share);
   }, []);
 
-  // ── Video fade-in once playable ──────────────────────────────────
-  // canplay fires when enough data is buffered to start playback.
-  // Fading in then prevents a flash between poster and first frame.
-  useEffect(() => {
-    if (!videoMode) return;
-    const v = videoRef.current;
-    if (!v) return;
-    function onCanPlay() { setVideoReady(true); }
-    v.addEventListener("canplay", onCanPlay);
-    // Already buffered (cache hit)? One-shot setState, not cascading.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (v.readyState >= 3) setVideoReady(true);
-    return () => v.removeEventListener("canplay", onCanPlay);
-  }, [videoMode]);
+  // ── Native share handler ──────────────────────────────────────────
+  const handleShare = useCallback(async () => {
+    if (typeof navigator === "undefined" || !navigator.share) return;
+    try {
+      await navigator.share({
+        title: "Y Bar — Guildford's Late-Night Quarter",
+        text: "Three venues. One night. Y Bar, Guildford.",
+        url: window.location.href,
+      });
+    } catch {
+      // User cancelled the sheet or API unavailable — silent
+    }
+  }, []);
 
   // ── Cursor-reactive radial light source ──────────────────────────
   // Pointer-fine only (skip on touch); CSS variables drive the gradient
@@ -211,25 +209,9 @@ export function HeroSection() {
     };
   }, []);
 
-  // ── Hide scroll affordance after user scrolls past the hero ──────
-  // Complies with the DO-NOT-ADD note that a forever-bouncing arrow
-  // becomes distracting once the user has moved on.
-  useEffect(() => {
-    const el = scrollAffordanceRef.current;
-    if (!el) return;
-
-    const onScroll = () => {
-      const scrolled = window.scrollY > 80;
-      el.style.opacity = scrolled ? "0" : "1";
-      el.style.pointerEvents = scrolled ? "none" : "auto";
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <div ref={heroRef} style={{ minHeight: "100svh" }} className="relative w-full bg-black overflow-hidden">
+    <div ref={heroRef} style={{ minHeight: "100svh" }} className="relative w-full bg-black overflow-hidden" data-hero-sentinel>
 
       {/* Background: parallax wrapper.
           Layered: <picture> always renders (SSR-safe fallback). On
@@ -239,9 +221,8 @@ export function HeroSection() {
       <div ref={parallaxRef} className="absolute left-0 right-0 will-change-transform" style={{ top: "-15%", bottom: "-15%" }}>
         <div className="ken-burns absolute inset-0">
           <picture>
-            <source media="(min-width: 768px)" srcSet="/images/14.webp" />
             <img
-              src="/images/13.webp"
+              src="/images/14.webp"
               alt="Three Venues. One Y."
               fetchPriority="high"
               decoding="async"
@@ -255,31 +236,8 @@ export function HeroSection() {
             />
           </picture>
 
-          {/* Looped hero video. Mounted only when videoMode is true so
-              mobile / reduced-motion users never download it. */}
-          {videoMode && (
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="/images/14.webp"
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                opacity: videoReady ? 1 : 0,
-                transition: "opacity 600ms ease-out",
-              }}
-            >
-              <source src="/videos/y-club-loop.mp4" type="video/mp4" />
-            </video>
-          )}
+          {/* Video removed — static <picture> renders instead.
+              Restore when a high-quality home reel is available. */}
         </div>
       </div>
 
@@ -339,7 +297,9 @@ export function HeroSection() {
           {liveStatus}
         </p>
 
-        <p style={{ fontSize: "14px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", margin: "0 0 18px" }}>
+        {/* Kicker — .hero-kicker class lets globals.css tighten
+            letter-spacing at 320px to prevent overflow. */}
+        <p className="hero-kicker" style={{ fontSize: "14px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", margin: "0 0 18px" }}>
           Guildford&apos;s Late-Night Quarter
         </p>
 
@@ -358,6 +318,13 @@ export function HeroSection() {
                 className={`hero-word${word.italic ? " hero-word-italic" : ""}`}
                 style={{ animationDelay: `${i * 120}ms` }}
               >
+                {word.logoMark && (
+                  <YLogoMark
+                    // Match the heading's current font-size via em units
+                    height="0.82em"
+                    className="mr-[0.05em]"
+                  />
+                )}
                 {word.text}
               </span>
               {i < HERO_WORDS.length - 1 && !HERO_WORDS[i + 1]?.lineBreakBefore && " "}
@@ -368,9 +335,11 @@ export function HeroSection() {
           ))}
         </h1>
 
+        {/* Subhead — 16px on mobile (was 18px) prevents awkward 2-line
+            cramped wrap at 375px. 22px on md+ unchanged. */}
         <p
-          className="text-[18px] md:text-[22px]"
-          style={{ fontWeight: 400, lineHeight: 1.4, letterSpacing: "-0.005em", color: "rgba(255,255,255,0.75)", margin: "0 0 36px", maxWidth: "600px" }}
+          className="text-[16px] md:text-[22px]"
+          style={{ fontWeight: 400, lineHeight: 1.45, letterSpacing: "-0.005em", color: "rgba(255,255,255,0.75)", margin: "0 0 28px", maxWidth: "600px", textWrap: "balance" }}
         >
           Cocktails to start. Terrace to settle. Club to finish.
         </p>
@@ -381,7 +350,7 @@ export function HeroSection() {
           <a
             ref={primaryCtaRef}
             href="#whats-on"
-            className="group relative overflow-hidden inline-flex items-center justify-center gap-1.5 border border-white px-8 text-[18px] font-bold leading-6 active:scale-[0.98] w-full md:w-auto md:min-w-[180px]"
+            className="hero-cta-primary group relative overflow-hidden inline-flex items-center justify-center gap-1.5 border border-white px-8 text-[18px] font-bold leading-6 active:scale-[0.98] w-full md:w-auto md:min-w-[180px]"
             style={{
               height: "58px",
               borderRadius: 0,
@@ -406,33 +375,45 @@ export function HeroSection() {
             <span className="relative z-10">Hire the Venue</span>
             <ChevronRightIcon className="size-4 ml-1 relative z-10 group-hover:translate-x-0.5 transition-transform duration-200 motion-reduce:transition-none" />
           </a>
+
+          {/* Click-to-call — mobile only. Direct dial from the hero gives
+              nightlife visitors the fastest possible path to booking without
+              leaving the page. Hidden on md+ where the tel: experience is
+              less reliable and the venue-hire page handles enquiries better. */}
+          <a
+            href="tel:+441483342027"
+            className="md:hidden group relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 text-[16px] font-bold leading-6 text-white active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none w-full"
+            style={{ height: "50px", borderRadius: 0, backgroundColor: "transparent", border: "1.5px solid rgba(255,255,255,0.5)" }}
+          >
+            <Phone size={16} aria-hidden="true" />
+            <span>Call to book</span>
+          </a>
         </div>
+
+        {/* Web Share API — renders only when navigator.share is available
+            (typically mobile Chrome, iOS Safari). Lets visitors share the
+            venue page via their native share sheet. Zero third-party SDK. */}
+        {hasShareAPI && (
+          <button
+            type="button"
+            onClick={handleShare}
+            className="md:hidden mt-3 inline-flex items-center gap-2 hover:text-white active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none"
+            style={{
+              background: "transparent",
+              border: "none",
+              padding: "4px 0",
+              cursor: "pointer",
+              fontSize: "13px",
+              fontWeight: 500,
+              color: "rgba(255,255,255,0.55)",
+            }}
+          >
+            <Share2 size={14} aria-hidden="true" />
+            <span>Share this venue</span>
+          </button>
+        )}
       </div>
 
-      {/* Scroll-down affordance — fades out once the user scrolls past
-          the hero so it doesn't read as a forever-bouncing distraction. */}
-      <a
-        ref={scrollAffordanceRef}
-        href="#whats-on"
-        aria-label="Scroll for what's next"
-        className="hero-scroll absolute left-1/2 hidden min-h-[700px]:flex flex-col items-center gap-2 text-white/55 hover:text-white transition-[color,opacity] duration-300 motion-reduce:transition-none"
-        style={{
-          bottom: "28px",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "10px",
-            fontWeight: 500,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-          }}
-        >
-          Scroll
-        </span>
-        <ChevronDown size={18} strokeWidth={1.5} className="hero-scroll-chevron" />
-      </a>
     </div>
   );
 }

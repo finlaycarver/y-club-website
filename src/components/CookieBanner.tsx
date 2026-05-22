@@ -28,6 +28,17 @@ export function CookieBanner() {
     }
   }, []);
 
+  // Body data-attribute — lets CSS add padding-bottom to <main> on mobile
+  // so the fixed banner doesn't overlap the address/entry section content.
+  useEffect(() => {
+    if (show) {
+      document.body.dataset.cookieBanner = "1";
+    } else {
+      delete document.body.dataset.cookieBanner;
+    }
+    return () => { delete document.body.dataset.cookieBanner; };
+  }, [show]);
+
   function setConsent(value: "accepted" | "declined") {
     try {
       window.localStorage.setItem(STORAGE_KEY, value);
@@ -40,11 +51,19 @@ export function CookieBanner() {
   if (!show) return null;
 
   return (
+    // Positioned at the bottom of the viewport so it never overlaps
+    // above-the-fold CTAs (was top: 0, which blocked the /whats-on
+    // featured event CTA on the first viewport).
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed left-0 right-0 z-40 px-4 md:px-6"
-      style={{ bottom: "16px", pointerEvents: "none" }}
+      className="fixed left-0 right-0 z-50 px-4 md:px-6"
+      style={{
+        bottom: 0,
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)",
+        paddingTop: "16px",
+        pointerEvents: "none",
+      }}
     >
       <div
         className="mx-auto flex flex-col md:flex-row md:items-center gap-4 md:gap-6"

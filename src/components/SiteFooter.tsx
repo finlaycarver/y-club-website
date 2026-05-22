@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { FindUsBottomSheet } from "@/components/FindUsBottomSheet";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -32,6 +33,26 @@ export function SiteFooter() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<SubscribeState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [findUsOpen, setFindUsOpen] = useState(false);
+  const closeFindUs = useCallback(() => setFindUsOpen(false), []);
+
+  // Web Share API — only available in secure contexts on mobile browsers
+  const [canShare, setCanShare] = useState(false);
+  useEffect(() => {
+    setCanShare(typeof navigator !== "undefined" && !!navigator.share);
+  }, []);
+
+  async function handleShare() {
+    try {
+      await navigator.share({
+        title: "Y — Guildford's Late-Night Quarter",
+        text: "Three venues on one short walk. Cocktails, terrace, club.",
+        url: window.location.origin,
+      });
+    } catch {
+      // User cancelled or API unsupported — silent fail
+    }
+  }
 
   async function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -61,22 +82,32 @@ export function SiteFooter() {
   }
 
   return (
+    <>
     <footer className="footer-grain" style={{ background: "#000", color: "#FAFAFA" }}>
 
       {/* ── MAIN BODY ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 px-6 pt-10 pb-8 md:px-16 md:pt-16 md:pb-14" style={{ alignItems: "start" }}>
+      {/* Column gap tightened from gap-20 → gap-12 on tablet+: the previous
+          80px gap left the right column feeling unmoored from the left. */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 px-6 pt-10 pb-8 md:px-16 md:pt-16 md:pb-14" style={{ alignItems: "start" }}>
 
         {/* LEFT — Logo + tagline + contact */}
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           <Link href="/" aria-label="Y home" style={{ display: "inline-block" }}>
-            <Image src="/images/logo/y-white-no-background.webp" alt="Y Guildford" width={72} height={54} style={{ height: "54px", width: "auto" }} />
+            {/* Logo: 36px on mobile (was 54px), 54px on md+ */}
+            <Image src="/images/logo/y-white-no-background.webp" alt="Y Guildford" width={72} height={54} className="h-[36px] md:h-[54px] w-auto" style={{ height: undefined, width: "auto" }} />
           </Link>
-          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.45)", lineHeight: "1.6", maxWidth: "320px" }}>
-            Guildford&apos;s Late-Night Quarter — three venues, a short walk apart.
-          </p>
+          {/* Marquee tagline — slow horizontal scroll on mobile gives the
+              footer a quiet sense of motion without being distracting.
+              Disabled under prefers-reduced-motion (static text). */}
+          <div className="footer-marquee-wrap overflow-hidden" style={{ maxWidth: "320px" }}>
+            <p className="footer-marquee-track motion-reduce:animate-none" style={{ fontSize: "15px", color: "rgba(255,255,255,0.45)", lineHeight: "1.6", whiteSpace: "nowrap" }}>
+              Onslow Street to The Quadrant. Three venues on one short walk.&nbsp;&nbsp;·&nbsp;&nbsp;Onslow Street to The Quadrant. Three venues on one short walk.
+            </p>
+          </div>
 
-          {/* Contact — sitewide phone + email so visitors don't have to dig
-              into the hire page to reach the team. */}
+          {/* Contact — sitewide phone + email + brand-level hours so
+              visitors don't have to dig into the hire page to reach the
+              team or check when we're open. */}
           <div className="flex flex-col gap-1.5">
             <p style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "4px" }}>
               Contact
@@ -95,7 +126,27 @@ export function SiteFooter() {
             >
               {BRAND.email}
             </a>
+            {/* Brand-level opening hours — visible without navigating to a
+                venue page. Per-venue hours live on the individual venue
+                routes. */}
+            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", marginTop: "4px" }}>
+              {BRAND.hoursDisplay}
+            </p>
           </div>
+
+          {/* "Find us" — opens the venue address sheet with tap-to-directions */}
+          <button
+            onClick={() => setFindUsOpen(true)}
+            className="inline-flex items-center gap-1.5 group hover:opacity-100 transition-opacity duration-200 motion-reduce:transition-none"
+            style={{ background: "transparent", border: "none", padding: 0, cursor: "pointer", opacity: 0.65 }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FAFAFA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span className="border-b border-white/30 group-hover:border-white transition-colors duration-200" style={{ fontSize: "14px", fontWeight: 600, color: "#FAFAFA", letterSpacing: "0.04em" }}>
+              Find us
+            </span>
+          </button>
         </div>
 
         {/* RIGHT — Newsletter */}
@@ -140,13 +191,24 @@ export function SiteFooter() {
                 className="flex-1 border border-white/25 focus:border-white/70 focus:outline-none transition-[border-color] duration-200 motion-reduce:transition-none placeholder:text-white/30 disabled:opacity-60"
                 style={{ height: "50px", background: "transparent", color: "#FAFAFA", fontFamily: "haas, Arial, sans-serif", fontSize: "15px", borderRadius: 0, padding: "0 16px", minWidth: 0 }}
               />
+              {/* Subscribe button — ties into the hero CTA accent treatment:
+                  a left-to-right sweep shimmer on hover plus a colour fill.
+                  Matches the visual vocabulary of the rest of the page so
+                  the newsletter doesn't read as a separate widget. */}
               <button
                 type="submit"
                 disabled={state === "submitting"}
-                className="hover:bg-white hover:text-black transition-colors duration-300 motion-reduce:transition-none shrink-0 disabled:opacity-60"
+                className="group relative overflow-hidden hover:bg-white hover:text-black transition-colors duration-300 motion-reduce:transition-none shrink-0 disabled:opacity-60"
                 style={{ height: "50px", padding: "0 28px", border: "1px solid rgba(255,255,255,0.6)", borderLeft: "none", borderRadius: 0, background: "transparent", color: "#FAFAFA", fontSize: "14px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", cursor: state === "submitting" ? "wait" : "pointer", fontFamily: "haas, Arial, sans-serif", whiteSpace: "nowrap" }}
               >
-                {state === "submitting" ? "Sending…" : "Subscribe"}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out pointer-events-none motion-reduce:hidden"
+                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%)" }}
+                />
+                <span className="relative z-10">
+                  {state === "submitting" ? "Sending…" : "Subscribe"}
+                </span>
               </button>
             </form>
           )}
@@ -162,15 +224,22 @@ export function SiteFooter() {
       </div>
 
       {/* ── BOTTOM BAR ────────────────────────────────────────────── */}
+      {/* Mobile: flex-col stack so nav wraps cleanly at 320px without
+          squashing copyright + social into one cramped row.
+          gap-y on the nav ul lets links wrap to 2 rows without
+          overlapping at very narrow viewports. */}
       <div className="px-6 py-6 md:px-16 md:py-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-8" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
         <nav aria-label="Footer navigation">
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", gap: "32px", flexWrap: "wrap" }}>
+          <ul className="footer-nav-list" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", gap: "20px", flexWrap: "wrap", rowGap: "10px" }}>
             {NAV_LINKS.map(({ label, href }) => (
               <li key={label}>
+                {/* Hover underline disabled on touch — @media (hover: none) in
+                    globals.css removes the after-pseudo underline so tap
+                    targets don't flash a half-rendered line on iOS. */}
                 <Link
                   href={href}
-                  className="relative pb-px after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white/50 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:ease-out motion-reduce:after:transition-none"
-                  style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", fontWeight: 450, textDecoration: "none", letterSpacing: "0.02em" }}
+                  className="footer-nav-link relative pb-px after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white/50 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:ease-out motion-reduce:after:transition-none"
+                  style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", fontWeight: 450, textDecoration: "none", letterSpacing: "0.02em" }}
                 >
                   {label}
                 </Link>
@@ -197,18 +266,52 @@ export function SiteFooter() {
               {COMPANY.vatNumber && <>VAT No. {COMPANY.vatNumber}</>}
             </p>
           )}
+          {/* Portfolio attribution. Tiny, low-contrast — present but not loud. */}
+          <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.25)" }}>
+            Designed by{" "}
+            <a
+              href="https://first-aid.agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white/60 transition-colors duration-200 motion-reduce:transition-none"
+              style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none" }}
+            >
+              First AI.D
+            </a>
+          </p>
         </div>
 
-        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+        {/* Social icons at 44×44 tap targets — icon is 22px, the
+            extra area is invisible padding for thumb accuracy. */}
+        <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
           {SOCIAL_LINKS.map(({ Icon, href, label }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-              className="opacity-40 hover:opacity-100 hover:-translate-y-0.5 transition-all duration-200 motion-reduce:transition-none"
-              style={{ display: "flex", alignItems: "center" }}>
+              className="opacity-40 hover:opacity-100 hover:-translate-y-0.5 transition-all duration-200 motion-reduce:transition-none inline-flex items-center justify-center"
+              style={{ width: "44px", height: "44px" }}>
               <Icon style={{ width: "22px", height: "22px", fill: "#FAFAFA" }} />
             </a>
           ))}
+          {/* Native share button — only rendered when Web Share API is
+              available (iOS Safari, Chrome Android). */}
+          {canShare && (
+            <button
+              onClick={handleShare}
+              aria-label="Share Y Guildford"
+              className="opacity-40 hover:opacity-100 hover:-translate-y-0.5 transition-all duration-200 motion-reduce:transition-none inline-flex items-center justify-center bg-transparent border-0 cursor-pointer"
+              style={{ width: "44px", height: "44px" }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAFA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </footer>
+
+    {/* "Find us" venue address sheet */}
+    <FindUsBottomSheet open={findUsOpen} onClose={closeFindUs} />
+    </>
   );
 }

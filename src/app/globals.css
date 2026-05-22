@@ -357,7 +357,10 @@
 }
 
 /* ── Discover grid — responsive tile height ─────────────────────── */
-.discover-grid { grid-auto-rows: 50vh; }
+/* Mobile: 2-col grid at 35vh rows — image is large enough to read,
+   title overlay has room. 9 tiles × 35vh ÷ 2 cols = ~5 rows × 35vh
+   = 175vh vs the previous 9 rows × 50vh = 450vh. */
+.discover-grid { grid-auto-rows: 35vh; }
 @media (min-width: 768px) { .discover-grid { grid-auto-rows: 72vh; } }
 
 /* ── Footer grain overlay ───────────────────────────────────────── */
@@ -490,6 +493,165 @@
   .hero-scroll-chevron { animation: none; }
 }
 
+/* ── Hero primary CTA — tap ring ripple ──────────────────────────────
+   Fires on :active (pointer-down) so feedback is immediate on mobile.
+   Box-shadow expansion stays on the compositor — no layout reflow.
+   Skipped under reduced-motion so assistive-tech users aren't surprised. */
+@keyframes hero-cta-tap-ring {
+  from { box-shadow: 0 0 0 0    rgba(255,255,255,0.50), 0 8px 32px -8px rgba(255,255,255,0.18); }
+  to   { box-shadow: 0 0 0 20px rgba(255,255,255,0),    0 8px 32px -8px rgba(255,255,255,0.18); }
+}
+.hero-cta-primary:active {
+  animation: hero-cta-tap-ring 380ms ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta-primary:active { animation: none; }
+}
+
+/* ── What's On — event card entrance stagger ─────────────────────── */
+/* Cards start invisible and slide up when they enter the viewport.
+   IntersectionObserver in EventCard adds .event-card-visible.
+   prefers-reduced-motion: skip animation, show immediately. */
+@keyframes event-card-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.event-card {
+  opacity: 0;
+}
+.event-card.event-card-visible {
+  animation: event-card-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-card { opacity: 1; animation: none; }
+}
+
+/* Date text — slides in slightly later than the card itself */
+.event-card .event-card-date {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease 0.12s, transform 0.4s ease 0.12s;
+}
+.event-card.event-card-visible .event-card-date {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-card .event-card-date { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── What's On — sold out diagonal stamp ────────────────────────── */
+.event-sold-out-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 6px 14px;
+  pointer-events: none;
+  z-index: 4;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+/* ── Footer marquee tagline ──────────────────────────────────────── */
+@keyframes footer-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.footer-marquee-wrap {
+  /* Hide overflow so only one instance of the text is visible at once */
+  overflow: hidden;
+}
+.footer-marquee-track {
+  display: inline-block;
+  animation: footer-marquee-scroll 24s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-marquee-track {
+    animation: none;
+    /* Show just the first copy of the text as static */
+    white-space: normal;
+  }
+}
+
+/* ── Venue hero vertical line draw-in ───────────────────────────── */
+@keyframes venue-vline-draw {
+  from { height: 0; opacity: 0; }
+  to   { height: 40px; opacity: 1; }
+}
+.venue-hero-vline {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.35);
+  animation: venue-vline-draw 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .venue-hero-vline { animation: none; }
+}
+
+/* ── Venue CTA tap-feedback ripple ──────────────────────────────── */
+/* CSS ripple on :active — compositor-friendly (opacity + scale only).
+   Applied to .venue-cta-ripple class. Disabled under prefers-reduced-motion. */
+.venue-cta-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.venue-cta-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.18);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+  pointer-events: none;
+}
+.venue-cta-ripple:active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .venue-cta-ripple::after { display: none; }
+}
+
+/* ── Touch device: disable hover-only underline reveals ─────────── */
+/* Footer nav links use a hover-scale-x underline that looks broken on
+   touch devices (fires on tap, stays visible). Suppress on touch. */
+@media (hover: none) {
+  .footer-nav-link::after {
+    display: none;
+  }
+}
+
+/* ── Mobile-specific fixes ────────────────────────────────────────── */
+
+/* Scroll-margin for fixed header (128px tall).
+   Any in-page anchor link (e.g. #y-club, #whats-on) or programmatic
+   scrollIntoView won't be obscured by the fixed nav. */
+section[id],
+div[id]:not([id^="__"]) {
+  scroll-margin-top: 140px;
+}
+
+/* Kicker overflow fix at narrow viewports (≤360px).
+   "GUILDFORD'S LATE-NIGHT QUARTER" at 14px + 0.14em tracking overflows
+   320px wide screens — tighter tracking at this breakpoint prevents it
+   while staying legible. */
+@media (max-width: 360px) {
+  .hero-kicker {
+    letter-spacing: 0.07em;
+    font-size: 12px;
+  }
+}
+
 /* Vertical-min breakpoint helper for the hero scroll affordance. The
    chevron only shows when there's vertical room (avoids overlap with
    the CTAs on landscape phones / very short viewports). */
@@ -548,4 +710,446 @@ select.form-input {
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 36px;
+}
+
+
+/* ── Discover section — mobile horizontal scroll carousel ───────────
+   On viewports below 768px the bento grid switches to a horizontal
+   scroll-snap track. Desktop grid, stagger animation, and grayscale
+   hover remain entirely unchanged. */
+@media (max-width: 767px) {
+  .discover-carousel-mobile {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    padding-bottom: 20px;
+    grid-auto-rows: unset;
+  }
+  .discover-carousel-mobile::-webkit-scrollbar {
+    display: none;
+  }
+  .discover-carousel-mobile .discover-tile {
+    flex-shrink: 0;
+    width: 76vw;
+    height: 56vh;
+    scroll-snap-align: start;
+    grid-column: unset;
+  }
+}
+
+/* ── LargeSignpostsSection — venue panel mobile snap align ──────────
+   Panels declare scroll-snap-align so they're ready for snapping when
+   a scroll container enables scroll-snap-type. Disabled under
+   prefers-reduced-motion. */
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .venue-panel {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
+/* ── LargeSignpostsSection — CTA tap ripple (Material-style) ────────
+   Fires on :active so feedback is immediate on touch. box-shadow
+   expansion stays on the compositor — no layout reflow.
+   Applied via .panel-cta-mobile (touch/mobile only). */
+@keyframes panel-cta-tap-ripple {
+  from { box-shadow: 0 0 0 0    rgba(255,255,255,0.5); }
+  to   { box-shadow: 0 0 0 20px rgba(255,255,255,0);   }
+}
+.panel-cta-mobile:active {
+  animation: panel-cta-tap-ripple 360ms ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel-cta-mobile:active { animation: none; }
+}
+
+
+/* ── /whats-on — filter section (mobile) ───────────────────────────
+   Sticky behaviour removed — filter bar now flows with the page. */
+
+/* ── /whats-on — event bucket grid → horizontal carousel (mobile) ──
+   On mobile the 2-col grid is replaced with a horizontal scroll-snap
+   track so odd event counts never leave an empty bottom-right cell.
+   Each card is 78vw with a small peek of the next card.
+   Desktop: md:grid md:grid-cols-3 (set inline via Tailwind) takes over. */
+@media (max-width: 767px) {
+  .events-bucket-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    padding-bottom: 4px;
+    /* Section's 12px horizontal padding positions the first card
+       exactly 12px from the viewport edge — equal to the inter-card gap. */
+  }
+  .events-bucket-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .events-bucket-grid > * {
+    flex: 0 0 78vw;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  /* Featured cards are hidden on mobile (they're in the carousel above),
+     so skip them when sizing — they contribute no flex item. */
+  .events-bucket-grid > .hidden {
+    display: none !important;
+  }
+}
+
+/* ── /whats-on — filter chips horizontal scroll (mobile) ──────────
+   Replaces the flex-wrap "8 chips wrap onto 2 uneven rows" pattern with
+   a single horizontal scroll track. Tap-target spacing stays at 8px.
+   Desktop continues to flex-wrap (handled inline via md:flex-wrap). */
+@media (max-width: 767px) {
+  .events-filter-chips {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Bleed past container padding on both sides so chips touch the
+       viewport edges before disappearing — feels like a native swipe
+       row rather than a clipped flex. */
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  .events-filter-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .events-filter-chips > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* ── /whats-on — mobile featured events carousel ──────────────────
+   Horizontal scroll-snap track that sits above the dense event grid.
+   Each card is 80vw with a small peek of the next so users intuit the
+   swipe. md:hidden in the JSX, so this rule is mobile-effectively. */
+.events-featured-carousel {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0 12px 8px;
+}
+.events-featured-carousel::-webkit-scrollbar {
+  display: none;
+}
+.events-featured-carousel > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.events-featured-card {
+  width: 80vw;
+  max-width: 360px;
+}
+
+
+/* ── /venues — mobile horizontal scroll-snap carousel ───────────────
+   On mobile the three venue panels stack vertically (6 viewport-lengths
+   of scroll). Converting to a horizontal carousel kills that depth —
+   all three venues visible within one scroll gesture.
+   Desktop layout (the split-grid VenuePanel) is completely unchanged. */
+@media (max-width: 767px) {
+  .venue-index-carousel {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .venue-index-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .venue-index-carousel > * {
+    /* 92vw = slight peek of next panel hints scrollability */
+    flex: 0 0 92vw;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
+/* ── /venues — panel CTA tap ring ───────────────────────────────────
+   Reuses the existing panel-cta-tap-ripple keyframe. Applied to
+   .venue-panel-cta so the explore button has tactile feedback on touch. */
+.venue-panel-cta:active {
+  animation: panel-cta-tap-ripple 360ms ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .venue-panel-cta:active { animation: none; }
+}
+
+
+/* ── Venue photo grid — stagger entrance ────────────────────────────
+   .photo-cell-stagger starts invisible; the IntersectionObserver in
+   PhotoGridClient.tsx adds .photo-cell-entered to each cell with a
+   staggered setTimeout (80ms between cells).
+   Reduced-motion: cells are immediately visible, no animation. */
+@keyframes photo-cell-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.photo-cell-stagger {
+  opacity: 0;
+}
+.photo-cell-stagger.photo-cell-entered {
+  animation: photo-cell-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-cell-stagger { opacity: 1; }
+  .photo-cell-stagger.photo-cell-entered { animation: none; }
+}
+
+
+/* ── Cookie banner — prevent mobile overlap ─────────────────────────
+   When the fixed bottom cookie banner is visible, add bottom padding
+   to the main content area so the banner doesn't cover the address /
+   entry section headings (A4-MF [HIGH]).
+   The banner is ~90px tall including iOS safe area. Desktop is
+   unaffected — the banner is wide enough not to obscure key content. */
+@media (max-width: 767px) {
+  body[data-cookie-banner="1"] main#main-content {
+    padding-bottom: 100px;
+  }
+}
+
+
+/* ── Venue Hire — event-type pill marquee ───────────────────────────
+   Scrolls the "We host" pill row left continuously. Two copies of the
+   array create a seamless loop. Pauses on hover; frozen under
+   prefers-reduced-motion (pills fall back to flex-wrap). */
+@keyframes venue-hire-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.venue-hire-marquee-track {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  animation: venue-hire-marquee 32s linear infinite;
+}
+.venue-hire-marquee-wrap:hover .venue-hire-marquee-track,
+.venue-hire-marquee-wrap:focus-within .venue-hire-marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .venue-hire-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}
+
+/* ── Venue Hire — branded focus rings on enquiry form ───────────────
+   Warm amber outer glow on form inputs + selects + textarea when
+   focused — gives form fields visual personality without moving away
+   from the functional black border. */
+.venue-hire-form .form-input:focus {
+  border-color: #080808;
+  box-shadow: 0 0 0 3px rgba(180, 120, 0, 0.18);
+  outline: none;
+}
+
+
+/* ── Members — benefit cell stagger entrance ─────────────────────────
+   Cells start invisible; BenefitsGrid.tsx adds .benefit-entered to each
+   cell via IntersectionObserver with a 90ms per-cell stagger delay.
+   Reduced-motion: cells are immediately visible, no animation. */
+@keyframes benefit-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.benefit-cell {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.benefit-cell.benefit-entered {
+  animation: benefit-fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .benefit-cell { opacity: 1; transform: translateY(0); }
+  .benefit-cell.benefit-entered { animation: none; }
+}
+
+
+/* ── Members — perks marquee strip ──────────────────────────────────
+   Full-width scrolling text strip between hero and benefits section.
+   Two identical spans + translateX(-50%) create a seamless loop.
+   Mirrors the whatson-ticker-scroll pattern. */
+@keyframes perks-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.perks-marquee {
+  overflow: hidden;
+  width: 100%;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.perks-marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  animation: perks-marquee-scroll 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .perks-marquee-track { animation: none; }
+}
+
+
+/* ── About page — imagery grid stagger entrance ─────────────────────
+   Cells start invisible; AboutImageryGrid.tsx adds .about-photo-entered
+   to each cell via IntersectionObserver with a 90ms per-cell stagger.
+   Reduced-motion: cells are immediately visible. */
+.about-photo-cell {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.about-photo-cell.about-photo-entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-photo-cell { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── About page — career card hover lift ────────────────────────────
+   Subtle -4px lift + border brightens on hover. Compositor-friendly
+   (transform only). Disabled under prefers-reduced-motion. */
+.about-career-card {
+  transition: transform 0.2s ease-out, border-color 0.2s ease-out;
+}
+.about-career-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.28) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-career-card:hover { transform: none; }
+}
+
+
+/* ── FAQ accordion — tap ripple ─────────────────────────────────────
+   Mirrors .venue-cta-ripple: inset fill flashes white on :active.
+   Compositor-safe (opacity + scale, no layout). Disabled under
+   prefers-reduced-motion. */
+.faq-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.faq-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+  pointer-events: none;
+}
+.faq-ripple:active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-ripple::after { display: none; }
+}
+
+
+/* ── 404 — "Error 404" kicker glitch ────────────────────────────────
+   Three-step glitch: clip-path slice + hue-rotate. Loops every 6s
+   with a long idle so it reads as "ambient" not "annoying".
+   Compositor-only (clip-path, opacity, filter — no layout).
+   Disabled under prefers-reduced-motion. */
+@keyframes kicker-glitch {
+  0%,  85%, 100% {
+    clip-path: none;
+    opacity: 1;
+    filter: none;
+  }
+  86% {
+    clip-path: inset(20% 0 60% 0);
+    opacity: 0.85;
+    filter: hue-rotate(90deg) brightness(1.4);
+    transform: translateX(3px);
+  }
+  88% {
+    clip-path: inset(60% 0 10% 0);
+    opacity: 0.9;
+    filter: hue-rotate(-40deg) brightness(1.2);
+    transform: translateX(-3px);
+  }
+  90% {
+    clip-path: none;
+    opacity: 1;
+    filter: none;
+    transform: translateX(0);
+  }
+}
+.error-404-glitch {
+  animation: kicker-glitch 6s ease-in-out infinite;
+  will-change: clip-path, filter;
+}
+@media (prefers-reduced-motion: reduce) {
+  .error-404-glitch { animation: none; }
+}
+
+
+/* ── About page — people gallery marquee ────────────────────────────
+   Continuously scrolls right. Hovering anywhere on the strip pauses
+   the animation so the user can study any image they like.
+   Two identical copies of the image list create a seamless loop via
+   the standard -50% translateX trick. */
+@keyframes gallery-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* Row 1 */
+.gallery-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: gallery-marquee 55s linear infinite;
+  will-change: transform;
+}
+/* Row 2 — same speed, negative delay offsets it ~half a cycle so
+   the rows feel staggered rather than in lockstep */
+.gallery-marquee-track-slow {
+  display: flex;
+  width: max-content;
+  animation: gallery-marquee 55s linear infinite;
+  animation-delay: -27.5s;
+  will-change: transform;
+}
+/* Hovering any image in either row pauses that row */
+.gallery-marquee-track:hover,
+.gallery-marquee-track-slow:hover {
+  animation-play-state: paused;
+  cursor: zoom-in;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-marquee-track,
+  .gallery-marquee-track-slow {
+    animation: none;
+    flex-wrap: wrap;
+  }
 }

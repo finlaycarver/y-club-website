@@ -43,10 +43,14 @@ export default function NotFound() {
         />
 
         <div className="relative z-10 text-white px-6 md:px-16 w-full" style={{ maxWidth: "1080px", margin: "0 auto" }}>
-          <p style={{
-            fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
-            textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "18px",
-          }}>
+          <p
+            className="error-404-glitch"
+            style={{
+              fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
+              textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "18px",
+              display: "inline-block",
+            }}
+          >
             Error 404
           </p>
           <h1 className="text-[64px] md:text-[120px]" style={{
