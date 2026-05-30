@@ -153,7 +153,7 @@ export default function VenuesPage() {
           </div>
 
           <div className="relative z-10 text-white px-6 md:px-16 pb-16 pt-40 w-full">
-            <p style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "16px" }}>
+            <p className="hidden md:block" style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "16px" }}>
               Guildford&apos;s Late-Night Quarter
             </p>
             <h1
@@ -169,7 +169,7 @@ export default function VenuesPage() {
               <span className="hero-word" style={{ animationDelay: "440ms" }}>night.</span>
             </h1>
             <p
-              className="text-[18px] md:text-[22px]"
+              className="hidden md:block text-[22px]"
               style={{ fontWeight: 400, lineHeight: 1.45, letterSpacing: "-0.005em", color: "rgba(255,255,255,0.7)", marginTop: "24px", maxWidth: "620px" }}
             >
               Three venues, a short walk apart. Each with its own
