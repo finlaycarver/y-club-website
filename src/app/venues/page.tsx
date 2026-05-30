@@ -271,7 +271,7 @@ export default function VenuesPage() {
                   </span>
                   <div>
                     <p style={{ fontSize: "15px", fontWeight: 600, color: "#FAFAFA", marginBottom: "2px" }}>
-                      {v.name}
+                      {v.displayName}
                     </p>
                     <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)" }}>
                       {v.kicker}

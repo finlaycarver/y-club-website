@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { ArrowUpRight, X } from "lucide-react"
+import { YLogoMark } from "@/components/YLogoMark"
 
 interface Signpost {
   title: string
@@ -239,7 +240,7 @@ export function DiscoverSection() {
           color: "rgba(8,8,8,0.45)",
           margin: "0 0 14px",
         }}>
-          Inside Y
+          Inside <YLogoMark height="0.75em" />
         </p>
 
         <h2
@@ -252,7 +253,7 @@ export function DiscoverSection() {
             margin: "0 0 32px",
           }}
         >
-          Discover Y
+          Discover <YLogoMark height="0.78em" />
         </h2>
 
         {/* Grid on desktop / horizontal scroll carousel on mobile.

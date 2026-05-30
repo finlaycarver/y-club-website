@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Play, X, Maximize2 } from "lucide-react";
+import { YLogoMark } from "@/components/YLogoMark";
 import { GRAIN_SVG } from "@/lib/grain";
 
 /**
@@ -137,7 +138,7 @@ export function VideoSection() {
           margin: "0 0 12px",
         }}
       >
-        A night at Y
+        A night at <YLogoMark height="0.78em" />
       </h2>
 
       {/* Microcopy */}

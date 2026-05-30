@@ -13,6 +13,7 @@ import { GRAIN_SVG } from "@/lib/grain";
 import { BRAND } from "@/lib/site";
 import { SPACES, EVENT_TYPES_FORM } from "@/data/venue-hire";
 import { VenueHireStickyCTA } from "./VenueHireStickyCTA";
+import { YLogoMark } from "@/components/YLogoMark";
 
 /* ── Analytics helper — fires for Plausible and GA4 ─────────────── */
 function trackEvent(name: string, props?: Record<string, string>) {
@@ -292,7 +293,7 @@ export function VenueHireClient() {
                       <p className="text-[28px] md:text-[32px]" style={{
                         fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.01em", color: "#FAFAFA",
                       }}>
-                        {space.name}
+                        {space.name.startsWith("Y") ? <><YLogoMark height="0.78em" />{space.name.slice(1)}</> : space.name}
                       </p>
                     </div>
                   </div>

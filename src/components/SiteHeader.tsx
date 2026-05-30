@@ -20,16 +20,16 @@ const NAV_LINKS: Array<{ label: ReactNode; href: string }> = [
 ];
 
 const MENU_ITEMS: Array<{ label: ReactNode; href: string }> = [
-  { label: "Venues",                   href: "/venues"               },
-  { label: <>{Y} Club</>,              href: "/venues/y-club"        },
-  { label: <>{Y} Terrace</>,           href: "/venues/y-terrace"     },
-  { label: <>{Y} Bar &amp; Lounge</>,  href: "/venues/y-bar-lounge"  },
-  { label: "What's On",                href: "/whats-on"             },
-  { label: "Venue Hire",               href: "/venue-hire"           },
-  { label: "Members",                  href: "/members"              },
-  { label: <>About {Y}</>,             href: "/about"                },
-  { label: "FAQs",                     href: "/faqs"                 },
-  { label: "Contact",                  href: "/about#contact"        },
+  { label: "Venues",                      href: "/venues"               },
+  { label: <>{Y} Club</>,                 href: "/venues/y-club"        },
+  { label: <>{Y} Terrace</>,              href: "/venues/y-terrace"     },
+  { label: <>{Y} Bar &amp; Lounge</>,     href: "/venues/y-bar-lounge"  },
+  { label: "What's On",                   href: "/whats-on"             },
+  { label: "Venue Hire",                  href: "/venue-hire"           },
+  { label: "Members",                     href: "/members"              },
+  { label: <>About {Y}</>,                href: "/about"                },
+  { label: "FAQs",                        href: "/faqs"                 },
+  { label: "Contact",                     href: "/about#contact"        },
 ];
 
 // Helper: returns true if the current pathname matches the link (or is a sub-route of it).
