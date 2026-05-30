@@ -32,6 +32,17 @@ const signposts: Signpost[] = [
   { title: "Christmas Parties", subtitle: "Book your festive night",          imageUrl: "/images/img-1907.jpg",           href: "/venue-hire",       wide: true, imagePosition: "right center" },
 ]
 
+function renderSignpostTitle(title: string) {
+  if (title !== "Y Club" && title !== "Y Terrace") return title
+
+  return (
+    <>
+      <YLogoMark height="0.78em" className="mr-[0.06em]" />
+      {title.slice(1)}
+    </>
+  )
+}
+
 // ── SignpostCard ────────────────────────────────────────────────────
 function SignpostCard({
   title,
@@ -178,7 +189,7 @@ function SignpostCard({
             margin: 0,
           }}
         >
-          {title}
+          {renderSignpostTitle(title)}
         </h3>
         {subtitle && (
           <p
@@ -240,7 +251,7 @@ export function DiscoverSection() {
           color: "rgba(8,8,8,0.45)",
           margin: "0 0 14px",
         }}>
-          Inside <YLogoMark height="0.75em" />
+          Inside <YLogoMark height="0.75em" className="invert opacity-[0.45]" />
         </p>
 
         <h2
@@ -253,7 +264,7 @@ export function DiscoverSection() {
             margin: "0 0 32px",
           }}
         >
-          Discover <YLogoMark height="0.78em" />
+          Discover <YLogoMark height="0.78em" className="invert" />
         </h2>
 
         {/* Grid on desktop / horizontal scroll carousel on mobile.
