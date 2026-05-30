@@ -134,7 +134,7 @@ export function MembersSignupForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={state === "submitting"}
-          className="flex-1 border border-black/40 focus:border-black focus:outline-none transition-[border-color] duration-200 motion-reduce:transition-none placeholder:text-black/35 disabled:opacity-60"
+          className="w-full sm:flex-1 border border-black/40 focus:border-black focus:outline-none transition-[border-color] duration-200 motion-reduce:transition-none placeholder:text-black/35 disabled:opacity-60"
           style={{
             height: "72px", padding: "0 20px",
             background: "transparent", color: "#080808",
