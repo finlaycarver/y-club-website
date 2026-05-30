@@ -141,15 +141,6 @@ export function VideoSection() {
       </h2>
 
       {/* Microcopy */}
-      <p style={{
-        fontSize: "16px",
-        fontWeight: 400,
-        lineHeight: "24px",
-        color: "rgba(255,255,255,0.45)",
-        margin: "0 0 28px",
-      }}>
-        60 seconds inside Y.
-      </p>
 
       {/* ── MOBILE: inline autoplay muted loop ──────────────────────── */}
       <div className="block md:hidden relative overflow-hidden aspect-video">

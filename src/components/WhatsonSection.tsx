@@ -312,11 +312,29 @@ export function WhatsonSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const scrollDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const programmaticScrollRef = useRef<boolean>(false)
 
   // With scroll-snap each tile is a snap point, so maxIndex covers all tiles
   const maxIndex = events.length - 1
-  const dotCount = events.length
+  // Show only two pagination "bobble" indicators on the home carousel
+  const dotCount = 2
   const clampedIndex = Math.min(activeIndex, maxIndex)
+  // Map between page (0..dotCount-1) and actual tile index
+  const indexForPage = (page: number) => {
+    if (maxIndex <= 0) return 0
+    if (dotCount <= 1) return 0
+    // Special-case 2-dot pagination: 0 -> first tile, 1 -> last tile
+    if (dotCount === 2) return page === 0 ? 0 : maxIndex
+    return Math.round(page * maxIndex / (dotCount - 1))
+  }
+  const pageForIndex = (index: number) => {
+    if (maxIndex <= 0) return 0
+    if (dotCount <= 1) return 0
+    // Special-case 2-dot pagination: map first half -> page 0, second half -> page 1
+    if (dotCount === 2) return index < Math.ceil(maxIndex / 2) ? 0 : 1
+    return Math.round(index * (dotCount - 1) / maxIndex)
+  }
+  const currentPage = pageForIndex(clampedIndex)
   const { regular: regularWidth } = TILE_WIDTHS[visibleCount] ?? TILE_WIDTHS[4]
 
   // Stagger entrance — fires once when section enters viewport
@@ -345,7 +363,15 @@ export function WhatsonSection() {
     if (!track) return
     const tile = track.children[index] as HTMLElement | undefined
     if (!tile) return
+    // Mark that we're doing a programmatic scroll so the scroll handler
+    // doesn't override the target activeIndex while the smooth scroll is
+    // in progress (prevents snap-back caused by rounding in the handler).
+    programmaticScrollRef.current = true
     container.scrollTo({ left: tile.offsetLeft, behavior: "smooth" })
+    // Clear the flag shortly after the smooth scroll should have finished.
+    // 500ms is conservative for most machines; the debounce in the scroll
+    // handler uses 60ms so this avoids a conflicting update.
+    setTimeout(() => { programmaticScrollRef.current = false }, 500)
   }
 
   // Sync activeIndex from actual scroll position after user drag/swipe
@@ -354,6 +380,9 @@ export function WhatsonSection() {
     scrollDebounceRef.current = setTimeout(() => {
       const container = scrollContainerRef.current
       if (!container) return
+      // If we recently initiated a programmatic scroll, ignore this
+      // event so we don't overwrite the intentional activeIndex we set.
+      if (programmaticScrollRef.current) return
       const track = container.firstElementChild as HTMLElement | null
       if (!track) return
       const tiles = Array.from(track.children) as HTMLElement[]
@@ -370,15 +399,21 @@ export function WhatsonSection() {
   }
 
   const handlePrev = () => {
-    const newIndex = Math.max(0, clampedIndex - 1)
-    setActiveIndex(newIndex)
-    scrollToIndex(newIndex)
+    // Move to previous page (mapped to an index) so the pagination bobble updates immediately
+    const current = pageForIndex(clampedIndex)
+    const targetPage = Math.max(0, current - 1)
+    const targetIndex = indexForPage(targetPage)
+    setActiveIndex(targetIndex)
+    scrollToIndex(targetIndex)
   }
 
   const handleNext = () => {
-    const newIndex = Math.min(maxIndex, clampedIndex + 1)
-    setActiveIndex(newIndex)
-    scrollToIndex(newIndex)
+    // Move to next page (mapped to an index) so the pagination bobble updates immediately
+    const current = pageForIndex(clampedIndex)
+    const targetPage = Math.min(dotCount - 1, current + 1)
+    const targetIndex = indexForPage(targetPage)
+    setActiveIndex(targetIndex)
+    scrollToIndex(targetIndex)
   }
 
   return (
@@ -496,21 +531,25 @@ export function WhatsonSection() {
             </button>
 
             <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-              {Array.from({ length: dotCount }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setActiveIndex(i); scrollToIndex(i) }}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className="transition-all duration-300 border-0 p-0"
-                  style={{
-                    width:        i === clampedIndex ? "24px" : "6px",
-                    height:       "6px",
-                    borderRadius: "3px",
-                    background:   i === clampedIndex ? "white" : "rgba(255,255,255,0.35)",
-                    cursor:       "pointer",
-                  }}
-                />
-              ))}
+              {Array.from({ length: dotCount }, (_, i) => {
+                const targetIndex = indexForPage(i)
+                const isActive = i === currentPage
+                return (
+                  <button
+                    key={i}
+                    onClick={() => { setActiveIndex(targetIndex); scrollToIndex(targetIndex) }}
+                    aria-label={`Go to page ${i + 1}`}
+                    className="transition-all duration-300 border-0 p-0"
+                    style={{
+                      width:        isActive ? "24px" : "6px",
+                      height:       "6px",
+                      borderRadius: "3px",
+                      background:   isActive ? "white" : "rgba(255,255,255,0.35)",
+                      cursor:       "pointer",
+                    }}
+                  />
+                )
+              })}
             </div>
 
             {/* Next arrow — desktop only. Mobile uses swipe + dots. */}

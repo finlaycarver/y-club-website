@@ -94,7 +94,7 @@ export default function VenuesPage() {
         {/* ── HERO ───────────────────────────────────────────────────── */}
         <section
           className="relative bg-black overflow-hidden flex items-end"
-          style={{ minHeight: "70svh" }}
+          style={{ minHeight: "100svh" }}
         >
           {/* Background video — autoplays muted on loop. Static poster
               image shows instantly while the video buffers. */}
@@ -153,14 +153,6 @@ export default function VenuesPage() {
           </div>
 
           <div className="relative z-10 text-white px-6 md:px-16 pb-16 pt-40 w-full">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 mb-8 hover:opacity-100 transition-opacity duration-200 motion-reduce:transition-none"
-              style={{ fontSize: "13px", fontWeight: 500, color: "rgba(255,255,255,0.45)", textDecoration: "none", letterSpacing: "0.04em" }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-              Y Home
-            </Link>
             <p style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "16px" }}>
               Guildford&apos;s Late-Night Quarter
             </p>

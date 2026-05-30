@@ -48,7 +48,6 @@ interface NetworkConnection {
 export function HeroSection() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const primaryCtaRef = useRef<HTMLAnchorElement>(null);
   const cursorLightRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -167,47 +166,6 @@ export function HeroSection() {
 
   // ── Magnetic primary CTA ─────────────────────────────────────────
   // Within 40px of the button centre, the button pulls toward the
-  // cursor at 30% strength. Returns to centre with a 200ms ease-out
-  // on mouseleave. Pointer-fine only; disabled under reduced motion.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const btn = primaryCtaRef.current;
-    if (!btn) return;
-
-    const RADIUS = 40;
-    const PULL = 0.3;
-
-    const onMove = (e: MouseEvent) => {
-      const rect = btn.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.hypot(dx, dy);
-      if (dist > rect.width / 2 + RADIUS) {
-        btn.style.transform = "translate(0, 0)";
-        btn.style.transition = "transform 200ms cubic-bezier(0.16, 1, 0.3, 1)";
-        return;
-      }
-      btn.style.transition = "transform 60ms linear";
-      btn.style.transform = `translate(${dx * PULL}px, ${dy * PULL}px)`;
-    };
-
-    const onLeave = () => {
-      btn.style.transition = "transform 200ms cubic-bezier(0.16, 1, 0.3, 1)";
-      btn.style.transform = "translate(0, 0)";
-    };
-
-    window.addEventListener("mousemove", onMove);
-    btn.addEventListener("mouseleave", onLeave);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      btn.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
 
 
   return (
@@ -346,9 +304,8 @@ export function HeroSection() {
 
         {/* CTAs */}
         <div className="flex flex-col gap-3 md:flex-row md:gap-4 md:items-stretch">
-          {/* Primary CTA — magnetic on hover (JS-driven transform). */}
+          {/* Primary CTA */}
           <a
-            ref={primaryCtaRef}
             href="#whats-on"
             className="hero-cta-primary group relative overflow-hidden inline-flex items-center justify-center gap-1.5 border border-white px-8 text-[18px] font-bold leading-6 active:scale-[0.98] w-full md:w-auto md:min-w-[180px]"
             style={{
@@ -357,7 +314,6 @@ export function HeroSection() {
               backgroundColor: "rgb(255,255,255)",
               color: "rgb(18,18,18)",
               boxShadow: "0 8px 32px -8px rgba(255,255,255,0.18)",
-              willChange: "transform",
             }}
           >
             <span aria-hidden="true" className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.07) 50%, transparent 100%)" }} />
@@ -368,8 +324,8 @@ export function HeroSection() {
           {/* Secondary CTA — same sweep shimmer pattern as primary, in white. */}
           <a
             href="/venue-hire"
-            className="group relative overflow-hidden inline-flex items-center justify-center gap-1.5 px-6 text-[18px] font-bold leading-6 text-white hover:bg-white/10 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none w-full md:w-auto md:min-w-[180px]"
-            style={{ height: "50px", borderRadius: 0, backgroundColor: "transparent", border: "1.5px solid rgba(255,255,255,0.7)" }}
+            className="group relative overflow-hidden inline-flex items-center justify-center gap-1.5 px-6 text-[18px] font-bold leading-6 text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none w-full md:w-auto md:min-w-[180px]"
+            style={{ height: "58px", borderRadius: 0, backgroundColor: "transparent", border: "1.5px solid rgba(255,255,255,0.7)" }}
           >
             <span aria-hidden="true" className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%)" }} />
             <span className="relative z-10">Hire the Venue</span>

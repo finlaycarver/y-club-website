@@ -19,36 +19,6 @@ function readFilterFromParams(raw: string | null): typeof VENUES_FILTER[number] 
   return match ?? "All";
 }
 
-type DateBucket = "this-week" | "coming-up";
-
-interface DateBucketMeta {
-  key: DateBucket;
-  label: string;
-}
-
-const BUCKETS: DateBucketMeta[] = [
-  { key: "this-week",  label: "This week" },
-  { key: "coming-up",  label: "Coming up" },
-];
-
-/**
- * Returns which date bucket an event belongs to, or null if the event
- * is in the past and should be hidden.
- *
- * - Past (isoDate < today)       → null        (filtered out — event is over)
- * - Today + next 7 days          → "this-week" (tonight bundles in here)
- * - Further out                  → "coming-up"
- */
-function bucketFor(isoDate: string, now: Date): DateBucket | null {
-  const todayStr = now.toISOString().slice(0, 10);
-  if (isoDate < todayStr) return null; // past — don't show
-  const eventDate = new Date(`${isoDate}T00:00:00`);
-  const msPerDay  = 24 * 60 * 60 * 1000;
-  const daysAhead = Math.floor((eventDate.getTime() - now.getTime()) / msPerDay);
-  if (daysAhead <= 7) return "this-week";
-  return "coming-up";
-}
-
 /**
  * Maps the canonical EventItem onto the smaller shape the
  * EventBottomSheet consumes. urgency is derived from soldOut +
@@ -128,13 +98,13 @@ function EventCard({
       rel={isInternal ? undefined : "noopener noreferrer"}
       onClick={handleClick}
       aria-label={`${event.title} — ${event.venue}, ${event.date}${event.soldOut ? " (Sold out)" : ""}`}
-      className={`event-card group relative block overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(255,255,255,0.10)] motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none${featured ? " md:col-span-2 md:row-span-2" : ""}${className ? ` ${className}` : ""}`}
+      className={`event-card group relative block overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(255,255,255,0.10)] motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none${className ? ` ${className}` : ""}`}
       style={{ textDecoration: "none" }}
     >
       <div
         className="relative overflow-hidden"
         style={{
-          aspectRatio: featured ? "3/4" : "4/5",
+          aspectRatio: "4/5",
           background: "#111",
           filter: event.soldOut ? "grayscale(0.85)" : undefined,
           transition: "filter 0.3s ease",
@@ -144,7 +114,7 @@ function EventCard({
           src={event.imageUrl}
           alt={event.title}
           fill
-          sizes={featured ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 33vw"}
+          sizes="(max-width: 768px) 50vw, 33vw"
           style={{ objectFit: "cover" }}
           className="transition-transform duration-700 ease-out group-hover:scale-105"
         />
@@ -387,19 +357,13 @@ export function EventsList() {
     [filtered],
   );
 
-  const grouped = useMemo(() => {
-    const now = new Date();
-    const map = new Map<DateBucket, EventItem[]>();
-    for (const event of filtered) {
-      const key = bucketFor(event.isoDate, now);
-      if (!key) continue; // past event — skip entirely
-      const list = map.get(key) ?? [];
-      list.push(event);
-      map.set(key, list);
-    }
-    return BUCKETS.map((meta) => ({ ...meta, events: map.get(meta.key) ?? [] }))
-      .filter((group) => group.events.length > 0);
-  }, [filtered]);
+  const grouped = useMemo(() => [
+    {
+      key: "coming-up",
+      label: "Coming up",
+      events: filtered,
+    },
+  ], [filtered]);
 
   // Pre-build the ICS URL for the active event when it changes.
   const activeIcsUrl = useMemo(

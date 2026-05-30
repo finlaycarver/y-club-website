@@ -249,8 +249,8 @@ export function VenueHireClient() {
             Swapped to crowd/event shot that represents live events. */}
         <section className="relative bg-black overflow-hidden flex items-end" style={{ minHeight: "60svh" }}>
           <Image
-            src="/images/_MG_7989.jpg"
-            alt="Private event at Y Club, Guildford"
+            src="/images/IMG_0911.webp"
+            alt="Guests celebrating at a private hire event in Guildford"
             fill
             priority
             style={{ objectFit: "cover", objectPosition: "center 25%" }}

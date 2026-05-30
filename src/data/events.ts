@@ -62,17 +62,6 @@ export const EVENTS: EventItem[] = [
     featured: true,
   },
   {
-    slug: "world-cup-2026",
-    title: "World Cup 2026 — Every Game",
-    date: "14 Jun – 19 Jul",
-    isoDate: "2026-06-14",
-    isoEndDate: "2026-07-19",
-    venue: "Y Terrace",
-    description: "Every match, every party. House and disco classics from our DJs. Screens covering all corners.",
-    imageUrl: "/images/club-y-image-4.webp",
-    ticketUrl: SKIDDLE["Y Terrace"],
-  },
-  {
     slug: "live-dj-set-29-may",
     title: "Live DJ Set",
     date: "Fri 29 May",
@@ -121,17 +110,6 @@ export const EVENTS: EventItem[] = [
     description: "Outdoor terrace takeover. Cocktails, sun, and a stacked DJ line-up.",
     imageUrl: "/images/441900351_371148019313956_2396615588718096493_n-2-copy.webp",
     ticketUrl: SKIDDLE["Y Terrace"],
-  },
-  {
-    slug: "cocktail-hour-sundays",
-    title: "Cocktail Hour Sundays",
-    date: "Every Sunday",
-    isoDate: "2026-05-18",
-    venue: "Y Bar & Lounge",
-    description: "Cocktails on rotation. Live DJ from 18:00 till late.",
-    imageUrl: "/images/nadine-189.jpg",
-    /* In-house event — internal landing rather than external Skiddle. */
-    ticketUrl: "/venues/y-bar-lounge",
   },
 ];
 
