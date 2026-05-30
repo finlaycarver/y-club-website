@@ -51,7 +51,7 @@ const events: EventItem[] = upcomingEvents().slice(0, 5).map(toCarouselEvent)
 const TILE_WIDTHS: Record<number, { regular: string; featured: string }> = {
   1: { regular: "80vw",                  featured: "80vw" },
   3: { regular: "calc(33.333% - 8px)",   featured: "calc(33.333% - 8px)" },
-  4: { regular: "calc(25% - 9px)",       featured: "calc(50% - 6px)" },
+  4: { regular: "calc(25% - 9px)",       featured: "calc(25% - 9px)" },
 }
 
 /** Formats a date string to a short uppercase pill label.
@@ -107,9 +107,10 @@ function EventTile({
       <div
         className="relative overflow-hidden"
         style={{
-          height: isFeaturedDesktop ? "420px" : "363px",
+          width: "100%",
+          height: "363px",
           backgroundColor: "rgb(136,136,136)",
-          marginBottom: isFeaturedDesktop ? "20px" : "12px",
+          marginBottom: "12px",
         }}
       >
         <Image
@@ -181,12 +182,13 @@ function EventTile({
         {formatDateShort(event.date)}
       </p>
 
-      {/* Title */}
+      {/* Title — min-height locks to 2-line height so single-line titles
+          don't make the card shorter than multi-line ones. */}
       <p
         style={{
-          fontSize: isFeaturedDesktop ? "46px" : "37px",
+          fontSize: "37px",
           fontWeight: 700,
-          lineHeight: isFeaturedDesktop ? "52px" : "44.4px",
+          lineHeight: "44.4px",
           letterSpacing: "0.37px",
           color: "#FAFAFA",
           marginBottom: "8px",
@@ -194,53 +196,18 @@ function EventTile({
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
+          minHeight: "88.8px",
         }}
       >
         {event.title}
       </p>
 
-      {/* Description — featured desktop only */}
-      {isFeaturedDesktop && event.description && (
-        <p
-          style={{
-            fontSize: "16px",
-            fontWeight: 400,
-            lineHeight: "24px",
-            color: "rgba(255,255,255,0.6)",
-            marginBottom: "20px",
-            overflow: "hidden",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-          }}
-        >
-          {event.description}
+      {/* Price */}
+      {event.price && (
+        <p style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>
+          {event.price}
         </p>
       )}
-
-      {/* Price + Get tickets row */}
-      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-        {event.price && (
-          <p style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>
-            {event.price}
-          </p>
-        )}
-        {isFeaturedDesktop && (
-          <span
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "#FAFAFA",
-              borderBottom: "1px solid rgba(255,255,255,0.4)",
-              paddingBottom: "1px",
-            }}
-          >
-            Get tickets →
-          </span>
-        )}
-      </div>
 
     </button>
     )
@@ -260,9 +227,10 @@ function EventTile({
       <div
         className="relative overflow-hidden"
         style={{
-          height: isFeaturedDesktop ? "420px" : "363px",
+          width: "100%",
+          height: "363px",
           backgroundColor: "rgb(136,136,136)",
-          marginBottom: isFeaturedDesktop ? "20px" : "12px",
+          marginBottom: "12px",
         }}
       >
         <Image
@@ -282,16 +250,10 @@ function EventTile({
       <p style={{ display: "inline-block", fontSize: "12px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)", padding: "3px 10px", marginBottom: "10px" }}>
         {formatDateShort(event.date)}
       </p>
-      <p style={{ fontSize: isFeaturedDesktop ? "46px" : "37px", fontWeight: 700, lineHeight: isFeaturedDesktop ? "52px" : "44.4px", letterSpacing: "0.37px", color: "#FAFAFA", marginBottom: "8px", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
+      <p style={{ fontSize: "37px", fontWeight: 700, lineHeight: "44.4px", letterSpacing: "0.37px", color: "#FAFAFA", marginBottom: "8px", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", minHeight: "88.8px" }}>
         {event.title}
       </p>
-      {isFeaturedDesktop && event.description && (
-        <p style={{ fontSize: "16px", fontWeight: 400, lineHeight: "24px", color: "rgba(255,255,255,0.6)", marginBottom: "20px", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>{event.description}</p>
-      )}
-      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-        {event.price && <p style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>{event.price}</p>}
-        {isFeaturedDesktop && <span style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#FAFAFA", borderBottom: "1px solid rgba(255,255,255,0.4)", paddingBottom: "1px" }}>Get tickets →</span>}
-      </div>
+      {event.price && <p style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>{event.price}</p>}
     </Link>
   )
 }

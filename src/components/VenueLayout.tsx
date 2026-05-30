@@ -71,6 +71,8 @@ export interface VenueLayoutConfig {
     /** Optional looped video URL. When set, the video fades over the static
      *  image on capable desktop devices (same upgrade gate as HeroSection). */
     videoSrc?: string;
+    /** CSS object-position for the hero image. Defaults to "center". */
+    imagePosition?: string;
     primaryCta?: { href: string; label: string };
     secondaryCta?: { href: string; label: string };
     /** Static seasonal label shown as a frosted pill in the hero
@@ -188,7 +190,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
           alt={config.hero.imageAlt}
           fill
           priority
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: config.hero.imagePosition ?? "center" }}
         />
         <div
           className="absolute inset-0"
@@ -213,8 +215,8 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
           {config.hero.kickerFrosted ? (
             /* Frosted-glass pill kicker — A4-VX [LOW] for intimate venues */
             <p
+              className="hidden md:inline-flex"
               style={{
-                display: "inline-flex",
                 alignItems: "center",
                 padding: "5px 12px",
                 background: "rgba(0,0,0,0.45)",
@@ -232,7 +234,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
               {config.hero.kicker}
             </p>
           ) : (
-            <p style={{
+            <p className="hidden md:block" style={{
               fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
               textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "18px",
             }}>
@@ -240,11 +242,11 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
             </p>
           )}
 
-          {/* Seasonal open badge — static pill for outdoor/seasonal venues */}
+          {/* Seasonal open badge — desktop only; hidden on mobile to keep hero clean */}
           {config.hero.seasonalBadge && (
             <p
+              className="hidden md:inline-flex"
               style={{
-                display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
                 padding: "5px 12px",
@@ -269,16 +271,17 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
           )}
 
           <h1
-            className="text-[52px] md:text-[90px]"
-            style={{ fontWeight: 700, lineHeight: 1, letterSpacing: "-0.01em", marginBottom: config.hero.showVerticalLine ? "16px" : "24px" }}
+            className={`text-[52px] md:text-[90px] ${config.hero.showVerticalLine ? "md:mb-4" : "mb-6"}`}
+            style={{ fontWeight: 700, lineHeight: 1, letterSpacing: "-0.01em", marginBottom: "24px" }}
           >
             {config.hero.title}
           </h1>
 
-          {/* Vertical line draw-in — CSS animation on a 1px rule below H1 */}
+          {/* Vertical line draw-in — desktop only; height animation causes layout
+              shift on mobile so we suppress it to match Y Club's clean hero */}
           {config.hero.showVerticalLine && (
             <div
-              className="venue-hero-vline"
+              className="venue-hero-vline hidden md:block"
               aria-hidden="true"
               style={{ marginBottom: "24px" }}
             />
@@ -294,8 +297,12 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
             {config.hero.subhead}
           </p>
 
-          {/* Next event ticker — client island, null until hydrated */}
-          {config.nextEvent && <VenueNextEvent event={config.nextEvent} />}
+          {/* Next event ticker — desktop only; too much noise on mobile */}
+          {config.nextEvent && (
+            <div className="hidden md:block">
+              <VenueNextEvent event={config.nextEvent} />
+            </div>
+          )}
 
           <div className="flex flex-col gap-3 md:flex-row md:gap-4" style={{ marginTop: "36px" }}>
             <Link
@@ -308,7 +315,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
             </Link>
             <Link
               href={secondaryCta.href}
-              className="group venue-cta-ripple inline-flex items-center justify-center gap-2 border border-white/60 px-6 text-[17px] font-bold text-white hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-200 motion-reduce:transition-none w-full md:w-auto"
+              className="group venue-cta-ripple hidden md:inline-flex items-center justify-center gap-2 border border-white/60 px-6 text-[17px] font-bold text-white hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-200 motion-reduce:transition-none md:w-auto"
               style={{ height: "50px" }}
             >
               {secondaryCta.label}
@@ -316,24 +323,6 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
             </Link>
           </div>
 
-          {/* Tap-to-call — mobile only. Sits below the hero CTAs so it's
-              always reachable without scrolling. Desktop uses footer contact. */}
-          <a
-            href={`tel:${BRAND.phone}`}
-            className="md:hidden inline-flex items-center gap-2 mt-5 hover:opacity-100 transition-opacity duration-200"
-            style={{
-              fontSize: "14px",
-              fontWeight: 500,
-              color: "rgba(255,255,255,0.5)",
-              textDecoration: "none",
-              letterSpacing: "0.02em",
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/>
-            </svg>
-            {BRAND.phoneDisplay}
-          </a>
         </div>
       </section>
 
@@ -381,7 +370,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
               {config.overview.kicker}
             </p>
 
-            {/* Sticky H2 — stays in view as user reads the body copy (A4-VX [MED]) */}
+            {/* Overview H2 */}
             <h2
               className="text-[36px] md:text-[50px]"
               style={{
@@ -389,9 +378,6 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
                 lineHeight: 1.05,
                 letterSpacing: "-0.01em",
                 marginBottom: "24px",
-                position: "sticky",
-                top: "140px",
-                zIndex: 1,
               }}
             >
               {config.overview.heading}

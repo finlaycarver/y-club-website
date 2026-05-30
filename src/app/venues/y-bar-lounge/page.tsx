@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { VenueLayout, type VenueLayoutConfig } from "@/components/VenueLayout";
+import { YLogoMark } from "@/components/YLogoMark";
 
 export const metadata: Metadata = {
   title: "Y Bar & Lounge — Start Your Night Here",
@@ -27,14 +28,11 @@ const yBarLounge: VenueLayoutConfig = {
     kicker: "Cocktail Bar & Lounge · Town Centre · Guildford",
     title: (
       <>
-        <span className="hero-word" style={{ animationDelay: "80ms" }}>Y Bar</span>
-        <br />
-        <span className="hero-word" style={{ animationDelay: "220ms" }}>&amp; Lounge</span>
+        <YLogoMark height="0.78em" />
+        {" Bar & Lounge"}
       </>
     ),
     subhead: "Where the night starts. Cocktails, conversation, and the best warm-up for the night ahead.",
-    // Loop the bar video as hero background
-    videoSrc: "/videos/y-bar-lounge-loop.mp4",
     // Frosted-glass kicker pill — intimate bar aesthetic (A4-VX [LOW])
     kickerFrosted: true,
     primaryCta: { href: "/whats-on?venue=Y+Bar+%26+Lounge", label: "See What's On" },

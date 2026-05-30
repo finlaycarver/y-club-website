@@ -211,13 +211,13 @@ export function VenueHireClient() {
 
         {/* ── HERO — A4-VFP [HIGH]: was nadine-195.jpg (Y Bar & Lounge).
             Swapped to crowd/event shot that represents live events. */}
-        <section className="relative bg-black overflow-hidden flex items-end" style={{ minHeight: "60svh" }}>
+        <section className="relative bg-black overflow-hidden hidden md:flex items-end" style={{ minHeight: "70svh" }}>
           <Image
             src="/images/IMG_0911.webp"
             alt="Guests celebrating at a private hire event in Guildford"
             fill
             priority
-            style={{ objectFit: "cover", objectPosition: "center 25%" }}
+            style={{ objectFit: "cover", objectPosition: "center 65%" }}
           />
           <div
             className="absolute inset-0"

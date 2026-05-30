@@ -35,8 +35,7 @@ const yClub: VenueLayoutConfig = {
     ),
     subhead:
       "Where the night goes loud. Big floors, big sound — open late every Friday and Saturday.",
-    // Looped venue reel — already in public/videos/, compressed and ready.
-    videoSrc: "/videos/y-club-loop.mp4",
+    imagePosition: "center 60%",
     // Hero CTA deep-links to the What's On listing pre-filtered to this venue.
     primaryCta: { href: "/whats-on?venue=Y+Club", label: "See What's On" },
   },

@@ -176,6 +176,7 @@ export function HeroSection() {
               alt="Three Venues. One Y."
               fetchPriority="high"
               decoding="async"
+              className="object-[center_75%] md:object-center"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -216,7 +217,7 @@ export function HeroSection() {
       />
 
       {/* Text block. */}
-      <div className="hero-text-block absolute text-white left-6 md:left-16 max-w-[calc(100%-48px)] md:max-w-none">
+      <div className="hero-text-block absolute text-white left-0 right-0 px-6 md:left-16 md:right-auto md:px-0">
 
         {/* Live-status line — day-aware copy + pulsing dot */}
         <p

@@ -75,8 +75,8 @@ export default function MembersPage() {
           />
 
           <div className="relative z-10 text-white px-6 md:px-16 pb-16 pt-40">
-            {/* Kicker row — tier label + trust signals (A4-VX [HIGH]) */}
-            <div className="flex flex-wrap items-center gap-3" style={{ marginBottom: "16px" }}>
+            {/* Kicker row — desktop only; too much noise on mobile */}
+            <div className="hidden md:flex flex-wrap items-center gap-3" style={{ marginBottom: "16px" }}>
               <p
                 style={{
                   fontSize: "13px",
@@ -136,6 +136,7 @@ export default function MembersPage() {
             </p>
 
             <p
+              className="hidden md:block"
               style={{
                 fontSize: "13px",
                 color: "rgba(255,255,255,0.5)",

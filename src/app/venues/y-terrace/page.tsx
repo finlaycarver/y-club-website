@@ -35,8 +35,6 @@ const yTerrace: VenueLayoutConfig = {
     ),
     // Tighter subhead — was 3 lines at desktop, now 2
     subhead: "Guildford's outdoor terrace. Cocktails, sport on the big screen, open all summer.",
-    // Looped video as hero background — check if daytime moments present
-    videoSrc: "/videos/y-terrace-loop.mp4",
     // Seasonal badge — communicates outdoor/seasonal nature immediately
     seasonalBadge: "Open: April – September",
     // Vertical line draw-in under H1 — outdoor editorial feel

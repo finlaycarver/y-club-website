@@ -472,7 +472,7 @@ export function EventsList() {
           }}>
             Featured
           </p>
-          <div className="events-featured-carousel" role="list">
+          <div className="events-featured-carousel" role="list" style={{ justifyContent: "center", overflowX: "visible" }}>
             {featuredEvents.map((event) => (
               <div key={event.slug} role="listitem">
                 <FeaturedMobileCard event={event} onTap={setActiveEvent} />
