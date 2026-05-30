@@ -16,6 +16,7 @@ const NAV_LINKS = [
 ] as const;
 
 const MENU_ITEMS = [
+  { label: "Venues",         href: "/venues"               },
   { label: "Y Club",         href: "/venues/y-club"        },
   { label: "Y Terrace",      href: "/venues/y-terrace"     },
   { label: "Y Bar & Lounge", href: "/venues/y-bar-lounge"  },
