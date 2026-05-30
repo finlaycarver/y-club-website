@@ -454,7 +454,6 @@ export function WhatsonSection() {
               overflowX: "auto",
               overflowY: "hidden",
               scrollSnapType: "x mandatory",
-              touchAction: "pan-x",
             } as React.CSSProperties}
           >
             <div style={{ display: "flex", gap: "12px" }}>
