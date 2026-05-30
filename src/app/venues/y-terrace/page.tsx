@@ -37,8 +37,6 @@ const yTerrace: VenueLayoutConfig = {
     subhead: "Guildford's outdoor terrace. Cocktails, sport on the big screen, open all summer.",
     // Seasonal badge — communicates outdoor/seasonal nature immediately
     seasonalBadge: "Open: April – September",
-    // Vertical line draw-in under H1 — outdoor editorial feel
-    showVerticalLine: true,
     primaryCta: { href: "/whats-on?venue=Y+Terrace", label: "See What's On" },
   },
   overview: {
