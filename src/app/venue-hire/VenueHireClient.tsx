@@ -249,7 +249,7 @@ export function VenueHireClient() {
         </section>
 
         {/* ── SPACES ───────────────────────────────────────────────── */}
-        <section className="bg-black text-white py-16 px-6 md:py-24" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <section className="bg-black text-white pt-24 pb-16 px-6 md:py-24" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div className="mb-12 md:mb-16">
               <p className="hidden md:block" style={{

@@ -311,9 +311,6 @@ export default function VenuesPage() {
 
       </main>
 
-      {/* Mobile sticky "Find your night" CTA — leads to /whats-on */}
-      <VenuesStickyBar />
-
       <SiteFooter />
     </>
   );
