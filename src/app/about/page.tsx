@@ -299,8 +299,8 @@ export default function AboutPage() {
         <section id="contact" className="bg-white text-black py-16 px-6 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20" style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
-            {/* Left — sticky so it stays in view while the map column scrolls */}
-            <div style={{ position: "sticky", top: "140px", alignSelf: "start" }}>
+            {/* Left — sticky on desktop only; sticky on mobile causes map overlap */}
+            <div className="md:sticky md:top-[140px] md:self-start">
               <p style={{
                 fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
                 textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: "16px",
