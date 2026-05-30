@@ -252,7 +252,7 @@ export function VenueHireClient() {
         <section className="bg-black text-white py-16 px-6 md:py-24" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div className="mb-12 md:mb-16">
-              <p style={{
+              <p className="hidden md:block" style={{
                 fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
                 textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "16px",
               }}>

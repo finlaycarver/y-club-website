@@ -54,7 +54,7 @@ export default function MembersPage() {
             of regulars" message (A4-VF [HIGH]). */}
         <section
           className="relative bg-black overflow-hidden flex items-end"
-          style={{ minHeight: "70svh" }}
+          style={{ minHeight: "80svh" }}
         >
           <Image
             src="/images/_MG_8068.jpg"
@@ -74,46 +74,7 @@ export default function MembersPage() {
             style={{ opacity: 0.03, backgroundImage: GRAIN_SVG, backgroundRepeat: "repeat", backgroundSize: "128px 128px" }}
           />
 
-          <div className="relative z-10 text-white px-6 md:px-16 pb-16 pt-40">
-            {/* Kicker row — desktop only; too much noise on mobile */}
-            <div className="hidden md:flex flex-wrap items-center gap-3" style={{ marginBottom: "16px" }}>
-              <p
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 500,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.55)",
-                }}
-              >
-                Free Forever
-              </p>
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  padding: "4px 10px",
-                }}
-              >
-                Free Tier
-              </span>
-              {/* Trust signals — confirmed facts, no fabricated counts */}
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontWeight: 500,
-                  letterSpacing: "0.1em",
-                  color: "rgba(255,255,255,0.4)",
-                }}
-              >
-                · 3 venues · No card required · Cancel any time
-              </span>
-            </div>
-
+          <div className="relative z-10 text-white px-6 md:px-16 pb-16 md:pb-28 pt-40">
             <h1
               className="text-[46px] md:text-[80px]"
               style={{ fontWeight: 700, lineHeight: 1, letterSpacing: "-0.01em" }}
@@ -135,18 +96,6 @@ export default function MembersPage() {
               more when you join Y, Guildford&apos;s late-night quarter.
             </p>
 
-            <p
-              className="hidden md:block"
-              style={{
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.5)",
-                marginTop: "16px",
-                maxWidth: "540px",
-                lineHeight: 1.5,
-              }}
-            >
-              No joining fee. No subscription. Cancel any time.
-            </p>
           </div>
         </section>
 
