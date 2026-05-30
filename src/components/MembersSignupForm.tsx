@@ -136,7 +136,7 @@ export function MembersSignupForm() {
           disabled={state === "submitting"}
           className="flex-1 border border-black/25 focus:border-black focus:outline-none transition-[border-color] duration-200 motion-reduce:transition-none placeholder:text-black/40 disabled:opacity-60"
           style={{
-            height: "56px", padding: "0 18px",
+            height: "64px", padding: "0 18px",
             background: "transparent", color: "#080808",
             fontFamily: "inherit", fontSize: "16px", borderRadius: 0, minWidth: 0,
           }}
@@ -146,7 +146,7 @@ export function MembersSignupForm() {
           disabled={state === "submitting"}
           className="group inline-flex items-center justify-center gap-2 bg-black text-white text-[15px] font-bold hover:bg-white hover:text-black transition-colors duration-200 motion-reduce:transition-none cursor-pointer disabled:opacity-60"
           style={{
-            height: "56px", padding: "0 28px",
+            height: "64px", padding: "0 28px",
             border: "1px solid #080808",
             borderRadius: 0,
             whiteSpace: "nowrap",
