@@ -18,7 +18,7 @@ export const BRAND = {
   phoneDisplay: "01483 342027",
   email: "barmanager@dreamoyster.com",
   jobsEmail: "ybar@dreamoyster.com",
-  instagram: "https://instagram.com/y_bar_",
+  instagram: "https://instagram.com/yclubguildford",
   facebook: "https://facebook.com/guildford.y.bar",
   tiktok: "https://tiktok.com/@y_bar_",
   /** Brand-level opening hours summary. Shown in the footer Contact block.

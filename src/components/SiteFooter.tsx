@@ -19,10 +19,10 @@ const NAV_LINKS = [
   { label: "FAQs",           href: "/faqs"            },
 ];
 
-// Real social handles sourced from ybar.uk:
-// Instagram: @y_bar_  ·  Facebook: guildford.y.bar  ·  TikTok: @y_bar_ (best guess — verify)
+// Real social handles:
+// Instagram: @yclubguildford  ·  Facebook: guildford.y.bar  ·  TikTok: @y_bar_ (verify)
 const SOCIAL_LINKS = [
-  { Icon: InstagramIcon, href: "https://instagram.com/y_bar_",            label: "Instagram" },
+  { Icon: InstagramIcon, href: "https://instagram.com/yclubguildford",    label: "Instagram" },
   { Icon: TikTokIcon,    href: "https://tiktok.com/@y_bar_",              label: "TikTok"    },
   { Icon: FacebookIcon,  href: "https://facebook.com/guildford.y.bar",    label: "Facebook"  },
 ];
