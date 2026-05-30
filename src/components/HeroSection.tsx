@@ -219,9 +219,9 @@ export function HeroSection() {
       {/* Text block. */}
       <div className="hero-text-block absolute text-white left-0 right-0 px-6 md:left-16 md:right-auto md:px-0">
 
-        {/* Live-status line — day-aware copy + pulsing dot */}
+        {/* Live-status line — desktop only on mobile to reduce block height */}
         <p
-          className="hero-live"
+          className="hero-live hidden md:inline-flex"
           style={{
             fontSize: "11px",
             fontWeight: 600,
@@ -248,9 +248,8 @@ export function HeroSection() {
           {liveStatus}
         </p>
 
-        {/* Kicker — .hero-kicker class lets globals.css tighten
-            letter-spacing at 320px to prevent overflow. */}
-        <p className="hero-kicker" style={{ fontSize: "14px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", margin: "0 0 18px" }}>
+        {/* Kicker — hidden on mobile to reduce block height */}
+        <p className="hero-kicker hidden md:block" style={{ fontSize: "14px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", margin: "0 0 18px" }}>
           Guildford&apos;s Late-Night Quarter
         </p>
 
@@ -314,53 +313,18 @@ export function HeroSection() {
             <ChevronRightIcon className="size-4 ml-1 relative z-10 group-hover:translate-x-0.5 transition-transform duration-200 motion-reduce:transition-none" />
           </a>
 
-          {/* Secondary CTA — same sweep shimmer pattern as primary, in white. */}
+          {/* Secondary CTA — desktop only; hidden on mobile to keep the block
+              small so bottom: 80px anchors the heading near the screen foot. */}
           <a
             href="/venue-hire"
-            className="group relative overflow-hidden inline-flex items-center justify-center gap-1.5 px-6 text-[18px] font-bold leading-6 text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none w-full md:w-auto md:min-w-[180px]"
+            className="hidden md:inline-flex group relative overflow-hidden items-center justify-center gap-1.5 px-6 text-[18px] font-bold leading-6 text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none md:w-auto md:min-w-[180px]"
             style={{ height: "58px", borderRadius: 0, backgroundColor: "transparent", border: "1.5px solid rgba(255,255,255,0.7)" }}
           >
             <span aria-hidden="true" className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%)" }} />
             <span className="relative z-10">Hire the Venue</span>
             <ChevronRightIcon className="size-4 ml-1 relative z-10 group-hover:translate-x-0.5 transition-transform duration-200 motion-reduce:transition-none" />
           </a>
-
-          {/* Click-to-call — mobile only. Direct dial from the hero gives
-              nightlife visitors the fastest possible path to booking without
-              leaving the page. Hidden on md+ where the tel: experience is
-              less reliable and the venue-hire page handles enquiries better. */}
-          <a
-            href="tel:+441483342027"
-            className="md:hidden group relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 text-[16px] font-bold leading-6 text-white active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none w-full"
-            style={{ height: "50px", borderRadius: 0, backgroundColor: "transparent", border: "1.5px solid rgba(255,255,255,0.5)" }}
-          >
-            <Phone size={16} aria-hidden="true" />
-            <span>Call to book</span>
-          </a>
         </div>
-
-        {/* Web Share API — renders only when navigator.share is available
-            (typically mobile Chrome, iOS Safari). Lets visitors share the
-            venue page via their native share sheet. Zero third-party SDK. */}
-        {hasShareAPI && (
-          <button
-            type="button"
-            onClick={handleShare}
-            className="md:hidden mt-3 inline-flex items-center gap-2 hover:text-white active:scale-[0.98] transition-all duration-200 motion-reduce:transition-none"
-            style={{
-              background: "transparent",
-              border: "none",
-              padding: "4px 0",
-              cursor: "pointer",
-              fontSize: "13px",
-              fontWeight: 500,
-              color: "rgba(255,255,255,0.55)",
-            }}
-          >
-            <Share2 size={14} aria-hidden="true" />
-            <span>Share this venue</span>
-          </button>
-        )}
       </div>
 
     </div>
