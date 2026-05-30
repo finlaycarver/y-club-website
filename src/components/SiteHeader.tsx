@@ -176,7 +176,7 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-10 flex flex-row items-center justify-between px-5 md:px-16 h-[72px] md:h-[128px]"
+        className="fixed top-0 left-0 right-0 z-40 flex flex-row items-center justify-between px-5 md:px-16 h-[72px] md:h-[128px]"
         style={{
           backgroundColor: "rgba(0,0,0,0)",
           color: "#FAFAFA",
