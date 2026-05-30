@@ -23,7 +23,7 @@ const NAV_LINKS = [
 // Instagram: @yclubguildford  ·  Facebook: guildford.y.bar  ·  TikTok: @y_bar_ (verify)
 const SOCIAL_LINKS = [
   { Icon: InstagramIcon, href: "https://instagram.com/yclubguildford",    label: "Instagram" },
-  { Icon: TikTokIcon,    href: "https://tiktok.com/@y_bar_",              label: "TikTok"    },
+  { Icon: TikTokIcon,    href: "https://tiktok.com/@y.nightclub0",         label: "TikTok"    },
   { Icon: FacebookIcon,  href: "https://facebook.com/guildford.y.bar",    label: "Facebook"  },
 ];
 

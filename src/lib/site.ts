@@ -20,7 +20,7 @@ export const BRAND = {
   jobsEmail: "ybar@dreamoyster.com",
   instagram: "https://instagram.com/yclubguildford",
   facebook: "https://facebook.com/guildford.y.bar",
-  tiktok: "https://tiktok.com/@y_bar_",
+  tiktok: "https://tiktok.com/@y.nightclub0",
   /** Brand-level opening hours summary. Shown in the footer Contact block.
    *  Per-venue hours live on their respective venue pages. */
   hoursDisplay: "Wed–Sat, 8pm onwards",
