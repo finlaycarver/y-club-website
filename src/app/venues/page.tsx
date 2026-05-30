@@ -196,6 +196,7 @@ export default function VenuesPage() {
                 imageSide={i % 2 === 0 ? "left" : "right"}
                 desktopHeight="viewport-55"
                 ordinal={venue.ordinal}
+                priority={i === 0}
               >
                 <PanelContent venue={venue} />
               </VenuePanel>
@@ -214,6 +215,7 @@ export default function VenuesPage() {
               imageSide={i % 2 === 0 ? "left" : "right"}
               desktopHeight="viewport-55"
               ordinal={venue.ordinal}
+              priority={i === 0}
             >
               <PanelContent venue={venue} />
             </VenuePanel>

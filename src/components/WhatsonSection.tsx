@@ -80,12 +80,14 @@ function EventTile({
   regularWidth,
   isFeaturedDesktop,
   onTap,
+  priority,
 }: {
   event: EventItem
   regularWidth: string
   isFeaturedDesktop: boolean
   /** If provided, tapping the tile opens the bottom sheet instead of navigating. */
   onTap?: () => void
+  priority?: boolean
 }) {
   const isExternal = event.href.startsWith("http")
   const tileWidth = isFeaturedDesktop ? TILE_WIDTHS[4].featured : regularWidth
@@ -117,6 +119,8 @@ function EventTile({
           src={event.imageUrl}
           alt={event.title}
           fill
+          sizes="(max-width: 768px) 80vw, 25vw"
+          priority={priority}
           style={{ objectFit: "cover" }}
           className="transition-transform duration-500 ease-in-out group-hover:scale-105"
         />
@@ -237,6 +241,8 @@ function EventTile({
           src={event.imageUrl}
           alt={event.title}
           fill
+          sizes="(max-width: 768px) 80vw, 25vw"
+          priority={priority}
           style={{ objectFit: "cover" }}
           className="transition-transform duration-500 ease-in-out group-hover:scale-105"
         />
@@ -452,7 +458,7 @@ export function WhatsonSection() {
             } as React.CSSProperties}
           >
             <div style={{ display: "flex", gap: "12px" }}>
-              {events.map((event) => {
+              {events.map((event, i) => {
                 const isFeaturedDesktop = !!event.featured && visibleCount === 4
                 return (
                   <EventTile
@@ -461,6 +467,7 @@ export function WhatsonSection() {
                     regularWidth={regularWidth}
                     isFeaturedDesktop={isFeaturedDesktop}
                     onTap={visibleCount === 1 ? () => setSheetEvent(event) : undefined}
+                    priority={i < 2}
                   />
                 )
               })}

@@ -31,6 +31,8 @@ export interface VenuePanelProps {
   ordinal?: string;
   /** Text content for the panel — owns its own typography. */
   children: ReactNode;
+  /** Preload this panel's image (use for the first visible panel). */
+  priority?: boolean;
 }
 
 const HEIGHT_CLASS: Record<VenuePanelHeight, string> = {
@@ -49,6 +51,7 @@ export function VenuePanel({
   desktopHeight = "screen",
   ordinal,
   children,
+  priority = false,
 }: VenuePanelProps) {
   const heightClass = HEIGHT_CLASS[desktopHeight];
   const textBg = variant === "light" ? "bg-white" : "bg-black";
@@ -71,6 +74,7 @@ export function VenuePanel({
           src={imageUrl}
           alt={imageAlt}
           fill
+          priority={priority}
           style={{ objectFit: "cover", objectPosition: "center" }}
           sizes="(max-width: 768px) 100vw, 50vw"
           className="transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform"
