@@ -209,7 +209,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
           shareText={config.hero.subhead}
         />
 
-        <div className="absolute left-6 md:left-16 text-white" style={{ bottom: "80px", zIndex: 10 }}>
+        <div className="absolute left-6 md:left-16 text-white" style={{ bottom: "80px", zIndex: 10, right: "24px" }}>
           {config.hero.kickerFrosted ? (
             /* Frosted-glass pill kicker — A4-VX [LOW] for intimate venues */
             <p
@@ -344,8 +344,8 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
         style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
-          style={{ maxWidth: "1200px", margin: "0 auto", padding: "80px 24px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 lg:items-center py-12 px-6 md:py-[60px]"
+          style={{ maxWidth: "1200px", margin: "0 auto" }}
         >
           <div>
             {/* Decorative accent numerals — e.g. "01 / 02" for rooms.
@@ -439,11 +439,8 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
           has context (you've seen the space) before the deep dive. */}
       {config.featureSection && (
         <section
-          className="bg-black text-white"
-          style={{
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            padding: "80px 24px",
-          }}
+          className="bg-black text-white py-14 px-6 md:py-20"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           <div
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
@@ -530,8 +527,8 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
       {/* ── ADDRESS + ENTRY ────────────────────────────────────────── */}
       <section
         id="address"
-        className="bg-black text-white scroll-mt-20"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.08)", padding: "80px 24px" }}
+        className="bg-black text-white scroll-mt-20 py-14 px-6 md:py-20"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20"
@@ -575,7 +572,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
       </section>
 
       {/* ── HIRE CTA ───────────────────────────────────────────────── */}
-      <section id="hire" className="text-white scroll-mt-20" style={{ padding: "80px 24px", background: "#0a0a0a", borderTop: "1px solid rgba(255,255,255,0.06)", position: "relative", overflow: "hidden" }}>
+      <section id="hire" className="text-white scroll-mt-20 py-14 px-6 md:py-20" style={{ background: "#0a0a0a", borderTop: "1px solid rgba(255,255,255,0.06)", position: "relative", overflow: "hidden" }}>
         <div
           className="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
           style={{ maxWidth: "1200px", margin: "0 auto" }}
@@ -607,7 +604,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
           </div>
           <Link
             href="/venue-hire"
-            className="group inline-flex items-center justify-center gap-2 border border-white/40 px-8 text-[17px] font-bold text-white hover:bg-white hover:text-black transition-colors duration-200 motion-reduce:transition-none shrink-0"
+            className="group inline-flex items-center justify-center gap-2 border border-white/40 px-8 text-[17px] font-bold text-white hover:bg-white hover:text-black transition-colors duration-200 motion-reduce:transition-none shrink-0 w-full md:w-auto"
             style={{ height: "54px" }}
           >
             Enquire About Hire
@@ -618,7 +615,7 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
 
       {/* ── ALSO AT Y — cross-links to sibling venues ──────────────── */}
       {siblingVenues.length > 0 && (
-        <section className="bg-black text-white" style={{ padding: "64px 24px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <section className="bg-black text-white py-10 px-6 md:py-16" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <p style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "32px" }}>
               Also at Y
@@ -677,125 +674,6 @@ function EntryList() {
   );
 }
 
-/**
- * Photo grid with three layout modes, picked per venue based on the
- * shape and count of photos available. Visual inconsistency across
- * venues is INTENTIONAL — each venue's grid was tuned to its own asset
- * set rather than forced into a uniform template.
- *
- *  - "feature" — Y Club:    6 photos, 3-col, first photo 1:1 spanning 2 rows
- *  - "split"   — Y Terrace: 4 photos, 2-col, first photo 3:4 spanning 2 rows
- *  - "row"     — Y Bar:     3 photos, uniform 3-col, 3:4 aspect
- */
-function PhotoGrid({
-  photos,
-  layout,
-}: {
-  photos: ReadonlyArray<PhotoItem>;
-  layout: "feature" | "split" | "row";
-}) {
-  // "row" — uniform 3-col, 3:4 aspect per cell (Y Bar & Lounge)
-  if (layout === "row") {
-    return (
-      <section className="bg-black" style={{ paddingBottom: "2px" }}>
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "2px" }}>
-          {photos.map((photo) => (
-            <div
-              key={photo.src}
-              className="relative overflow-hidden"
-              style={{ aspectRatio: "3/4" }}
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="hover:scale-105 transition-transform duration-700 ease-out"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  // "split" — 2-col grid with feature photo spanning 2 rows (Y Terrace, 4 photos)
-  if (layout === "split") {
-    return (
-      <section className="bg-black" style={{ paddingBottom: "2px" }}>
-        <div className="grid grid-cols-2" style={{ gap: "2px" }}>
-          {photos.map((photo, i) => (
-            <div
-              key={photo.src}
-              className={`relative overflow-hidden${i === 0 ? " row-span-2" : ""}`}
-              style={{ aspectRatio: i === 0 ? "3/4" : "4/3" }}
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="50vw"
-                className="hover:scale-105 transition-transform duration-700 ease-out"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  // "feature" — 3-col grid, 6 photos.
-  // Previous row-span approach created blank cells — replaced with:
-  //   Row 1-2: photo[0] spans col 1 (portrait), photos[1-4] fill cols 2-3
-  //   Row 3:   photo[5] spans all 3 cols (panoramic banner)
-  // This fills all 9 grid cells without any blanks.
-  return (
-    <section className="bg-black" style={{ paddingBottom: "2px" }}>
-      <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: "2px" }}>
-        {photos.map((photo, i) => {
-          const isFeature  = i === 0;
-          const isPanoramic = i === photos.length - 1 && photos.length === 6;
-          return (
-            <div
-              key={photo.src}
-              className={[
-                "relative overflow-hidden",
-                isFeature   ? "col-span-1 row-span-2" : "",
-                isPanoramic ? "col-span-2 md:col-span-3" : "",
-              ].join(" ")}
-              style={{
-                // Feature: no aspect-ratio — height driven by adjacent cells
-                // Panoramic: 21/9 cinematic banner
-                // Regular:   4/3 portrait
-                aspectRatio: isFeature ? undefined : isPanoramic ? "21/9" : "4/3",
-                // Feature photo needs a minimum height so the fill Image renders
-                minHeight: isFeature ? "280px" : undefined,
-              }}
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes={
-                  isPanoramic
-                    ? "100vw"
-                    : isFeature
-                      ? "(max-width: 768px) 50vw, 33vw"
-                      : "(max-width: 768px) 50vw, 33vw"
-                }
-                className="hover:scale-105 transition-transform duration-700 ease-out"
-              />
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 function AddressBlock({ address, openDays }: { address: AddressVariant; openDays?: ReadonlyArray<number> }) {
   return (
     <div>
@@ -805,19 +683,6 @@ function AddressBlock({ address, openDays }: { address: AddressVariant; openDays
       }}>
         {address.kicker}
       </p>
-      {address.variant === "street" && address.mapQuery && (
-        <div className="relative overflow-hidden mb-6" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
-          <iframe
-            title="Venue map"
-            src={`https://maps.google.com/maps?q=${address.mapQuery}&output=embed&z=16`}
-            width="100%"
-            height="220"
-            style={{ display: "block", border: 0, filter: "invert(0.9) hue-rotate(180deg) brightness(0.85) saturate(0.6)" }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
-      )}
       {/* Promoted from h3 → h2 so each major section starts at the same
           depth (overview h2 / address h2 / hire h2). */}
       <h2 style={{ fontSize: "34px", fontWeight: 700, lineHeight: 1.1, marginBottom: "12px" }}>

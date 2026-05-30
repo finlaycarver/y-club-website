@@ -12,6 +12,7 @@ import type { NextConfig } from "next";
  * so production stays without it.
  */
 const isProd = process.env.NODE_ENV === "production";
+const plausibleHost = (process.env.NEXT_PUBLIC_PLAUSIBLE_HOST ?? "https://plausible.io").replace(/\/$/, "");
 
 const cspDirectives = {
   "default-src": ["'self'"],
@@ -21,6 +22,7 @@ const cspDirectives = {
     ...(isProd ? [] : ["'unsafe-eval'"]),
     "https://plausible.io",
     "https://*.plausible.io",
+    plausibleHost,
   ],
   "style-src": ["'self'", "'unsafe-inline'"],
   "img-src": ["'self'", "data:", "blob:"],
@@ -30,9 +32,11 @@ const cspDirectives = {
     "'self'",
     "https://plausible.io",
     "https://*.plausible.io",
+    plausibleHost,
     // Webpack HMR + Next.js websocket in dev
     ...(isProd ? [] : ["ws:", "wss:"]),
   ],
+  "frame-src": ["'self'", "https://www.google.com", "https://maps.google.com"],
   "frame-ancestors": ["'none'"],
   "base-uri": ["'self'"],
   "form-action": ["'self'"],

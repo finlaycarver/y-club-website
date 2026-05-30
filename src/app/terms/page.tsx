@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms governing use of the Y website and venues.",
   alternates: { canonical: "/terms" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 /**

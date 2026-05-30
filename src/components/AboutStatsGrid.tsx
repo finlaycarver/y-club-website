@@ -39,8 +39,8 @@ function useCountUp(target: number, duration: number, active: boolean): number {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
-      setCurrent(target);
-      return;
+      const raf = requestAnimationFrame(() => setCurrent(target));
+      return () => cancelAnimationFrame(raf);
     }
 
     let startTime: number | null = null;

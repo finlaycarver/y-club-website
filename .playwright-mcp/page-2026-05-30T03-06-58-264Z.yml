@@ -1,0 +1,313 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "Three Venues. One Y." [ref=e15]
+      - generic [ref=e16]:
+        - paragraph [ref=e17]: Open tonight
+        - paragraph [ref=e19]: Guildford's Late-Night Quarter
+        - heading "Three Venues. One Y ." [level=1] [ref=e20]:
+          - generic [ref=e22]: Three
+          - generic [ref=e24]: Venues.
+          - generic [ref=e26]: One
+          - generic [ref=e28]:
+            - img "Y" [ref=e29]
+            - text: .
+        - paragraph [ref=e30]: Cocktails to start. Terrace to settle. Club to finish.
+        - generic [ref=e31]:
+          - link "What's On" [ref=e32]:
+            - /url: "#whats-on"
+            - generic [ref=e33]: What's On
+            - img [ref=e34]
+          - link "Hire the Venue" [ref=e36]:
+            - /url: /venue-hire
+            - generic [ref=e37]: Hire the Venue
+            - img [ref=e38]
+          - link "Call to book" [ref=e40]:
+            - /url: tel:+441483342027
+            - img [ref=e41]
+            - generic [ref=e43]: Call to book
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: Coming up
+          - heading "The Line-up" [level=2] [ref=e48]
+        - generic [ref=e49]:
+          - generic [ref=e51]:
+            - button "MBS 1st Birthday — Sat 6 Jun 2026 — tap for details" [ref=e52]:
+              - generic [ref=e53]:
+                - img "MBS 1st Birthday" [ref=e54]
+                - generic [ref=e55]: Featured
+              - paragraph [ref=e56]: SAT 6 JUN
+              - paragraph [ref=e57]: MBS 1st Birthday
+            - button "Saturday Sessions — Wed 10 Jun 2026 — tap for details" [ref=e58]:
+              - img "Saturday Sessions" [ref=e60]
+              - paragraph [ref=e61]: WED 10 JUN
+              - paragraph [ref=e62]: Saturday Sessions
+            - button "Summer Garden Party — Sat 13 Jun 2026 — tap for details" [ref=e63]:
+              - img "Summer Garden Party" [ref=e65]
+              - paragraph [ref=e66]: SAT 13 JUN
+              - paragraph [ref=e67]: Summer Garden Party
+            - button "Live DJ Set — Fri 19 Jun 2026 — tap for details" [ref=e68]:
+              - img "Live DJ Set" [ref=e70]
+              - paragraph [ref=e71]: FRI 19 JUN
+              - paragraph [ref=e72]: Live DJ Set
+            - button "Student Night — Sat 27 Jun 2026 — tap for details" [ref=e73]:
+              - img "Student Night" [ref=e75]
+              - paragraph [ref=e76]: SAT 27 JUN
+              - paragraph [ref=e77]: Student Night
+          - generic [ref=e79]:
+            - button "Go to page 1" [ref=e80]
+            - button "Go to page 2" [ref=e81]
+          - generic [ref=e82]:
+            - paragraph [ref=e83]: 5 upcoming events
+            - link "See all events" [ref=e84]:
+              - /url: /whats-on
+              - text: See all events
+              - img [ref=e85]
+      - dialog "Event details" [ref=e87]
+    - generic [ref=e90]:
+      - paragraph [ref=e91]: Watch · 60 seconds
+      - heading "A night at Y" [level=2] [ref=e92]
+      - generic [ref=e93]:
+        - generic "Y club brand video — tap for fullscreen" [ref=e94] [cursor=pointer]
+        - button "Enter fullscreen" [ref=e95]:
+          - img [ref=e96]
+          - text: Fullscreen
+    - generic [ref=e102]:
+      - paragraph [ref=e103]: Inside Y
+      - heading "Discover Y" [level=2] [ref=e104]
+      - generic [ref=e105]:
+        - link "Y Club Y Club Late nights, big floors" [ref=e106]:
+          - /url: /venues/y-club
+          - img "Y Club" [ref=e107]
+          - generic [ref=e110]: "01"
+          - generic [ref=e111]:
+            - heading "Y Club" [level=3] [ref=e112]
+            - paragraph [ref=e113]: Late nights, big floors
+          - img [ref=e115]
+        - link "Y Terrace Y Terrace Outdoor terrace under the stars" [ref=e118]:
+          - /url: /venues/y-terrace
+          - img "Y Terrace" [ref=e119]
+          - generic [ref=e122]: "02"
+          - generic [ref=e123]:
+            - heading "Y Terrace" [level=3] [ref=e124]
+            - paragraph [ref=e125]: Outdoor terrace under the stars
+          - img [ref=e127]
+        - link "The Line-up The Line-up Every Friday and Saturday" [ref=e130]:
+          - /url: /whats-on
+          - img "The Line-up" [ref=e131]
+          - generic [ref=e134]: "03"
+          - generic [ref=e135]:
+            - heading "The Line-up" [level=3] [ref=e136]
+            - paragraph [ref=e137]: Every Friday and Saturday
+          - img [ref=e139]
+        - link "Birthdays Birthdays Tables, hosts & bottle service" [ref=e142]:
+          - /url: /venue-hire
+          - img "Birthdays" [ref=e143]
+          - generic [ref=e146]: "04"
+          - generic [ref=e147]:
+            - heading "Birthdays" [level=3] [ref=e148]
+            - paragraph [ref=e149]: Tables, hosts & bottle service
+          - img [ref=e151]
+        - link "Venue Hire Venue Hire Up to 1,500 capacity" [ref=e154]:
+          - /url: /venue-hire
+          - img "Venue Hire" [ref=e155]
+          - generic [ref=e158]: "05"
+          - generic [ref=e159]:
+            - heading "Venue Hire" [level=3] [ref=e160]
+            - paragraph [ref=e161]: Up to 1,500 capacity
+          - img [ref=e163]
+        - link "Student Nights Student Nights Midweek with Surrey Uni" [ref=e166]:
+          - /url: /whats-on
+          - img "Student Nights" [ref=e167]
+          - generic [ref=e170]: "06"
+          - generic [ref=e171]:
+            - heading "Student Nights" [level=3] [ref=e172]
+            - paragraph [ref=e173]: Midweek with Surrey Uni
+          - img [ref=e175]
+        - link "Bottle Service Bottle Service Premium tables in the club" [ref=e178]:
+          - /url: /venue-hire
+          - img "Bottle Service" [ref=e179]
+          - generic [ref=e182]: "07"
+          - generic [ref=e183]:
+            - heading "Bottle Service" [level=3] [ref=e184]
+            - paragraph [ref=e185]: Premium tables in the club
+          - img [ref=e187]
+        - link "Sports Screening Sports Screening Big games on the big screen" [ref=e190]:
+          - /url: /whats-on
+          - img "Sports Screening" [ref=e191]
+          - generic [ref=e194]: "08"
+          - generic [ref=e195]:
+            - heading "Sports Screening" [level=3] [ref=e196]
+            - paragraph [ref=e197]: Big games on the big screen
+          - img [ref=e199]
+        - link "Christmas Parties Christmas Parties Book your festive night" [ref=e202]:
+          - /url: /venue-hire
+          - img "Christmas Parties" [ref=e203]
+          - generic [ref=e206]: "09"
+          - generic [ref=e207]:
+            - heading "Christmas Parties" [level=3] [ref=e208]
+            - paragraph [ref=e209]: Book your festive night
+          - img [ref=e211]
+    - generic [ref=e214]:
+      - generic [ref=e215]:
+        - img "Y Club" [ref=e219]
+        - generic [ref=e221]:
+          - paragraph [ref=e222]:
+            - img "Y" [ref=e223]
+            - text: Club
+          - heading "Where the night goes loud" [level=2] [ref=e224]
+          - paragraph [ref=e225]: Big floors. Big sound. Open late every Friday and Saturday.
+          - link "Explore Y Club" [ref=e226]:
+            - /url: /venues/y-club
+            - generic [ref=e227]: Explore Y Club
+            - generic [ref=e228]:
+              - img [ref=e229]
+              - img [ref=e231]
+      - generic [ref=e233]:
+        - img "Y Terrace" [ref=e237]
+        - generic [ref=e239]:
+          - paragraph [ref=e240]:
+            - img "Y" [ref=e241]
+            - text: Terrace
+          - heading "Open-air. All season" [level=2] [ref=e242]
+          - paragraph [ref=e243]: Guildford's outdoor terrace. Cocktails, sport on the big screen, late summer evenings.
+          - link "Explore Y Terrace" [ref=e244]:
+            - /url: /venues/y-terrace
+            - generic [ref=e245]: Explore Y Terrace
+            - generic [ref=e246]:
+              - img [ref=e247]
+              - img [ref=e249]
+      - generic [ref=e251]:
+        - img "Y Bar & Lounge" [ref=e255]
+        - generic [ref=e257]:
+          - paragraph [ref=e258]:
+            - img "Y" [ref=e259]
+            - text: Bar & Lounge
+          - heading "Where the night starts" [level=2] [ref=e260]
+          - paragraph [ref=e261]: Cocktails, conversation, and the best warm-up for the night ahead.
+          - link "Explore Y Bar & Lounge" [ref=e262]:
+            - /url: /venues/y-bar-lounge
+            - generic [ref=e263]: Explore Y Bar & Lounge
+            - generic [ref=e264]:
+              - img [ref=e265]
+              - img [ref=e267]
+  - contentinfo [ref=e269]:
+    - generic [ref=e270]:
+      - generic [ref=e271]:
+        - link "Y home" [ref=e272]:
+          - /url: /
+          - img "Y Guildford" [ref=e273]
+        - paragraph [ref=e275]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e276]:
+          - paragraph [ref=e277]: Contact
+          - link "01483 342027" [ref=e278]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e279]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e280]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e281]:
+          - img [ref=e282]
+          - generic [ref=e285]: Find us
+      - generic [ref=e286]:
+        - paragraph [ref=e287]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e288]
+        - paragraph [ref=e289]: Events, new nights, and what's coming next.
+        - generic [ref=e290]:
+          - textbox [ref=e291]
+          - textbox "Email address" [ref=e292]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e293]: Subscribe
+    - generic [ref=e294]:
+      - navigation "Footer navigation" [ref=e295]:
+        - list [ref=e296]:
+          - listitem [ref=e297]:
+            - link "Privacy Policy" [ref=e298]:
+              - /url: /privacy-policy
+          - listitem [ref=e299]:
+            - link "Terms" [ref=e300]:
+              - /url: /terms
+          - listitem [ref=e301]:
+            - link "Venue Hire" [ref=e302]:
+              - /url: /venue-hire
+          - listitem [ref=e303]:
+            - link "Careers" [ref=e304]:
+              - /url: /about#careers
+          - listitem [ref=e305]:
+            - link "FAQs" [ref=e306]:
+              - /url: /faqs
+      - generic [ref=e307]:
+        - paragraph [ref=e308]: Y © 2026. All rights reserved.
+        - paragraph [ref=e309]:
+          - text: Designed by
+          - link "First AI.D" [ref=e310]:
+            - /url: https://first-aid.agency
+      - generic [ref=e311]:
+        - link "Instagram" [ref=e312]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e313]
+        - link "TikTok" [ref=e315]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e316]
+        - link "Facebook" [ref=e318]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e319]
+        - button "Share Y Guildford" [ref=e321]:
+          - img [ref=e322]
+  - generic [ref=e328]:
+    - link [ref=e329]:
+      - /url: /whats-on
+      - generic [ref=e330]: What's On
+      - img [ref=e331]
+    - link [ref=e334]:
+      - /url: /venue-hire
+      - generic [ref=e335]: Hire the Venue
+      - img [ref=e336]
+  - button "Open Next.js Dev Tools" [ref=e343] [cursor=pointer]:
+    - img [ref=e344]
+  - alert [ref=e347]

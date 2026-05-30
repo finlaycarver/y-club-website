@@ -12,6 +12,7 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
  */
 export function MembersSignupForm() {
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -26,7 +27,7 @@ export function MembersSignupForm() {
       const res = await fetch("/api/members/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company }),
       });
 
       if (!res.ok) {
@@ -114,6 +115,16 @@ export function MembersSignupForm() {
         className="flex flex-col sm:flex-row w-full"
         style={{ maxWidth: "520px" }}
       >
+        <input
+          type="text"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          aria-hidden="true"
+          style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", opacity: 0 }}
+        />
         <input
           type="email"
           placeholder="Your email address"

@@ -85,7 +85,6 @@ function useStaggerEntrance(count: number) {
 
     if (gridRef.current) obs.observe(gridRef.current);
     return () => obs.disconnect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   return { gridRef, cellRefs };

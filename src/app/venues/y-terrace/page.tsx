@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 };
 
 const yTerrace: VenueLayoutConfig = {
+  slug: "y-terrace",
   hero: {
     // Lighter outdoor image — the previous club-y-image-4.webp was near-black
     // in the upper section. This image shows the venue with better visual punch.
@@ -60,19 +61,6 @@ const yTerrace: VenueLayoutConfig = {
   ],
   specsStyle: "numeric",
   // cropTimestamp: true scales up + crops top-right corner to hide the
-  // burned-in "10-07-2024 20:34:27" timestamp (A4-VX [HIGH]).
-  // playbackRate: 0.7 makes the raw event footage feel more cinematic.
-  // overlayOpacity: 0.4 mutes the raw documentary look.
-  // Replace src with branded footage when available.
-  video: {
-    src: "/videos/y-terrace-loop.mp4",
-    posterSrc: "/images/10.webp",
-    kicker: "Sports & Summer",
-    caption: "The outdoor terrace, alive.",
-    cropTimestamp: true,
-    playbackRate: 0.7,
-    overlayOpacity: 0.4,
-  },
   photos: [
     { src: "/images/9.webp",                                                       alt: "Y Terrace open-air bar in the evening sun" },
     { src: "/images/441900351_371148019313956_2396615588718096493_n-2-copy.webp",  alt: "Y Terrace crowd watching live sport on the big screen" },

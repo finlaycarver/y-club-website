@@ -1,0 +1,252 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - generic [ref=e9]:
+        - link "What's On" [ref=e10]:
+          - /url: /whats-on
+        - link "Venues" [ref=e11]:
+          - /url: /venues
+        - link "Venue Hire" [ref=e12]:
+          - /url: /venue-hire
+        - link "Members" [ref=e13]:
+          - /url: /members
+        - link "About Y" [ref=e14]:
+          - /url: /about
+        - button "Open search" [ref=e15]:
+          - img [ref=e16]
+      - button "Open menu" [ref=e19]:
+        - img [ref=e20]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e21]:
+    - generic [ref=e22]:
+      - img "Y Club — Cornerhouse, Guildford" [ref=e23]
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: Cornerhouse · Onslow Street · Guildford
+        - heading "Y Club" [level=1] [ref=e27]:
+          - img "Y" [ref=e28]
+          - text: Club
+        - paragraph [ref=e29]: Where the night goes loud. Big floors, big sound — open late every Friday and Saturday.
+        - paragraph [ref=e30]:
+          - generic [ref=e31]: Next up
+          - generic [ref=e32]: ·
+          - link "MBS 1st Birthday" [ref=e33]:
+            - /url: https://www.skiddle.com/whats-on/Guildford/Y-Club/
+          - generic [ref=e34]: ·
+          - generic [ref=e35]: Sat 6 Jun
+          - generic [ref=e36]: ·
+          - generic [ref=e37]: 7d 15h
+        - generic [ref=e38]:
+          - link "See What's On" [ref=e39]:
+            - /url: /whats-on?venue=Y+Club
+            - text: See What's On
+            - img [ref=e40]
+          - link "Hire the Venue" [ref=e42]:
+            - /url: /venue-hire
+            - text: Hire the Venue
+            - img [ref=e43]
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - paragraph [ref=e48]: The Club
+        - heading "The home of Guildford's best nights." [level=2] [ref=e49]
+        - paragraph [ref=e50]: Y Club is Guildford's destination for late-night dancing. Two rooms. Two dance floors. Two bars. State-of-the-art sound and lighting — and a crowd that knows how to move.
+        - paragraph [ref=e51]: Every Friday and Saturday we host DJs and artists from across the UK. Whether you're celebrating something big or just need a night out, this is where it happens.
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - paragraph [ref=e54]: "500"
+          - paragraph [ref=e55]: Capacity
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: "2"
+          - paragraph [ref=e58]: Dance floors
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: "2"
+          - paragraph [ref=e61]: Bars
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: Fri + Sat
+          - paragraph [ref=e64]: Open
+    - generic [ref=e67]:
+      - button "View DJ playing to a packed Y Club crowd" [ref=e68]:
+        - img "DJ playing to a packed Y Club crowd" [ref=e69]
+        - generic:
+          - paragraph: DJ playing to a packed Y Club crowd
+      - button "View Friends dancing under red lights at Y Club" [ref=e70]:
+        - img "Friends dancing under red lights at Y Club" [ref=e71]
+        - generic:
+          - paragraph: Friends dancing under red lights at Y Club
+      - button "View Y Club crowd cheering during a DJ drop" [ref=e72]:
+        - img "Y Club crowd cheering during a DJ drop" [ref=e73]
+        - generic:
+          - paragraph: Y Club crowd cheering during a DJ drop
+      - button "View Late-night dance floor at Y Club" [ref=e74]:
+        - img "Late-night dance floor at Y Club" [ref=e75]
+        - generic:
+          - paragraph: Late-night dance floor at Y Club
+      - button "View Y Club dance floor in full flow" [ref=e76]:
+        - img "Y Club dance floor in full flow" [ref=e77]
+        - generic:
+          - paragraph: Y Club dance floor in full flow
+      - button "View Y Club main stage with truss and lighting rig" [ref=e78]:
+        - img "Y Club main stage with truss and lighting rig" [ref=e79]
+        - generic:
+          - paragraph: Y Club main stage with truss and lighting rig
+    - generic [ref=e81]:
+      - generic [ref=e82]:
+        - paragraph [ref=e83]: Find Us
+        - heading "Cornerhouse, Onslow Street" [level=2] [ref=e84]:
+          - text: Cornerhouse,
+          - text: Onslow Street
+        - paragraph [ref=e85]: Guildford, GU1 4SQ
+        - generic [ref=e86]:
+          - paragraph [ref=e87]: Wed–Sat, 8pm onwards
+          - generic [ref=e88]: Open tonight
+        - generic [ref=e92]:
+          - link "Get Directions (opens in new tab)" [ref=e93]:
+            - /url: https://maps.google.com/?q=Y+Club+Corner+House+Onslow+Street+Guildford
+            - text: Get Directions
+            - img [ref=e94]
+            - generic [ref=e98]: (opens in new tab)
+          - link "01483 342027" [ref=e99]:
+            - /url: tel:+441483342027
+            - img [ref=e100]
+            - text: 01483 342027
+      - generic [ref=e102]:
+        - paragraph [ref=e103]: Entry
+        - list [ref=e105]:
+          - listitem [ref=e106]: Over 18s only — valid ID required
+          - listitem [ref=e107]: No tracksuits, hoodies, or sportswear
+          - listitem [ref=e108]: Smart-casual dress code enforced
+          - listitem [ref=e109]: Bag searches on entry
+          - listitem [ref=e110]: Zero tolerance on drugs
+    - generic [ref=e112]:
+      - generic [ref=e113]:
+        - paragraph [ref=e114]: Private Hire
+        - heading "Make it yours." [level=2] [ref=e115]
+        - paragraph [ref=e116]: Birthdays, graduations, corporate nights. Y Club takes up to 500 guests across two rooms.
+        - paragraph [ref=e117]: Avg. response time under 48 hours
+      - link "Enquire About Hire" [ref=e118]:
+        - /url: /venue-hire
+        - text: Enquire About Hire
+        - img [ref=e119]
+    - generic [ref=e122]:
+      - paragraph [ref=e123]: Also at Y
+      - generic [ref=e124]:
+        - link "Y Terrace Open-air, all season Y Terrace" [ref=e125]:
+          - /url: /venues/y-terrace
+          - img "Y Terrace" [ref=e126]
+          - generic [ref=e128]:
+            - paragraph [ref=e129]: Open-air, all season
+            - generic [ref=e130]:
+              - paragraph [ref=e131]: Y Terrace
+              - img [ref=e132]
+        - link "Y Bar & Lounge Where the night starts Y Bar & Lounge" [ref=e134]:
+          - /url: /venues/y-bar-lounge
+          - img "Y Bar & Lounge" [ref=e135]
+          - generic [ref=e137]:
+            - paragraph [ref=e138]: Where the night starts
+            - generic [ref=e139]:
+              - paragraph [ref=e140]: Y Bar & Lounge
+              - img [ref=e141]
+  - contentinfo [ref=e143]:
+    - generic [ref=e144]:
+      - generic [ref=e145]:
+        - link "Y home" [ref=e146]:
+          - /url: /
+          - img "Y Guildford" [ref=e147]
+        - paragraph [ref=e149]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e150]:
+          - paragraph [ref=e151]: Contact
+          - link "01483 342027" [ref=e152]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e153]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e154]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e155]:
+          - img [ref=e156]
+          - generic [ref=e159]: Find us
+      - generic [ref=e160]:
+        - paragraph [ref=e161]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e162]
+        - paragraph [ref=e163]: Events, new nights, and what's coming next.
+        - generic [ref=e164]:
+          - textbox [ref=e165]
+          - textbox "Email address" [ref=e166]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e167]: Subscribe
+    - generic [ref=e168]:
+      - navigation "Footer navigation" [ref=e169]:
+        - list [ref=e170]:
+          - listitem [ref=e171]:
+            - link "Privacy Policy" [ref=e172]:
+              - /url: /privacy-policy
+          - listitem [ref=e173]:
+            - link "Terms" [ref=e174]:
+              - /url: /terms
+          - listitem [ref=e175]:
+            - link "Venue Hire" [ref=e176]:
+              - /url: /venue-hire
+          - listitem [ref=e177]:
+            - link "Careers" [ref=e178]:
+              - /url: /about#careers
+          - listitem [ref=e179]:
+            - link "FAQs" [ref=e180]:
+              - /url: /faqs
+      - generic [ref=e181]:
+        - paragraph [ref=e182]: Y © 2026. All rights reserved.
+        - paragraph [ref=e183]:
+          - text: Designed by
+          - link "First AI.D" [ref=e184]:
+            - /url: https://first-aid.agency
+      - generic [ref=e185]:
+        - link "Instagram" [ref=e186]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e187]
+        - link "TikTok" [ref=e189]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e190]
+        - link "Facebook" [ref=e192]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e193]
+        - button "Share Y Guildford" [ref=e195]:
+          - img [ref=e196]
+  - button "Open Next.js Dev Tools" [ref=e207] [cursor=pointer]:
+    - img [ref=e208]
+  - alert [ref=e211]

@@ -75,7 +75,6 @@ function useStaggerEntrance(count: number) {
 
     obs.observe(gridRef.current);
     return () => obs.disconnect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   return { gridRef, cellRefs };
@@ -132,16 +131,13 @@ function BenefitCell({
         (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
         cellRef(el);
       }}
-      className="benefit-cell"
+      className="benefit-cell py-6 px-5 md:py-10 md:px-8"
       style={{
-        padding: "40px 32px",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
         borderRight: "1px solid rgba(255,255,255,0.08)",
         display: "flex",
         flexDirection: "column",
         gap: "16px",
-        // will-change kept off by default — added when tilt is active via
-        // inline style mutation in the effect above
       }}
     >
       <benefit.Icon

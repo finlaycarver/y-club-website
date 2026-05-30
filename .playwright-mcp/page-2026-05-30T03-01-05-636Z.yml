@@ -1,0 +1,132 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "What's on at Y, Guildford" [ref=e13]
+      - generic [ref=e15]:
+        - paragraph [ref=e16]:
+          - generic [ref=e17]: Friday, Saturday — and more
+        - heading "What's On" [level=1] [ref=e18]:
+          - generic [ref=e19]: What's
+          - generic [ref=e20]: "On"
+        - paragraph [ref=e21]:
+          - generic [ref=e22]: Next up
+          - generic [ref=e23]: ·
+          - generic [ref=e24]: MBS 1st Birthday
+          - generic [ref=e25]: ·
+          - generic [ref=e26]: Sat 6 Jun
+          - generic [ref=e27]: ·
+          - generic [ref=e28]: 7d 15h
+        - link "Browse events" [ref=e29]:
+          - /url: "#events-filter"
+          - text: Browse events
+          - img [ref=e30]
+  - contentinfo [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - link "Y home" [ref=e37]:
+          - /url: /
+          - img "Y Guildford" [ref=e38]
+        - paragraph [ref=e40]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Contact
+          - link "01483 342027" [ref=e43]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e44]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e45]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e46]:
+          - img [ref=e47]
+          - generic [ref=e50]: Find us
+      - generic [ref=e51]:
+        - paragraph [ref=e52]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e53]
+        - paragraph [ref=e54]: Events, new nights, and what's coming next.
+        - generic [ref=e55]:
+          - textbox [ref=e56]
+          - textbox "Email address" [ref=e57]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e58]: Subscribe
+    - generic [ref=e59]:
+      - navigation "Footer navigation" [ref=e60]:
+        - list [ref=e61]:
+          - listitem [ref=e62]:
+            - link "Privacy Policy" [ref=e63]:
+              - /url: /privacy-policy
+          - listitem [ref=e64]:
+            - link "Terms" [ref=e65]:
+              - /url: /terms
+          - listitem [ref=e66]:
+            - link "Venue Hire" [ref=e67]:
+              - /url: /venue-hire
+          - listitem [ref=e68]:
+            - link "Careers" [ref=e69]:
+              - /url: /about#careers
+          - listitem [ref=e70]:
+            - link "FAQs" [ref=e71]:
+              - /url: /faqs
+      - generic [ref=e72]:
+        - paragraph [ref=e73]: Y © 2026. All rights reserved.
+        - paragraph [ref=e74]:
+          - text: Designed by
+          - link "First AI.D" [ref=e75]:
+            - /url: https://first-aid.agency
+      - generic [ref=e76]:
+        - link "Instagram" [ref=e77]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e78]
+        - link "TikTok" [ref=e80]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e81]
+        - link "Facebook" [ref=e83]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e84]
+        - button "Share Y Guildford" [ref=e86]:
+          - img [ref=e87]
+  - button "Open Next.js Dev Tools" [ref=e98] [cursor=pointer]:
+    - img [ref=e99]
+  - alert [ref=e102]

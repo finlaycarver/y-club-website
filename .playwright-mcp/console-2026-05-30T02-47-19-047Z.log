@@ -1,0 +1,46 @@
+[     111ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[     669ms] [LOG] [Fast Refresh] done in 658ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[     700ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[     711ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[     750ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[    3749ms] [WARNING] The resource http://localhost:3000/fonts/NeueHaasDisplay_Bold.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/faqs:0
+[    3749ms] [WARNING] The resource http://localhost:3000/fonts/NeueHaasDisplay_Roman.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/faqs:0
+[  510118ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  510319ms] [LOG] [Fast Refresh] done in 270ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  517770ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  517795ms] [LOG] [Fast Refresh] done in 86ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  524500ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  524527ms] [LOG] [Fast Refresh] done in 88ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  533244ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  533326ms] [LOG] [Fast Refresh] done in 169ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  545932ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  546004ms] [LOG] [Fast Refresh] done in 96ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  546210ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  550979ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  551033ms] [LOG] [Fast Refresh] done in 27ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  551036ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  556185ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  556269ms] [LOG] [Fast Refresh] done in 27ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  556601ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  571283ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  571327ms] [LOG] [Fast Refresh] done in 84ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  581689ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  581739ms] [LOG] [Fast Refresh] done in 107ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  581842ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  586910ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  586990ms] [LOG] [Fast Refresh] done in 38ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  587053ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  592365ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  592468ms] [LOG] [Fast Refresh] done in 40ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  592486ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  600683ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  600751ms] [LOG] [Fast Refresh] done in 66ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  600857ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  607518ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  607632ms] [LOG] [Fast Refresh] done in 39ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  607632ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  614735ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  614804ms] [LOG] [Fast Refresh] done in 136ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  614917ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/faqs:0
+[  632280ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  632356ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477

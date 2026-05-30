@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
-import { EVENTS, EVENT_BY_SLUG } from "@/data/events";
+import { EVENTS, EVENT_BY_SLUG, isUpcomingEvent } from "@/data/events";
 import { EventSchema } from "@/components/structured-data/EventSchema";
 
 interface PageProps {
@@ -24,9 +24,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!event) {
     return { title: "Event not found" };
   }
+  const isUpcoming = isUpcomingEvent(event);
   return {
     title: `${event.title} — ${event.venue}, Guildford`,
     description: event.description,
+    robots: isUpcoming ? undefined : { index: false, follow: true },
     alternates: { canonical: `/whats-on/${event.slug}` },
     openGraph: {
       title: event.title,
@@ -47,10 +49,11 @@ export default async function EventDetailPage({ params }: PageProps) {
   }
 
   const isExternal = event.ticketUrl.startsWith("http");
+  const isUpcoming = isUpcomingEvent(event);
 
   return (
     <>
-      <EventSchema
+      {isUpcoming && <EventSchema
         events={[
           {
             title: event.title,
@@ -62,7 +65,7 @@ export default async function EventDetailPage({ params }: PageProps) {
             ticketUrl: event.ticketUrl,
           },
         ]}
-      />
+      />}
       <SiteHeader />
       <main id="main-content">
 

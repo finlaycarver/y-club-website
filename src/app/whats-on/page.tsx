@@ -8,7 +8,7 @@ import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
 import { EventsList } from "./EventsList";
 import { WhatsOnCountdown } from "./WhatsOnCountdown";
-import { EVENTS } from "@/data/events";
+import { localTodayIso, upcomingEvents } from "@/data/events";
 import { EventSchema, type EventSchemaItem } from "@/components/structured-data/EventSchema";
 
 export const metadata: Metadata = {
@@ -25,9 +25,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600;
+
 export default function WhatsOnPage() {
   // Convert internal events into the Event JSON-LD shape
-  const schemaEvents: EventSchemaItem[] = EVENTS.map((event) => ({
+  const events = upcomingEvents();
+  const schemaEvents: EventSchemaItem[] = events.map((event) => ({
     title: event.title,
     startDate: event.isoDate,
     endDate: event.isoEndDate,
@@ -39,9 +42,9 @@ export default function WhatsOnPage() {
 
   // Next upcoming event — soonest isoDate on or after today.
   // Drives the live countdown strip in the hero.
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayStr = localTodayIso();
   const nextEvent =
-    [...EVENTS]
+    events
       .filter((e) => e.isoDate >= todayStr)
       .sort((a, b) => a.isoDate.localeCompare(b.isoDate))[0] ?? null;
 

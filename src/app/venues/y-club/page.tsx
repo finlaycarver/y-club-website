@@ -43,8 +43,6 @@ const yClub: VenueLayoutConfig = {
   overview: {
     kicker: "The Club",
     heading: "The home of Guildford's best nights.",
-    // 01 / 02 — decorative numerals for the two rooms (A4-VX [HIGH])
-    accentNumerals: ["01", "02"],
     paragraphs: [
       "Y Club is Guildford's destination for late-night dancing. Two rooms. Two dance floors. Two bars. State-of-the-art sound and lighting — and a crowd that knows how to move.",
       "Every Friday and Saturday we host DJs and artists from across the UK. Whether you're celebrating something big or just need a night out, this is where it happens.",
@@ -58,12 +56,6 @@ const yClub: VenueLayoutConfig = {
     { label: "Open",         value: "Fri + Sat", compact: true },
   ],
   specsStyle: "numeric",
-  video: {
-    src: "/videos/y-club-loop.mp4",
-    posterSrc: "/images/12.webp",
-    kicker: "Friday Night",
-    caption: "The view from the balcony.",
-  },
   photos: [
     { src: "/images/mg-7942.webp",    alt: "DJ playing to a packed Y Club crowd"            },
     { src: "/images/img-1890.jpg",    alt: "Friends dancing under red lights at Y Club"     },

@@ -46,15 +46,47 @@ export function SiteHeader() {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const menuCloseRef = useRef<HTMLButtonElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
+  const wasMenuOpenRef = useRef(false);
 
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const searchCloseRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchOverlayRef = useRef<HTMLDivElement>(null);
+  const wasSearchOpenRef = useRef(false);
+  const lastFocusRef = useRef<HTMLElement | null>(null);
 
   function closeMenu() { setIsMenuOpen(false); }
   function closeSearch() { setIsSearchOpen(false); }
-  function openMenu() { setIsSearchOpen(false); setIsMenuOpen(true); }
-  function openSearch() { setIsMenuOpen(false); setIsSearchOpen(true); }
+  function rememberFocus() {
+    lastFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+  }
+  function restoreFocus() {
+    lastFocusRef.current?.focus();
+    lastFocusRef.current = null;
+  }
+  function openMenu() { rememberFocus(); setIsSearchOpen(false); setIsMenuOpen(true); }
+  function openSearch() { rememberFocus(); setIsMenuOpen(false); setIsSearchOpen(true); }
+
+  function handleSearchSubmit(query: string) {
+    const q = query.trim().toLowerCase();
+    if (!q) return;
+    closeSearch();
+    const routes: { keywords: string[]; href: string }[] = [
+      { keywords: ["y club", "club", "dance floor", "dancefloor", "rave"], href: "/venues/y-club" },
+      { keywords: ["terrace", "y terrace", "outdoor", "outside"],          href: "/venues/y-terrace" },
+      { keywords: ["bar", "lounge", "y bar", "cocktail"],                  href: "/venues/y-bar-lounge" },
+      { keywords: ["hire", "private", "book", "birthday", "corporate", "party", "event hire"], href: "/venue-hire" },
+      { keywords: ["member", "membership", "vip"],                         href: "/members" },
+      { keywords: ["faq", "faqs", "help", "question"],                     href: "/faqs" },
+      { keywords: ["about", "history", "story", "team"],                   href: "/about" },
+      { keywords: ["what's on", "whats on", "events", "tickets", "gig", "night", "friday", "saturday"], href: "/whats-on" },
+      { keywords: ["venue", "venues"],                                      href: "/venues" },
+    ];
+    const match = routes.find(({ keywords }) => keywords.some((kw) => q.includes(kw)));
+    router.push(match ? match.href : `/whats-on`);
+  }
 
   // Body scroll lock — locked when either overlay is open
   useEffect(() => {
@@ -66,18 +98,20 @@ export function SiteHeader() {
   useEffect(() => {
     if (isMenuOpen) {
       menuCloseRef.current?.focus();
-    } else if (!isSearchOpen) {
-      hamburgerRef.current?.focus();
+    } else if (wasMenuOpenRef.current && !isSearchOpen) {
+      restoreFocus();
     }
+    wasMenuOpenRef.current = isMenuOpen;
   }, [isMenuOpen, isSearchOpen]);
 
   // Focus management — search overlay
   useEffect(() => {
     if (isSearchOpen) {
       searchInputRef.current?.focus();
-    } else if (!isMenuOpen) {
-      searchButtonRef.current?.focus();
+    } else if (wasSearchOpenRef.current && !isMenuOpen) {
+      restoreFocus();
     }
+    wasSearchOpenRef.current = isSearchOpen;
   }, [isSearchOpen, isMenuOpen]);
 
   // ESC key + focus trap for menu overlay
@@ -110,12 +144,29 @@ export function SiteHeader() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
-  // ESC key for search overlay
+  // ESC key + focus trap for search overlay
   useEffect(() => {
     if (!isSearchOpen) return;
 
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") closeSearch();
+      if (e.key === "Escape") { closeSearch(); return; }
+      if (e.key !== "Tab" || !searchOverlayRef.current) return;
+
+      const focusable = Array.from(
+        searchOverlayRef.current.querySelectorAll<HTMLElement>(
+          'input, button:not([disabled]), a[href]'
+        )
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     }
 
     document.addEventListener("keydown", handleKeyDown);
@@ -125,10 +176,8 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-10 flex flex-row items-center justify-between"
+        className="fixed top-0 left-0 right-0 z-10 flex flex-row items-center justify-between px-5 md:px-16 h-[72px] md:h-[128px]"
         style={{
-          height: "128px",
-          padding: "24px 64px",
           backgroundColor: "rgba(0,0,0,0)",
           color: "#FAFAFA",
           fontFamily: '"haas", Arial, sans-serif',
@@ -151,10 +200,9 @@ export function SiteHeader() {
           }}
         />
 
-        {/* Logo container — fixed width reserves left gutter so nav
-            doesn't shift. Logo itself is smaller at mobile (42px tall)
-            so the Y wordmark doesn't dominate the 375px viewport. */}
-        <div style={{ width: "184px", height: "80px", display: "flex", alignItems: "center" }}>
+        {/* Logo container — fixed width on desktop reserves left gutter.
+            On mobile, auto width; logo shrinks to 42px. */}
+        <div className="flex items-center h-auto md:h-[80px] w-auto md:w-[184px]">
           <Link
             href="/"
             aria-label="Y home"
@@ -241,6 +289,7 @@ export function SiteHeader() {
         aria-modal="true"
         aria-label="Navigation menu"
         aria-hidden={!isMenuOpen}
+        inert={!isMenuOpen}
         style={{
           position: "fixed",
           inset: 0,
@@ -257,8 +306,8 @@ export function SiteHeader() {
           type="button"
           aria-label="Close menu"
           onClick={closeMenu}
-          className="absolute flex items-center justify-center bg-transparent border-0 cursor-pointer p-0"
-          style={{ top: "44px", right: "64px", width: "40px", height: "40px" }}
+          className="absolute flex items-center justify-center bg-transparent border-0 cursor-pointer p-0 top-5 right-5 md:top-11 md:right-16"
+          style={{ width: "40px", height: "40px" }}
         >
           <X size={24} color="white" strokeWidth={1.5} />
         </button>
@@ -296,10 +345,12 @@ export function SiteHeader() {
 
       {/* ── Search overlay ── */}
       <div
+        ref={searchOverlayRef}
         role="dialog"
         aria-modal="true"
         aria-label="Search"
         aria-hidden={!isSearchOpen}
+        inert={!isSearchOpen}
         style={{
           position: "fixed",
           inset: 0,
@@ -319,32 +370,41 @@ export function SiteHeader() {
           type="button"
           aria-label="Close search"
           onClick={closeSearch}
-          className="absolute flex items-center justify-center bg-transparent border-0 cursor-pointer p-0"
-          style={{ top: "44px", right: "128px", width: "40px", height: "40px" }}
+          className="absolute flex items-center justify-center bg-transparent border-0 cursor-pointer p-0 top-5 right-5 md:top-11 md:right-32"
+          style={{ width: "40px", height: "40px" }}
         >
           <X size={24} color="white" strokeWidth={1.5} />
         </button>
 
-        {/* Search input */}
-        <input
-          ref={searchInputRef}
-          type="text"
-          placeholder="Search Y..."
-          className="w-[85vw] md:w-[60vw] placeholder:text-white/40 outline-none"
-          style={{
-            maxWidth: "800px",
-            fontFamily: '"haas", Arial, sans-serif',
-            fontSize: "clamp(24px, 3vw, 48px)",
-            fontWeight: 500,
-            letterSpacing: "-0.01em",
-            color: "#FAFAFA",
-            background: "transparent",
-            border: "none",
-            borderBottom: "1px solid rgba(255,255,255,0.3)",
-            padding: "16px 0",
-            outline: "none",
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearchSubmit(searchInputRef.current?.value ?? "");
           }}
-        />
+          className="w-[85vw] md:w-[60vw]"
+          style={{ maxWidth: "800px" }}
+        >
+          {/* Search input */}
+          <input
+            ref={searchInputRef}
+            type="search"
+            placeholder="Search Y..."
+            aria-label="Search Y"
+            className="w-full placeholder:text-white/40 outline-none"
+            style={{
+              fontFamily: '"haas", Arial, sans-serif',
+              fontSize: "clamp(24px, 3vw, 48px)",
+              fontWeight: 500,
+              letterSpacing: "-0.01em",
+              color: "#FAFAFA",
+              background: "transparent",
+              border: "none",
+              borderBottom: "1px solid rgba(255,255,255,0.3)",
+              padding: "16px 0",
+              outline: "none",
+            }}
+          />
+        </form>
       </div>
     </>
   );

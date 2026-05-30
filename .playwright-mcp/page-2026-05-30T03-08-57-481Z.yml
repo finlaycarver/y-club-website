@@ -1,0 +1,230 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "Y Terrace — The Quadrant, Guildford" [ref=e13]
+      - button "Share this venue" [ref=e15]:
+        - img [ref=e16]
+      - generic [ref=e22]:
+        - paragraph [ref=e23]: The Quadrant · Bridge Street · Guildford
+        - paragraph [ref=e24]: "Open: April – September"
+        - heading "Y Terrace" [level=1] [ref=e26]:
+          - img "Y" [ref=e27]
+          - text: Terrace
+        - paragraph [ref=e28]: Guildford's outdoor terrace. Cocktails, sport on the big screen, open all summer.
+        - generic [ref=e29]:
+          - link "See What's On" [ref=e30]:
+            - /url: /whats-on?venue=Y+Terrace
+            - text: See What's On
+            - img [ref=e31]
+          - link "Hire the Venue" [ref=e33]:
+            - /url: /venue-hire
+            - text: Hire the Venue
+            - img [ref=e34]
+        - link "01483 342027" [ref=e36]:
+          - /url: tel:+441483342027
+          - img [ref=e37]
+          - text: 01483 342027
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - paragraph [ref=e42]: The Terrace
+        - heading "Open-air, every weekend." [level=2] [ref=e43]
+        - paragraph [ref=e44]: Y Terrace is Guildford's go-to outdoor venue. Four bars — including the VIP Roof Terrace — two DJ booths, and a large dance floor that stays open into the night.
+        - paragraph [ref=e45]: From long summer days to big sport screenings, Y Terrace is built for those nights that spill into the early hours. Up to 500 guests under the open sky.
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - paragraph [ref=e48]: "500"
+          - paragraph [ref=e49]: Capacity
+        - generic [ref=e50]:
+          - paragraph [ref=e51]: "4"
+          - paragraph [ref=e52]: Bars
+        - generic [ref=e53]:
+          - paragraph [ref=e54]: "2"
+          - paragraph [ref=e55]: DJ booths
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: Summer
+          - paragraph [ref=e58]: Season
+          - generic [ref=e59]: Summer only
+    - generic [ref=e62]:
+      - button "View Y Terrace open-air bar in the evening sun" [ref=e63]:
+        - img "Y Terrace open-air bar in the evening sun" [ref=e64]
+        - generic:
+          - paragraph: Y Terrace open-air bar in the evening sun
+      - button "View Y Terrace crowd watching live sport on the big screen" [ref=e65]:
+        - img "Y Terrace crowd watching live sport on the big screen" [ref=e66]
+        - generic:
+          - paragraph: Y Terrace crowd watching live sport on the big screen
+      - button "View Friends drinking cocktails on Y Terrace" [ref=e67]:
+        - img "Friends drinking cocktails on Y Terrace" [ref=e68]
+        - generic:
+          - paragraph: Friends drinking cocktails on Y Terrace
+      - button "View Y Terrace at night under the disco lights" [ref=e69]:
+        - img "Y Terrace at night under the disco lights" [ref=e70]
+        - generic:
+          - paragraph: Y Terrace at night under the disco lights
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - paragraph [ref=e74]: Find Us
+        - heading "2–4 The Quadrant, Bridge Street" [level=2] [ref=e75]:
+          - text: 2–4 The Quadrant,
+          - text: Bridge Street
+        - paragraph [ref=e76]: Guildford, GU1 4SG
+        - generic [ref=e77]:
+          - link "Get Directions (opens in new tab)" [ref=e78]:
+            - /url: https://maps.google.com/?q=Y+Guildford+Unit+2-4+The+Quadrant+Bridge+Street+Guildford+GU1+4SG
+            - text: Get Directions
+            - img [ref=e79]
+            - generic [ref=e83]: (opens in new tab)
+          - link "01483 342027" [ref=e84]:
+            - /url: tel:+441483342027
+            - img [ref=e85]
+            - text: 01483 342027
+      - generic [ref=e87]:
+        - paragraph [ref=e88]: Entry
+        - group [ref=e89]:
+          - generic "See entry requirements ›" [ref=e90] [cursor=pointer]
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - paragraph [ref=e94]: Private Hire
+        - heading "Take over the terrace." [level=2] [ref=e95]
+        - paragraph [ref=e96]: Summer parties, sports events, corporate days. Y Terrace holds up to 500 guests outdoors.
+      - link "Enquire About Hire" [ref=e97]:
+        - /url: /venue-hire
+        - text: Enquire About Hire
+        - img [ref=e98]
+    - generic [ref=e101]:
+      - paragraph [ref=e102]: Also at Y
+      - generic [ref=e103]:
+        - link "Y Club Where the night goes loud Y Club" [ref=e104]:
+          - /url: /venues/y-club
+          - img "Y Club" [ref=e105]
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: Where the night goes loud
+            - generic [ref=e109]:
+              - paragraph [ref=e110]: Y Club
+              - img [ref=e111]
+        - link "Y Bar & Lounge Where the night starts Y Bar & Lounge" [ref=e113]:
+          - /url: /venues/y-bar-lounge
+          - img "Y Bar & Lounge" [ref=e114]
+          - generic [ref=e116]:
+            - paragraph [ref=e117]: Where the night starts
+            - generic [ref=e118]:
+              - paragraph [ref=e119]: Y Bar & Lounge
+              - img [ref=e120]
+    - generic [ref=e122]:
+      - link [ref=e123]:
+        - /url: /whats-on?venue=Y+Terrace
+        - generic [ref=e124]: What's On
+      - link [ref=e126]:
+        - /url: tel:+441483342027
+        - img [ref=e127]
+        - generic [ref=e129]: 01483 342027
+  - contentinfo [ref=e130]:
+    - generic [ref=e131]:
+      - generic [ref=e132]:
+        - link "Y home" [ref=e133]:
+          - /url: /
+          - img "Y Guildford" [ref=e134]
+        - paragraph [ref=e136]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e137]:
+          - paragraph [ref=e138]: Contact
+          - link "01483 342027" [ref=e139]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e140]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e141]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e142]:
+          - img [ref=e143]
+          - generic [ref=e146]: Find us
+      - generic [ref=e147]:
+        - paragraph [ref=e148]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e149]
+        - paragraph [ref=e150]: Events, new nights, and what's coming next.
+        - generic [ref=e151]:
+          - textbox [ref=e152]
+          - textbox "Email address" [ref=e153]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e154]: Subscribe
+    - generic [ref=e155]:
+      - navigation "Footer navigation" [ref=e156]:
+        - list [ref=e157]:
+          - listitem [ref=e158]:
+            - link "Privacy Policy" [ref=e159]:
+              - /url: /privacy-policy
+          - listitem [ref=e160]:
+            - link "Terms" [ref=e161]:
+              - /url: /terms
+          - listitem [ref=e162]:
+            - link "Venue Hire" [ref=e163]:
+              - /url: /venue-hire
+          - listitem [ref=e164]:
+            - link "Careers" [ref=e165]:
+              - /url: /about#careers
+          - listitem [ref=e166]:
+            - link "FAQs" [ref=e167]:
+              - /url: /faqs
+      - generic [ref=e168]:
+        - paragraph [ref=e169]: Y © 2026. All rights reserved.
+        - paragraph [ref=e170]:
+          - text: Designed by
+          - link "First AI.D" [ref=e171]:
+            - /url: https://first-aid.agency
+      - generic [ref=e172]:
+        - link "Instagram" [ref=e173]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e174]
+        - link "TikTok" [ref=e176]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e177]
+        - link "Facebook" [ref=e179]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e180]
+        - button "Share Y Guildford" [ref=e182]:
+          - img [ref=e183]
+  - button "Open Next.js Dev Tools" [ref=e194] [cursor=pointer]:
+    - img [ref=e195]
+  - alert [ref=e198]

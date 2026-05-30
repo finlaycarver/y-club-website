@@ -42,7 +42,7 @@ npm run dev
 | `npm run build`  | Production build                           |
 | `npm run start`  | Run the production build                   |
 | `npm run lint`   | ESLint                                     |
-| `npm run typecheck` | TypeScript only (no emit)               |
+| `npm run typecheck` | Generate Next route types + TypeScript only (no emit) |
 | `npm run check`  | Lint + typecheck + build (CI gate)         |
 
 ---
@@ -54,13 +54,13 @@ See [`.env.example`](./.env.example) for the full list with descriptions.
 **Required in production:**
 
 - `NEXT_PUBLIC_SITE_URL` — drives canonical URLs, OG images, sitemap, schema
+- `RESEND_API_KEY`, `ENQUIRIES_INBOX`, `EMAIL_FROM` — required for live form delivery
 
 **Optional:**
 
 - `NEXT_PUBLIC_COMPANY_LEGAL_NAME`, `NEXT_PUBLIC_COMPANY_NUMBER`, `NEXT_PUBLIC_VAT_NUMBER` — UK company registration line in footer
 - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — activates Plausible analytics
 - `SENTRY_DSN` + `NEXT_PUBLIC_SENTRY_DSN` — activates Sentry error tracking
-- `RESEND_API_KEY` + `ENQUIRIES_INBOX` — wires venue-hire form to a real inbox
 
 ---
 
@@ -138,13 +138,12 @@ Three forms POST to API routes:
 | Members signup  | `/members`        | `POST /api/members/signup` |
 | Newsletter      | Footer (sitewide) | `POST /api/newsletter`  |
 
-Currently all three log submissions to the server console (visible in
-Vercel function logs) and return `{ ok: true }`. **To wire them to a real
-inbox / list**, edit the implementations in `src/lib/email-provider.ts` —
-the TODO comments mark where to integrate Resend / Mailchimp / Brevo.
+All three routes validate input, reject oversized bodies, rate-limit by IP,
+and silently drop submissions that fill the hidden `company` honeypot field.
 
-The venue-hire form includes a hidden honeypot field (`company`) that bots
-typically fill in; submissions with a non-empty honeypot are silently dropped.
+When `RESEND_API_KEY`, `ENQUIRIES_INBOX`, and a verified `EMAIL_FROM` are set,
+submissions are forwarded by `src/lib/email-provider.ts`. Without a Resend key,
+the provider logs dry-run metadata locally so development stays frictionless.
 
 ---
 
@@ -155,7 +154,7 @@ typically fill in; submissions with a non-empty honeypot are silently dropped.
 3. Verify the production env vars are set (see `.env.example`)
 4. Smoke-test:
    - Home loads, hero renders, CTAs visible
-   - Submit a test venue-hire enquiry — check Vercel function logs
+  - Submit a test venue-hire enquiry — confirm it reaches `ENQUIRIES_INBOX`
    - Check `/sitemap.xml` and `/robots.txt` resolve
    - Paste production URL into Slack/WhatsApp — OG image renders
    - Hit `/random-route` → 404 page renders on-brand

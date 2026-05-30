@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronDown, Phone, Share2 } from "lucide-react";
+import { Phone, Share2 } from "lucide-react";
 import { ChevronRightIcon } from "@/components/icons";
 import { YLogoMark } from "@/components/YLogoMark";
 import { GRAIN_SVG } from "@/lib/grain";
@@ -40,26 +40,15 @@ function getLiveStatus(now: Date): string {
   return "Open this Friday + Saturday";
 }
 
-/* Minimal shape we care about from the Network Information API. */
-interface NetworkConnection {
-  saveData?: boolean;
-}
-
 export function HeroSection() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const cursorLightRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   /* Live status text is computed on mount so SSR markup is stable.
      Initial render shows the safe forward-looking line. */
   const [liveStatus, setLiveStatus] = useState("Open this Friday + Saturday");
 
-  /* Video upgrade — opt-in only when the device can comfortably play
-     it. Default false keeps SSR + mobile + reduced-motion users on the
-     static <picture> hero (cheap, no autoplay surprises). */
-  const [videoMode, setVideoMode] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
   const [hasShareAPI, setHasShareAPI] = useState(false);
 
   // ── Parallax scroll ──────────────────────────────────────────────
@@ -109,7 +98,10 @@ export function HeroSection() {
   // navigator.share is a mobile-browser API; checking on mount keeps
   // the share button invisible on browsers that don't support it.
   useEffect(() => {
-    setHasShareAPI(typeof navigator !== "undefined" && !!navigator.share);
+    const id = window.setTimeout(() => {
+      setHasShareAPI(typeof navigator !== "undefined" && !!navigator.share);
+    }, 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   // ── Native share handler ──────────────────────────────────────────

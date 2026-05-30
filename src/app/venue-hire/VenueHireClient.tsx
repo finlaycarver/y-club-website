@@ -4,10 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import {
-  PartyPopper, GraduationCap, Briefcase, Gift, Sparkles,
-  Music, Trophy, Shirt, Wine, Megaphone, Monitor, Ghost,
-} from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialProof } from "@/components/SocialProof";
@@ -15,7 +11,7 @@ import { Field } from "@/components/Field";
 import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
 import { BRAND } from "@/lib/site";
-import { SPACES, EVENT_TYPES_FORM, EVENT_TYPES_STRIP } from "@/data/venue-hire";
+import { SPACES, EVENT_TYPES_FORM } from "@/data/venue-hire";
 import { VenueHireStickyCTA } from "./VenueHireStickyCTA";
 
 /* ── Analytics helper — fires for Plausible and GA4 ─────────────── */
@@ -28,40 +24,8 @@ function trackEvent(name: string, props?: Record<string, string>) {
     const w = window as AW;
     w.plausible?.(name, { props });
     w.gtag?.("event", name, props);
-  } catch (_) {}
+  } catch {}
 }
-
-/* ── Strip label → form select value ────────────────────────────── */
-const STRIP_TO_FORM: Partial<Record<string, string>> = {
-  "Birthdays":          "Birthday party",
-  "Graduations":        "Birthday party",
-  "Corporate nights":   "Corporate event",
-  "Christmas parties":  "Christmas / NYE",
-  "NYE":                "Christmas / NYE",
-  "Live performances":  "Live performance",
-  "Award shows":        "Award show / Gala",
-  "Galas":              "Award show / Gala",
-  "Promotional events": "Promoter booking",
-  "Fashion shows":      "Other",
-  "Sports screenings":  "Other",
-  "Halloween":          "Other",
-};
-
-/* ── Icon per pill ───────────────────────────────────────────────── */
-const PILL_ICONS: Record<string, React.ReactNode> = {
-  "Birthdays":          <PartyPopper   size={13} aria-hidden="true" />,
-  "Graduations":        <GraduationCap size={13} aria-hidden="true" />,
-  "Corporate nights":   <Briefcase     size={13} aria-hidden="true" />,
-  "Christmas parties":  <Gift          size={13} aria-hidden="true" />,
-  "NYE":                <Sparkles      size={13} aria-hidden="true" />,
-  "Live performances":  <Music         size={13} aria-hidden="true" />,
-  "Award shows":        <Trophy        size={13} aria-hidden="true" />,
-  "Fashion shows":      <Shirt         size={13} aria-hidden="true" />,
-  "Galas":              <Wine          size={13} aria-hidden="true" />,
-  "Promotional events": <Megaphone     size={13} aria-hidden="true" />,
-  "Sports screenings":  <Monitor       size={13} aria-hidden="true" />,
-  "Halloween":          <Ghost         size={13} aria-hidden="true" />,
-};
 
 /* ── Progressive-disclosure extra field map ─────────────────────── */
 const EVENT_EXTRA_FIELD: Partial<Record<string, { label: string; placeholder: string }>> = {
@@ -119,16 +83,26 @@ export function VenueHireClient() {
         const parsed = JSON.parse(saved) as Partial<FormState>;
         setForm((prev) => ({ ...prev, ...parsed, company: "" }));
       }
-    } catch (_) {}
+    } catch {}
   }, []);
 
   // Debounced draft save (500ms) — never saves honeypot field
   useEffect(() => {
     const id = setTimeout(() => {
       try {
-        const { company: _hp, ...rest } = form;
-        localStorage.setItem(DRAFT_KEY, JSON.stringify(rest));
-      } catch (_) {}
+        const draft = {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          eventType: form.eventType,
+          extraDetail: form.extraDetail,
+          preferredVenue: form.preferredVenue,
+          date: form.date,
+          guests: form.guests,
+          message: form.message,
+        };
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+      } catch {}
     }, 500);
     return () => clearTimeout(id);
   }, [form]);
@@ -184,16 +158,6 @@ export function VenueHireClient() {
     setMobileStep((s) => Math.min(s + 1, MOBILE_STEPS));
   }
 
-  function handlePillClick(stripLabel: string) {
-    const formValue = STRIP_TO_FORM[stripLabel];
-    if (formValue) {
-      updateField("eventType", formValue);
-      setTimeout(() => {
-        document.getElementById("enquiry-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 60);
-    }
-  }
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (submitState === "submitting") return;
@@ -226,7 +190,7 @@ export function VenueHireClient() {
         throw new Error(body?.error ?? "Could not send enquiry");
       }
 
-      try { localStorage.removeItem(DRAFT_KEY); } catch (_) {}
+      try { localStorage.removeItem(DRAFT_KEY); } catch {}
       trackEvent("venue_hire_form_success", { eventType: form.eventType });
 
       setSubmitState("success");
@@ -285,7 +249,7 @@ export function VenueHireClient() {
         </section>
 
         {/* ── SPACES ───────────────────────────────────────────────── */}
-        <section className="bg-black text-white" style={{ padding: "96px 24px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <section className="bg-black text-white py-16 px-6 md:py-24" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div className="mb-12 md:mb-16">
               <p style={{
@@ -366,7 +330,7 @@ export function VenueHireClient() {
         />
 
         {/* ── ENQUIRY FORM ─────────────────────────────────────────── */}
-        <section id="enquiry-form" className="bg-white text-black" style={{ padding: "96px 24px" }}>
+        <section id="enquiry-form" className="bg-white text-black py-16 px-6 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16" style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
             {/* Left intro */}

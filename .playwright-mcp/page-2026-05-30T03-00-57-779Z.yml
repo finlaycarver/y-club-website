@@ -1,0 +1,224 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "Y Bar & Lounge — Guildford" [ref=e13]
+      - generic [ref=e15]:
+        - paragraph [ref=e16]: Cocktail Bar & Lounge · Town Centre · Guildford
+        - heading "Y Bar & Lounge" [level=1] [ref=e17]:
+          - generic [ref=e18]: Y Bar
+          - generic [ref=e19]: "& Lounge"
+        - paragraph [ref=e20]: Where the night starts. Cocktails, conversation, and the best warm-up for the night ahead.
+        - generic [ref=e21]:
+          - link "See What's On" [ref=e22]:
+            - /url: /whats-on?venue=Y+Bar+%26+Lounge
+            - text: See What's On
+            - img [ref=e23]
+          - link "Hire the Venue" [ref=e25]:
+            - /url: /venue-hire
+            - text: Hire the Venue
+            - img [ref=e26]
+        - link "01483 342027" [ref=e28]:
+          - /url: tel:+441483342027
+          - img [ref=e29]
+          - text: 01483 342027
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - paragraph [ref=e34]: The Bar
+        - heading "The place before the place." [level=2] [ref=e35]
+        - paragraph [ref=e36]: Y Bar & Lounge is where you set the tone. Come early, settle in, and let the night build around you. Cocktails, great music, and a room that knows how to warm up.
+        - paragraph [ref=e37]: Whether you're kicking off a group night or just want somewhere to unwind before the club opens, Y Bar & Lounge is the place to be.
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - paragraph [ref=e40]: Wed – Sat
+          - paragraph [ref=e41]: Open
+        - generic [ref=e42]:
+          - paragraph [ref=e43]: Cocktail bar
+          - paragraph [ref=e44]: Vibe
+        - generic [ref=e45]:
+          - paragraph [ref=e46]: Live DJs
+          - paragraph [ref=e47]: Music
+        - generic [ref=e48]:
+          - paragraph [ref=e49]: Full bar
+          - paragraph [ref=e50]: Service
+    - generic [ref=e53]:
+      - paragraph [ref=e54]: The Drinks
+      - heading "Cocktails from scratch." [level=2] [ref=e55]
+      - paragraph [ref=e56]: The bar team at Y Bar & Lounge take cocktails seriously. From classic builds to bar team specials — every drink is made properly. Come early, take your time, and let the night find its pace.
+      - link "Cocktail Hour Sundays" [ref=e57]:
+        - /url: /whats-on?venue=Y+Bar+%26+Lounge
+        - text: Cocktail Hour Sundays
+        - img [ref=e58]
+    - generic [ref=e62]:
+      - button "View Friends laughing over cocktails at Y Bar & Lounge" [ref=e63]:
+        - img "Friends laughing over cocktails at Y Bar & Lounge" [ref=e64]
+        - generic:
+          - paragraph: Friends laughing over cocktails at Y Bar & Lounge
+      - button "View Cocktail being shaken behind the bar at Y Bar & Lounge" [ref=e65]:
+        - img "Cocktail being shaken behind the bar at Y Bar & Lounge" [ref=e66]
+        - generic:
+          - paragraph: Cocktail being shaken behind the bar at Y Bar & Lounge
+      - button "View Y Bar & Lounge late-night ambience" [ref=e67]:
+        - img "Y Bar & Lounge late-night ambience" [ref=e68]
+        - generic:
+          - paragraph: Y Bar & Lounge late-night ambience
+    - generic [ref=e70]:
+      - generic [ref=e71]:
+        - paragraph [ref=e72]: Find Us
+        - heading "In the heart of Guildford." [level=2] [ref=e73]:
+          - text: In the heart of
+          - text: Guildford.
+        - paragraph [ref=e74]: A short walk from Y Club and Y Terrace. Get in touch and we'll point you straight to the door.
+        - link "Contact Us" [ref=e75]:
+          - /url: /about#contact
+          - text: Contact Us
+          - img [ref=e76]
+      - generic [ref=e78]:
+        - paragraph [ref=e79]: Entry
+        - group [ref=e80]:
+          - generic "See entry requirements ›" [ref=e81] [cursor=pointer]
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - paragraph [ref=e85]: Private Hire
+        - heading "Take over the bar." [level=2] [ref=e86]
+        - paragraph [ref=e87]: Pre-drinks, celebrations, private bar takeovers. Get in touch to put something together.
+      - link "Enquire About Hire" [ref=e88]:
+        - /url: /venue-hire
+        - text: Enquire About Hire
+        - img [ref=e89]
+    - generic [ref=e92]:
+      - paragraph [ref=e93]: Also at Y
+      - generic [ref=e94]:
+        - link "Y Club Where the night goes loud Y Club" [ref=e95]:
+          - /url: /venues/y-club
+          - img "Y Club" [ref=e96]
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: Where the night goes loud
+            - generic [ref=e100]:
+              - paragraph [ref=e101]: Y Club
+              - img [ref=e102]
+        - link "Y Terrace Open-air, all season Y Terrace" [ref=e104]:
+          - /url: /venues/y-terrace
+          - img "Y Terrace" [ref=e105]
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: Open-air, all season
+            - generic [ref=e109]:
+              - paragraph [ref=e110]: Y Terrace
+              - img [ref=e111]
+    - generic [ref=e113]:
+      - link [ref=e114]:
+        - /url: /whats-on?venue=Y+Bar+%26+Lounge
+        - generic [ref=e115]: What's On
+      - link [ref=e117]:
+        - /url: tel:+441483342027
+        - img [ref=e118]
+        - generic [ref=e120]: 01483 342027
+  - contentinfo [ref=e121]:
+    - generic [ref=e122]:
+      - generic [ref=e123]:
+        - link "Y home" [ref=e124]:
+          - /url: /
+          - img "Y Guildford" [ref=e125]
+        - paragraph [ref=e127]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e128]:
+          - paragraph [ref=e129]: Contact
+          - link "01483 342027" [ref=e130]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e131]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e132]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e133]:
+          - img [ref=e134]
+          - generic [ref=e137]: Find us
+      - generic [ref=e138]:
+        - paragraph [ref=e139]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e140]
+        - paragraph [ref=e141]: Events, new nights, and what's coming next.
+        - generic [ref=e142]:
+          - textbox [ref=e143]
+          - textbox "Email address" [ref=e144]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e145]: Subscribe
+    - generic [ref=e146]:
+      - navigation "Footer navigation" [ref=e147]:
+        - list [ref=e148]:
+          - listitem [ref=e149]:
+            - link "Privacy Policy" [ref=e150]:
+              - /url: /privacy-policy
+          - listitem [ref=e151]:
+            - link "Terms" [ref=e152]:
+              - /url: /terms
+          - listitem [ref=e153]:
+            - link "Venue Hire" [ref=e154]:
+              - /url: /venue-hire
+          - listitem [ref=e155]:
+            - link "Careers" [ref=e156]:
+              - /url: /about#careers
+          - listitem [ref=e157]:
+            - link "FAQs" [ref=e158]:
+              - /url: /faqs
+      - generic [ref=e159]:
+        - paragraph [ref=e160]: Y © 2026. All rights reserved.
+        - paragraph [ref=e161]:
+          - text: Designed by
+          - link "First AI.D" [ref=e162]:
+            - /url: https://first-aid.agency
+      - generic [ref=e163]:
+        - link "Instagram" [ref=e164]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e165]
+        - link "TikTok" [ref=e167]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e168]
+        - link "Facebook" [ref=e170]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e171]
+        - button "Share Y Guildford" [ref=e173]:
+          - img [ref=e174]
+  - button "Open Next.js Dev Tools" [ref=e185] [cursor=pointer]:
+    - img [ref=e186]
+  - alert [ref=e189]

@@ -40,7 +40,10 @@ export function VenueHeroExtras({ videoSrc, posterSrc, shareTitle, shareText }: 
   const [canShare,   setCanShare]   = useState(false);
 
   useEffect(() => {
-    setCanShare(typeof navigator !== "undefined" && !!navigator.share);
+    const id = window.setTimeout(() => {
+      setCanShare(typeof navigator !== "undefined" && !!navigator.share);
+    }, 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   // ── Video upgrade gate ──────────────────────────────────────────────
@@ -50,7 +53,8 @@ export function VenueHeroExtras({ videoSrc, posterSrc, shareTitle, shareText }: 
     if (window.matchMedia("(max-width: 767px)").matches) return;
     const conn = (navigator as Navigator & { connection?: NetworkConnection }).connection;
     if (conn?.saveData) return;
-    setVideoMode(true);
+    const id = window.setTimeout(() => setVideoMode(true), 0);
+    return () => window.clearTimeout(id);
   }, [videoSrc]);
 
   // ── Video fade-in once playable ─────────────────────────────────────
@@ -60,8 +64,13 @@ export function VenueHeroExtras({ videoSrc, posterSrc, shareTitle, shareText }: 
     if (!v) return;
     function onCanPlay() { setVideoReady(true); }
     v.addEventListener("canplay", onCanPlay);
-    if (v.readyState >= 3) setVideoReady(true);
-    return () => v.removeEventListener("canplay", onCanPlay);
+    const frameId = v.readyState >= 3
+      ? requestAnimationFrame(() => setVideoReady(true))
+      : undefined;
+    return () => {
+      v.removeEventListener("canplay", onCanPlay);
+      if (frameId !== undefined) cancelAnimationFrame(frameId);
+    };
   }, [videoMode]);
 
   // ── Cursor reactive radial light ───────────────────────────────────

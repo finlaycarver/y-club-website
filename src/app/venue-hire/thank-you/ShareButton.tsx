@@ -11,7 +11,10 @@ export function ShareButton() {
   const [canShare, setCanShare] = useState(false);
 
   useEffect(() => {
-    setCanShare(typeof navigator !== "undefined" && !!navigator.share);
+    const id = window.setTimeout(() => {
+      setCanShare(typeof navigator !== "undefined" && !!navigator.share);
+    }, 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   if (!canShare) return null;

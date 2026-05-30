@@ -1,0 +1,310 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "Friends enjoying a night at Y Bar & Lounge" [ref=e13]
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - paragraph [ref=e17]: Free Forever
+          - generic [ref=e18]: Free Tier
+          - generic [ref=e19]: · 3 venues · No card required · Cancel any time
+        - heading "Become a member." [level=1] [ref=e20]
+        - paragraph [ref=e21]: Free drinks, exclusive offers, early ticket releases — and a lot more when you join Y, Guildford's late-night quarter.
+        - paragraph [ref=e22]: No joining fee. No subscription. Cancel any time.
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: Free drinks
+          - generic [ref=e28]: ◆
+        - generic [ref=e29]:
+          - generic [ref=e30]: Early access
+          - generic [ref=e31]: ◆
+        - generic [ref=e32]:
+          - generic [ref=e33]: Birthday treats
+          - generic [ref=e34]: ◆
+        - generic [ref=e35]:
+          - generic [ref=e36]: Exclusive offers
+          - generic [ref=e37]: ◆
+        - generic [ref=e38]:
+          - generic [ref=e39]: Priority entry
+          - generic [ref=e40]: ◆
+        - generic [ref=e41]:
+          - generic [ref=e42]: Bring a +1
+          - generic [ref=e43]: ◆
+        - generic [ref=e44]:
+          - generic [ref=e45]: Free drinks
+          - generic [ref=e46]: ◆
+        - generic [ref=e47]:
+          - generic [ref=e48]: Early access
+          - generic [ref=e49]: ◆
+        - generic [ref=e50]:
+          - generic [ref=e51]: Birthday treats
+          - generic [ref=e52]: ◆
+        - generic [ref=e53]:
+          - generic [ref=e54]: Exclusive offers
+          - generic [ref=e55]: ◆
+        - generic [ref=e56]:
+          - generic [ref=e57]: Priority entry
+          - generic [ref=e58]: ◆
+        - generic [ref=e59]:
+          - generic [ref=e60]: Bring a +1
+          - generic [ref=e61]: ◆
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]: Free drinks
+          - generic [ref=e65]: ◆
+        - generic [ref=e66]:
+          - generic [ref=e67]: Early access
+          - generic [ref=e68]: ◆
+        - generic [ref=e69]:
+          - generic [ref=e70]: Birthday treats
+          - generic [ref=e71]: ◆
+        - generic [ref=e72]:
+          - generic [ref=e73]: Exclusive offers
+          - generic [ref=e74]: ◆
+        - generic [ref=e75]:
+          - generic [ref=e76]: Priority entry
+          - generic [ref=e77]: ◆
+        - generic [ref=e78]:
+          - generic [ref=e79]: Bring a +1
+          - generic [ref=e80]: ◆
+        - generic [ref=e81]:
+          - generic [ref=e82]: Free drinks
+          - generic [ref=e83]: ◆
+        - generic [ref=e84]:
+          - generic [ref=e85]: Early access
+          - generic [ref=e86]: ◆
+        - generic [ref=e87]:
+          - generic [ref=e88]: Birthday treats
+          - generic [ref=e89]: ◆
+        - generic [ref=e90]:
+          - generic [ref=e91]: Exclusive offers
+          - generic [ref=e92]: ◆
+        - generic [ref=e93]:
+          - generic [ref=e94]: Priority entry
+          - generic [ref=e95]: ◆
+        - generic [ref=e96]:
+          - generic [ref=e97]: Bring a +1
+          - generic [ref=e98]: ◆
+    - generic [ref=e100]:
+      - generic [ref=e101]:
+        - paragraph [ref=e102]: What you get
+        - heading "Free to join. Built for regulars." [level=2] [ref=e103]
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - img [ref=e106]
+          - heading "Free drinks" [level=3] [ref=e110]
+          - paragraph [ref=e111]: Members-only drink offers, rotating monthly across all three venues.
+        - generic [ref=e112]:
+          - img [ref=e113]
+          - heading "Early ticket access" [level=3] [ref=e115]
+          - paragraph [ref=e116]: First in line for major events. Get tickets before they go on sale to the public.
+        - generic [ref=e117]:
+          - img [ref=e118]
+          - heading "Exclusive offers" [level=3] [ref=e121]
+          - paragraph [ref=e122]: Promotional discounts, VIP table upgrades, and members-only nights.
+        - generic [ref=e123]:
+          - img [ref=e124]
+          - heading "Birthday perks" [level=3] [ref=e127]
+          - paragraph [ref=e128]: Treats on us when you celebrate at Y in your birthday month.
+        - generic [ref=e129]:
+          - img [ref=e130]
+          - heading "Priority entry" [level=3] [ref=e132]
+          - paragraph [ref=e133]: Skip the queue on busy nights at all three venues — show your member ID on the door.
+        - generic [ref=e134]:
+          - img [ref=e135]
+          - heading "Bring a +1" [level=3] [ref=e138]
+          - paragraph [ref=e139]: Selected members-only nights include a plus-one. Share the perks.
+    - generic [ref=e141]:
+      - paragraph [ref=e142]: Join in 30 seconds
+      - heading "Scan in venue, or sign up online." [level=2] [ref=e143]
+      - paragraph [ref=e144]: Pop into Y Club, Y Terrace, or Y Bar & Lounge and scan the QR code at the bar. Or sign up below and we'll have your perks ready for your next visit.
+      - generic [ref=e145]:
+        - img [ref=e147]
+        - generic [ref=e153]:
+          - paragraph [ref=e154]: Scan at the bar
+          - paragraph [ref=e155]:
+            - text: QR codes at Y Club, Y Terrace
+            - text: and Y Bar & Lounge
+      - generic [ref=e156]:
+        - textbox [ref=e157]
+        - textbox "Email address" [ref=e158]:
+          - /placeholder: Your email address
+        - button "Sign Up" [ref=e159]:
+          - text: Sign Up
+          - img [ref=e160]
+      - paragraph [ref=e162]:
+        - text: By signing up, you agree to our
+        - link "privacy policy" [ref=e163]:
+          - /url: /privacy-policy
+        - text: .
+    - generic [ref=e165]:
+      - paragraph [ref=e166]: Questions
+      - heading "Membership, answered." [level=2] [ref=e167]
+      - generic [ref=e168]:
+        - generic [ref=e169]: Search
+        - generic [ref=e170]:
+          - img
+          - searchbox "Search FAQs" [ref=e171]
+      - generic [ref=e172]:
+        - button "Does membership cost anything?" [expanded] [ref=e173]:
+          - generic [ref=e174]: Does membership cost anything?
+          - generic [ref=e175]: +
+        - region "Does membership cost anything?" [ref=e176]:
+          - paragraph [ref=e178]: Nothing. Y Membership is free forever — no joining fee, no subscription, no hidden charges. We may launch a paid VIP tier in the future, but the free tier you sign up to today stays free.
+      - generic [ref=e179]:
+        - button "When will I hear from you after signing up?" [ref=e180]:
+          - generic [ref=e181]: When will I hear from you after signing up?
+          - generic [ref=e182]: +
+        - paragraph [ref=e183]: You'll get a welcome email within a few minutes with your member details. After that, expect occasional emails — event drops, members-only offers, early ticket releases. Nothing spammy.
+      - generic [ref=e184]:
+        - button "How do I redeem free drinks and perks?" [ref=e185]:
+          - generic [ref=e186]: How do I redeem free drinks and perks?
+          - generic [ref=e187]: +
+        - paragraph [ref=e188]: Show your welcome email or member confirmation at the bar — we'll do the rest. Free drink offers rotate monthly across all three venues and run while stocks last.
+      - generic [ref=e189]:
+        - button "Can I sign up in venue instead?" [ref=e190]:
+          - generic [ref=e191]: Can I sign up in venue instead?
+          - generic [ref=e192]: +
+        - paragraph [ref=e193]: Yes — scan the members QR code at any of the three bars and you're in. Same perks, same speed.
+      - generic [ref=e194]:
+        - button "Can I cancel or unsubscribe?" [ref=e195]:
+          - generic [ref=e196]: Can I cancel or unsubscribe?
+          - generic [ref=e197]: +
+        - paragraph [ref=e198]: Any time. Every email has an unsubscribe link, or just reply asking us to remove you. We'll close your member record within 7 days.
+      - navigation "Related pages" [ref=e199]:
+        - paragraph [ref=e200]: Related
+        - generic [ref=e201]:
+          - link "Venue Hire" [ref=e202]:
+            - /url: /venue-hire
+            - text: Venue Hire
+            - img [ref=e203]
+          - link "Membership" [ref=e205]:
+            - /url: /members
+            - text: Membership
+            - img [ref=e206]
+          - link "About Y" [ref=e208]:
+            - /url: /about
+            - text: About Y
+            - img [ref=e209]
+          - link "What's On" [ref=e211]:
+            - /url: /whats-on
+            - text: What's On
+            - img [ref=e212]
+      - paragraph [ref=e214]:
+        - text: Still wondering? Check the
+        - link "full FAQ" [ref=e215]:
+          - /url: /faqs
+        - text: or
+        - link "get in touch" [ref=e216]:
+          - /url: /about#contact
+        - text: .
+  - contentinfo [ref=e217]:
+    - generic [ref=e218]:
+      - generic [ref=e219]:
+        - link "Y home" [ref=e220]:
+          - /url: /
+          - img "Y Guildford" [ref=e221]
+        - paragraph [ref=e223]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e224]:
+          - paragraph [ref=e225]: Contact
+          - link "01483 342027" [ref=e226]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e227]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e228]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e229]:
+          - img [ref=e230]
+          - generic [ref=e233]: Find us
+      - generic [ref=e234]:
+        - paragraph [ref=e235]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e236]
+        - paragraph [ref=e237]: Events, new nights, and what's coming next.
+        - generic [ref=e238]:
+          - textbox [ref=e239]
+          - textbox "Email address" [ref=e240]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e241]: Subscribe
+    - generic [ref=e242]:
+      - navigation "Footer navigation" [ref=e243]:
+        - list [ref=e244]:
+          - listitem [ref=e245]:
+            - link "Privacy Policy" [ref=e246]:
+              - /url: /privacy-policy
+          - listitem [ref=e247]:
+            - link "Terms" [ref=e248]:
+              - /url: /terms
+          - listitem [ref=e249]:
+            - link "Venue Hire" [ref=e250]:
+              - /url: /venue-hire
+          - listitem [ref=e251]:
+            - link "Careers" [ref=e252]:
+              - /url: /about#careers
+          - listitem [ref=e253]:
+            - link "FAQs" [ref=e254]:
+              - /url: /faqs
+      - generic [ref=e255]:
+        - paragraph [ref=e256]: Y © 2026. All rights reserved.
+        - paragraph [ref=e257]:
+          - text: Designed by
+          - link "First AI.D" [ref=e258]:
+            - /url: https://first-aid.agency
+      - generic [ref=e259]:
+        - link "Instagram" [ref=e260]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e261]
+        - link "TikTok" [ref=e263]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e264]
+        - link "Facebook" [ref=e266]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e267]
+        - button "Share Y Guildford" [ref=e269]:
+          - img [ref=e270]
+  - button "Open Next.js Dev Tools" [ref=e281] [cursor=pointer]:
+    - img [ref=e282]
+  - alert [ref=e285]

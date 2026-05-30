@@ -3,7 +3,6 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialProof } from "@/components/SocialProof";
-import { AboutStatsGrid } from "@/components/AboutStatsGrid";
 import { AboutImageryGrid } from "@/components/AboutImageryGrid";
 import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
@@ -23,15 +22,6 @@ export const metadata: Metadata = {
     images: [{ url: "/images/14.webp", width: 1200, height: 630 }],
   },
 };
-
-// "Open since" stat will return once Michelle confirms the year — for now
-// we lead with a fourth verifiable number: nights open per week (Fri + Sat).
-const STATS = [
-  { label: "Venues",        value: "3"      },
-  { label: "Bars",          value: "6+"     },
-  { label: "Capacity",      value: "1,500"  },
-  { label: "Late nights",   value: "Fri+Sat" },
-];
 
 interface Vacancy {
   title: string;
@@ -116,8 +106,8 @@ export default function AboutPage() {
         {/* ── STORY ──────────────────────────────────────────────────── */}
         <section
           id="story"
-          className="bg-black text-white scroll-mt-20"
-          style={{ padding: "96px 24px", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          className="bg-black text-white scroll-mt-20 py-16 px-6 md:py-24"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20" style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <div className="lg:col-span-2">
@@ -218,7 +208,7 @@ export default function AboutPage() {
         />
 
         {/* ── CAREERS ────────────────────────────────────────────────── */}
-        <section id="careers" className="bg-black text-white" style={{ padding: "96px 24px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <section id="careers" className="bg-black text-white py-16 px-6 md:py-24" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <div className="mb-12 md:mb-16 max-w-2xl">
               <p style={{
@@ -306,10 +296,11 @@ export default function AboutPage() {
         </section>
 
         {/* ── CONTACT ────────────────────────────────────────────────── */}
-        <section id="contact" className="bg-white text-black" style={{ padding: "96px 24px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12" style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        <section id="contact" className="bg-white text-black py-16 px-6 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20" style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
-            <div>
+            {/* Left — sticky so it stays in view while the map column scrolls */}
+            <div style={{ position: "sticky", top: "140px", alignSelf: "start" }}>
               <p style={{
                 fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
                 textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: "16px",
@@ -318,10 +309,14 @@ export default function AboutPage() {
               </p>
               <h2
                 className="text-[36px] md:text-[52px]"
-                style={{ fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.01em", marginBottom: "32px" }}
+                style={{ fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.01em", marginBottom: "20px" }}
               >
                 Say hi.
               </h2>
+
+              <p style={{ fontSize: "17px", color: "rgba(0,0,0,0.55)", lineHeight: 1.65, marginBottom: "32px", maxWidth: "400px" }}>
+                Three venues, one team. Whether you&apos;re planning a night out, booking a table, or just want to say hello — we&apos;re here.
+              </p>
 
               <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px" }}>
                 <p style={{
@@ -349,10 +344,49 @@ export default function AboutPage() {
                 <a
                   href={`mailto:${BRAND.email}`}
                   className="hover:underline underline-offset-4"
-                  style={{ fontSize: "22px", fontWeight: 500, color: "#080808", textDecoration: "none" }}
+                  style={{ fontSize: "18px", fontWeight: 500, color: "#080808", textDecoration: "none" }}
                 >
                   {BRAND.email}
                 </a>
+              </div>
+
+              <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px", marginTop: "24px" }}>
+                <p style={{
+                  fontSize: "12px", fontWeight: 500, letterSpacing: "0.12em",
+                  textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: "8px",
+                }}>
+                  Hours
+                </p>
+                <p style={{ fontSize: "18px", fontWeight: 500, color: "#080808" }}>
+                  {BRAND.hoursDisplay}
+                </p>
+              </div>
+
+              <div style={{ borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: "24px", marginTop: "24px" }}>
+                <p style={{
+                  fontSize: "12px", fontWeight: 500, letterSpacing: "0.12em",
+                  textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: "16px",
+                }}>
+                  Follow us
+                </p>
+                <div className="flex items-center gap-2">
+                  {[
+                    { href: BRAND.instagram, label: "Instagram" },
+                    { href: BRAND.tiktok,    label: "TikTok"    },
+                    { href: BRAND.facebook,  label: "Facebook"  },
+                  ].map(({ href, label }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center border border-black/15 hover:border-black hover:bg-black hover:text-white transition-colors duration-200"
+                      style={{ height: "40px", padding: "0 16px", fontSize: "13px", fontWeight: 600, color: "#080808", textDecoration: "none", letterSpacing: "0.02em" }}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 

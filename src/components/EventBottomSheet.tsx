@@ -45,6 +45,7 @@ function formatDateShort(dateStr: string): string {
 export function EventBottomSheet({ event, onClose, icsUrl, callPhoneHref }: EventBottomSheetProps) {
   const phoneHref = callPhoneHref ?? `tel:${BRAND.phone}`;
   const sheetRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const isOpen = event !== null;
 
   // ── Body scroll lock ──────────────────────────────────────────────
@@ -53,23 +54,49 @@ export function EventBottomSheet({ event, onClose, icsUrl, callPhoneHref }: Even
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  // ── Escape key ────────────────────────────────────────────────────
+  // ── Escape key + focus trap ────────────────────────────────────────
   useEffect(() => {
     if (!isOpen) return;
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab" || !sheetRef.current) return;
+
+      const focusable = Array.from(
+        sheetRef.current.querySelectorAll<HTMLElement>(
+          "button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+        )
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [isOpen, onClose]);
 
-  // ── Focus trap — move focus into sheet on open ─────────────────────
+  // ── Focus management — move focus in, restore it on close ──────────
   useEffect(() => {
     if (isOpen) {
+      previouslyFocusedRef.current = document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
       const firstFocusable = sheetRef.current?.querySelector<HTMLElement>(
         "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
       );
       firstFocusable?.focus();
+    } else {
+      previouslyFocusedRef.current?.focus();
+      previouslyFocusedRef.current = null;
     }
   }, [isOpen]);
 

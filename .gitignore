@@ -51,3 +51,6 @@ temp/
 
 # Raw video source files (not for production)
 /_raw-videos
+
+# Loose camera originals copied to the project root
+/_MG_*.jpg

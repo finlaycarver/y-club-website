@@ -6,6 +6,8 @@ import Link from "next/link"
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons"
 import { GRAIN_SVG } from "@/lib/grain"
 import { EventBottomSheet } from "@/components/EventBottomSheet"
+import { upcomingEvents } from "@/data/events"
+import type { EventItem as CanonicalEventItem } from "@/data/events"
 
 interface EventItem {
   title: string
@@ -23,30 +25,24 @@ interface EventItem {
   description?: string
 }
 
-/**
- * Home-page carousel content. Visual layout is approved by the client.
- * To swap events, edit this array only.
- */
-const events: EventItem[] = [
-  {
-    title: "Live DJ Set",
+function toCarouselEvent(event: CanonicalEventItem): EventItem {
+  return {
+    title: event.title,
     venue: "Y",
-    date: "Fri 29 May 2026",
-    imageUrl: "/images/13.webp",
-    href: "https://www.skiddle.com/",
-    featured: true,
-    urgency: "Selling fast",
-    price: "£8+",
-    description: "Non-stop sets across the quarter — deep house, drum & bass, and late-night energy until close.",
-  },
-  { title: "Saturday Sessions",   venue: "Y", date: "Sat 6 Jun 2026",  imageUrl: "/images/9.webp",                                                     href: "https://www.skiddle.com/", price: "Free entry" },
-  { title: "Bass Drop Friday",    venue: "Y", date: "Fri 12 Jun 2026", imageUrl: "/images/nadine-180.jpg",                                             href: "https://www.skiddle.com/", price: "£6+" },
-  { title: "Student Night",       venue: "Y", date: "Wed 25 Jun 2026", imageUrl: "/images/img-1917.jpg",                                               href: "https://www.skiddle.com/", price: "Free entry" },
-  { title: "Summer Garden Party", venue: "Y", date: "Sat 4 Jul 2026",  imageUrl: "/images/441900351_371148019313956_2396615588718096493_n-2-copy.webp", href: "https://www.skiddle.com/", price: "£12+" },
-]
+    date: event.date.includes("2026") ? event.date : `${event.date} 2026`,
+    imageUrl: event.imageUrl,
+    href: event.ticketUrl,
+    featured: event.featured,
+    urgency: event.soldOut
+      ? "Sold out"
+      : event.capacityPercent !== undefined && event.capacityPercent >= 80
+        ? "Selling fast"
+        : undefined,
+    description: event.description,
+  }
+}
 
-// Ticker content — duplicated so the 50% translate loop is seamless
-const TICKER_TEXT = `Tonight  ·  ${events[0].title}  ·  Doors 22:00  ·  Y Club  ·  Y Bar & Lounge  ·  Y Terrace  ·  `
+const events: EventItem[] = upcomingEvents().slice(0, 5).map(toCarouselEvent)
 
 // Tile widths per breakpoint.
 // Mobile (1): 80vw so the leading edge of the next card peeks (~13%) at
@@ -572,7 +568,7 @@ export function WhatsonSection() {
               letterSpacing: "0.06em",
               color: "rgba(255,255,255,0.3)",
             }}>
-              12 events this month
+              {events.length === 1 ? "1 upcoming event" : `${events.length} upcoming events`}
             </p>
             <Link
               href="/whats-on"

@@ -1,0 +1,208 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e13]:
+      - paragraph [ref=e14]: Frequently Asked Questions
+      - heading "Good to know." [level=1] [ref=e15]
+      - paragraph [ref=e16]: Everything you need before you head down. Can't find what you're looking for? Drop us a line.
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: Search
+        - generic [ref=e21]:
+          - img
+          - searchbox "Search FAQs" [ref=e22]
+      - generic [ref=e23]:
+        - heading "On the door" [level=2] [ref=e24]
+        - generic [ref=e25]:
+          - button "Admissions" [expanded] [ref=e26]:
+            - generic [ref=e27]: Admissions
+            - generic [ref=e28]: +
+          - region "Admissions" [ref=e29]:
+            - paragraph [ref=e31]:
+              - text: Entry to the club is for over-18s only. Bring valid photo ID. Bag searches may take place on entry and refusal to be searched means refusal of entry. Management reserves the right to refuse entry at their discretion. We operate a no re-admission policy except in genuine emergencies.
+              - strong [ref=e32]: Zero tolerance on drug use or dealing
+              - text: — anyone caught will be detained and reported to the police.
+        - generic [ref=e33]:
+          - button "Safety" [ref=e34]:
+            - generic [ref=e35]: Safety
+            - generic [ref=e36]: +
+          - paragraph [ref=e37]: Our security team conducts thorough searches and is on hand to help anyone who feels unwell. We have zero tolerance for non-consensual behaviour or drink tampering — incidents will be reported to police and offenders banned. Uniformed and plain-clothed security monitor every space in person and on CCTV.
+        - generic [ref=e38]:
+          - button "Dress code" [ref=e39]:
+            - generic [ref=e40]: Dress code
+            - generic [ref=e41]: +
+          - paragraph [ref=e42]: Smart-casual. No tracksuits. No hoodies. No sportswear. Dress to dance.
+      - generic [ref=e43]:
+        - heading "In venue" [level=2] [ref=e44]
+        - generic [ref=e45]:
+          - button "Smoking and vaping" [ref=e46]:
+            - generic [ref=e47]: Smoking and vaping
+            - generic [ref=e48]: +
+          - paragraph [ref=e49]: All outdoor spaces are designated smoking areas. Smoking or vaping inside will result in ejection without refund.
+        - generic [ref=e50]:
+          - button "Cloakroom" [ref=e51]:
+            - generic [ref=e52]: Cloakroom
+            - generic [ref=e53]: +
+          - paragraph [ref=e54]: The cloakroom is for convenience, not secure storage — high-value items are at your own risk. Keep your ticket safe. Uncollected items become lost property after the event and are retained for 14 days minimum. Maximum liability for any lost item is £40 and only with evidence of value.
+        - generic [ref=e55]:
+          - button "Lost property" [ref=e56]:
+            - generic [ref=e57]: Lost property
+            - generic [ref=e58]: +
+          - paragraph [ref=e59]:
+            - text: Email
+            - link [ref=e60]:
+              - /url: mailto:barmanager@dreamoyster.com?subject=Lost%20Property
+              - text: barmanager@dreamoyster.com
+            - text: with "Lost Property" as the subject. Items are kept for one month maximum. Valuables may be retained longer. IDs and passports are securely destroyed after four weeks if unclaimed.
+      - generic [ref=e61]:
+        - heading "Work with us" [level=2] [ref=e62]
+        - generic [ref=e63]:
+          - button "Jobs at Y" [ref=e64]:
+            - generic [ref=e65]: Jobs at Y
+            - generic [ref=e66]: +
+          - paragraph [ref=e67]:
+            - text: We’re always hiring. Send your CV to
+            - link [ref=e68]:
+              - /url: mailto:ybar@dreamoyster.com?subject=Job%20application
+              - text: ybar@dreamoyster.com
+            - text: or pop in during open hours and ask for a manager. See our
+            - link [ref=e69]:
+              - /url: /about#careers
+              - text: careers section
+            - text: for current openings.
+      - navigation "Related pages" [ref=e70]:
+        - paragraph [ref=e71]: Related
+        - generic [ref=e72]:
+          - link "Venue Hire" [ref=e73]:
+            - /url: /venue-hire
+            - text: Venue Hire
+            - img [ref=e74]
+          - link "Membership" [ref=e76]:
+            - /url: /members
+            - text: Membership
+            - img [ref=e77]
+          - link "About Y" [ref=e79]:
+            - /url: /about
+            - text: About Y
+            - img [ref=e80]
+          - link "What's On" [ref=e82]:
+            - /url: /whats-on
+            - text: What's On
+            - img [ref=e83]
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - paragraph [ref=e88]: Still got a question?
+        - heading "We're a quick reply away." [level=2] [ref=e89]
+      - link "Contact Us" [ref=e90]:
+        - /url: /about#contact
+        - text: Contact Us
+        - img [ref=e91]
+  - contentinfo [ref=e93]:
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - link "Y home" [ref=e96]:
+          - /url: /
+          - img "Y Guildford" [ref=e97]
+        - paragraph [ref=e99]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e100]:
+          - paragraph [ref=e101]: Contact
+          - link "01483 342027" [ref=e102]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e103]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e104]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e105]:
+          - img [ref=e106]
+          - generic [ref=e109]: Find us
+      - generic [ref=e110]:
+        - paragraph [ref=e111]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e112]
+        - paragraph [ref=e113]: Events, new nights, and what's coming next.
+        - generic [ref=e114]:
+          - textbox [ref=e115]
+          - textbox "Email address" [ref=e116]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e117]: Subscribe
+    - generic [ref=e118]:
+      - navigation "Footer navigation" [ref=e119]:
+        - list [ref=e120]:
+          - listitem [ref=e121]:
+            - link "Privacy Policy" [ref=e122]:
+              - /url: /privacy-policy
+          - listitem [ref=e123]:
+            - link "Terms" [ref=e124]:
+              - /url: /terms
+          - listitem [ref=e125]:
+            - link "Venue Hire" [ref=e126]:
+              - /url: /venue-hire
+          - listitem [ref=e127]:
+            - link "Careers" [ref=e128]:
+              - /url: /about#careers
+          - listitem [ref=e129]:
+            - link "FAQs" [ref=e130]:
+              - /url: /faqs
+      - generic [ref=e131]:
+        - paragraph [ref=e132]: Y © 2026. All rights reserved.
+        - paragraph [ref=e133]:
+          - text: Designed by
+          - link "First AI.D" [ref=e134]:
+            - /url: https://first-aid.agency
+      - generic [ref=e135]:
+        - link "Instagram" [ref=e136]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e137]
+        - link "TikTok" [ref=e139]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e140]
+        - link "Facebook" [ref=e142]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e143]
+        - button "Share Y Guildford" [ref=e145]:
+          - img [ref=e146]
+  - button "Open Next.js Dev Tools" [ref=e157] [cursor=pointer]:
+    - img [ref=e158]
+  - alert [ref=e161]

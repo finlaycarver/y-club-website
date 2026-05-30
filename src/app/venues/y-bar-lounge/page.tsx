@@ -18,21 +18,18 @@ export const metadata: Metadata = {
 };
 
 const yBarLounge: VenueLayoutConfig = {
+  slug: "y-bar-lounge",
   hero: {
     imageSrc: "/images/nadine-195.jpg",
     imageAlt: "Y Bar & Lounge — Guildford",
     // Kicker improved from "Guildford" alone → adds context.
     // [TODO(fin)] prepend actual street once Michelle confirms address.
     kicker: "Cocktail Bar & Lounge · Town Centre · Guildford",
-    // hero-word spans + italic "&" gives the cocktail-bar a script-style accent
     title: (
       <>
         <span className="hero-word" style={{ animationDelay: "80ms" }}>Y Bar</span>
         <br />
-        <span className="hero-word" style={{ animationDelay: "220ms" }}>
-          <span className="hero-word-italic">&amp;</span>
-          {" Lounge"}
-        </span>
+        <span className="hero-word" style={{ animationDelay: "220ms" }}>&amp; Lounge</span>
       </>
     ),
     subhead: "Where the night starts. Cocktails, conversation, and the best warm-up for the night ahead.",
@@ -61,12 +58,6 @@ const yBarLounge: VenueLayoutConfig = {
     { label: "Service",  value: "Full bar",     compact: true },
   ],
   specsStyle: "text",
-  video: {
-    src: "/videos/y-bar-lounge-loop.mp4",
-    posterSrc: "/images/nadine-195.jpg",
-    kicker: "Inside the Bar",
-    caption: "Where the night starts.",
-  },
   photos: [
     { src: "/images/nadine-189.jpg",      alt: "Friends laughing over cocktails at Y Bar & Lounge"      },
     { src: "/images/nadine-180.jpg",      alt: "Cocktail being shaken behind the bar at Y Bar & Lounge" },

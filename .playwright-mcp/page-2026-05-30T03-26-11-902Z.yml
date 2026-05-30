@@ -1,0 +1,221 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "What's on at Y, Guildford" [ref=e13]
+      - generic [ref=e15]:
+        - paragraph [ref=e16]:
+          - generic [ref=e17]: Friday, Saturday — and more
+        - heading "What's On" [level=1] [ref=e18]:
+          - generic [ref=e19]: What's
+          - generic [ref=e20]: "On"
+        - paragraph [ref=e21]:
+          - generic [ref=e22]: Next up
+          - generic [ref=e23]: ·
+          - generic [ref=e24]: MBS 1st Birthday
+          - generic [ref=e25]: ·
+          - generic [ref=e26]: Sat 6 Jun
+          - generic [ref=e27]: ·
+          - generic [ref=e28]: 7d 15h
+        - link "Browse events" [ref=e29]:
+          - /url: "#events-filter"
+          - text: Browse events
+          - img [ref=e30]
+    - generic [ref=e33]:
+      - tablist "Filter events by venue" [ref=e34]:
+        - tab "All" [selected] [ref=e35]
+        - tab "Y Club" [ref=e36]
+        - tab "Y Terrace" [ref=e37]
+        - tab "Y Bar & Lounge" [ref=e38]
+      - paragraph [ref=e39]: 6 upcoming
+    - region "Featured events" [ref=e40]:
+      - paragraph [ref=e41]: Featured
+      - list [ref=e42]:
+        - listitem [ref=e43]:
+          - button "MBS 1st Birthday — Y Club, Sat 6 Jun" [ref=e44]:
+            - generic [ref=e45]:
+              - img "MBS 1st Birthday" [ref=e46]
+              - generic [ref=e47]:
+                - generic [ref=e48]: Y Club
+                - generic [ref=e49]: Featured
+              - generic [ref=e50]:
+                - paragraph [ref=e51]: Sat 6 Jun
+                - paragraph [ref=e52]: MBS 1st Birthday
+                - paragraph [ref=e53]: The full line-up to celebrate one year of MBS. An unforgettable day awaits.
+                - generic [ref=e54]:
+                  - generic [ref=e55]: View details
+                  - img [ref=e56]
+    - generic [ref=e60]:
+      - heading "Coming up" [level=2] [ref=e61]: Coming up6
+      - generic [ref=e62]:
+        - link "Saturday Sessions — Y Club, Wed 10 Jun" [ref=e63]:
+          - /url: https://www.skiddle.com/whats-on/Guildford/Y-Club/
+          - generic [ref=e64]:
+            - img "Saturday Sessions" [ref=e65]
+            - generic [ref=e66]: Y Club
+            - generic [ref=e67]:
+              - paragraph [ref=e68]: Wed 10 Jun
+              - paragraph [ref=e69]: Saturday Sessions
+              - generic [ref=e70]:
+                - generic [ref=e71]: Get tickets
+                - img [ref=e72]
+        - link "Summer Garden Party — Y Terrace, Sat 13 Jun" [ref=e74]:
+          - /url: https://www.skiddle.com/whats-on/Guildford/Y-Terrace/
+          - generic [ref=e75]:
+            - img "Summer Garden Party" [ref=e76]
+            - generic [ref=e77]: Y Terrace
+            - generic [ref=e78]:
+              - paragraph [ref=e79]: Sat 13 Jun
+              - paragraph [ref=e80]: Summer Garden Party
+              - generic [ref=e81]:
+                - generic [ref=e82]: Get tickets
+                - img [ref=e83]
+        - link "Live DJ Set — Y Club, Fri 19 Jun" [ref=e85]:
+          - /url: https://www.skiddle.com/whats-on/Guildford/Y-Club/
+          - generic [ref=e86]:
+            - img "Live DJ Set" [ref=e87]
+            - generic [ref=e88]: Y Club
+            - generic [ref=e89]:
+              - paragraph [ref=e90]: Fri 19 Jun
+              - paragraph [ref=e91]: Live DJ Set
+              - generic [ref=e92]:
+                - generic [ref=e93]: Get tickets
+                - img [ref=e94]
+        - link "Student Night — Y Club, Sat 27 Jun" [ref=e96]:
+          - /url: https://www.skiddle.com/whats-on/Guildford/Y-Club/
+          - generic [ref=e97]:
+            - img "Student Night" [ref=e98]
+            - generic [ref=e99]: Y Club
+            - generic [ref=e100]:
+              - paragraph [ref=e101]: Sat 27 Jun
+              - paragraph [ref=e102]: Student Night
+              - generic [ref=e103]:
+                - generic [ref=e104]: Get tickets
+                - img [ref=e105]
+        - link "Bass Drop Friday — Y Club, Fri 3 Jul" [ref=e107]:
+          - /url: https://www.skiddle.com/whats-on/Guildford/Y-Club/
+          - generic [ref=e108]:
+            - img "Bass Drop Friday" [ref=e109]
+            - generic [ref=e110]: Y Club
+            - generic [ref=e111]:
+              - paragraph [ref=e112]: Fri 3 Jul
+              - paragraph [ref=e113]: Bass Drop Friday
+              - generic [ref=e114]:
+                - generic [ref=e115]: Get tickets
+                - img [ref=e116]
+    - generic [ref=e119]:
+      - paragraph [ref=e120]: Can't find what you're after? Call us — we run private events too.
+      - link "Call 01483 342027" [ref=e121]:
+        - /url: tel:+441483342027
+        - img [ref=e122]
+        - text: Call 01483 342027
+    - dialog "Event details" [ref=e124]
+  - contentinfo [ref=e127]:
+    - generic [ref=e128]:
+      - generic [ref=e129]:
+        - link "Y home" [ref=e130]:
+          - /url: /
+          - img "Y Guildford" [ref=e131]
+        - paragraph [ref=e133]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e134]:
+          - paragraph [ref=e135]: Contact
+          - link "01483 342027" [ref=e136]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e137]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e138]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e139]:
+          - img [ref=e140]
+          - generic [ref=e143]: Find us
+      - generic [ref=e144]:
+        - paragraph [ref=e145]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e146]
+        - paragraph [ref=e147]: Events, new nights, and what's coming next.
+        - generic [ref=e148]:
+          - textbox [ref=e149]
+          - textbox "Email address" [ref=e150]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e151]: Subscribe
+    - generic [ref=e152]:
+      - navigation "Footer navigation" [ref=e153]:
+        - list [ref=e154]:
+          - listitem [ref=e155]:
+            - link "Privacy Policy" [ref=e156]:
+              - /url: /privacy-policy
+          - listitem [ref=e157]:
+            - link "Terms" [ref=e158]:
+              - /url: /terms
+          - listitem [ref=e159]:
+            - link "Venue Hire" [ref=e160]:
+              - /url: /venue-hire
+          - listitem [ref=e161]:
+            - link "Careers" [ref=e162]:
+              - /url: /about#careers
+          - listitem [ref=e163]:
+            - link "FAQs" [ref=e164]:
+              - /url: /faqs
+      - generic [ref=e165]:
+        - paragraph [ref=e166]: Y © 2026. All rights reserved.
+        - paragraph [ref=e167]:
+          - text: Designed by
+          - link "First AI.D" [ref=e168]:
+            - /url: https://first-aid.agency
+      - generic [ref=e169]:
+        - link "Instagram" [ref=e170]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e171]
+        - link "TikTok" [ref=e173]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e174]
+        - link "Facebook" [ref=e176]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e177]
+        - button "Share Y Guildford" [ref=e179]:
+          - img [ref=e180]
+  - button "Open Next.js Dev Tools" [ref=e191] [cursor=pointer]:
+    - img [ref=e192]
+  - alert [ref=e195]

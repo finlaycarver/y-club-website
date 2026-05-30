@@ -31,6 +31,7 @@ type SubscribeState = "idle" | "submitting" | "success" | "error";
 
 export function SiteFooter() {
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [state, setState] = useState<SubscribeState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [findUsOpen, setFindUsOpen] = useState(false);
@@ -65,7 +66,7 @@ export function SiteFooter() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "footer" }),
+        body: JSON.stringify({ email, source: "footer", company }),
       });
 
       if (!res.ok) {
@@ -178,7 +179,17 @@ export function SiteFooter() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} noValidate style={{ display: "flex" }}>
+            <form onSubmit={handleSubscribe} noValidate style={{ display: "flex", position: "relative" }}>
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", opacity: 0 }}
+              />
               <input
                 type="email"
                 placeholder="Your email address"

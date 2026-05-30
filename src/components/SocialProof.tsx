@@ -50,7 +50,7 @@ export function SocialProof({
   const hasQuotes = Array.isArray(quotes) && quotes.length > 0;
 
   return (
-    <section style={{ background: bg, color: fg, padding: "80px 24px", borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}` }}>
+    <section className="py-14 px-6 md:py-20" style={{ background: bg, color: fg, borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}` }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <p style={{
           fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
@@ -58,7 +58,7 @@ export function SocialProof({
         }}>
           {kicker}
         </p>
-        <h2 className="text-[32px] md:text-[44px]" style={{
+        <h2 className="text-[28px] sm:text-[32px] md:text-[44px]" style={{
           fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.01em", maxWidth: "720px", marginBottom: "40px",
         }}>
           {heading}
@@ -91,19 +91,19 @@ export function SocialProof({
             {STATS.map(({ value, label }) => (
               <div
                 key={label}
+                className="py-5 px-3 sm:py-8 sm:px-6"
                 style={{
-                  padding: "32px 24px",
                   borderRight: `1px solid ${border}`,
                   background: bg,
                 }}
               >
-                <p className="text-[36px] md:text-[52px]" style={{
-                  fontWeight: 700, lineHeight: 1, color: fg, marginBottom: "10px", letterSpacing: "-0.01em",
+                <p className="text-[24px] sm:text-[36px] md:text-[52px]" style={{
+                  fontWeight: 700, lineHeight: 1, color: fg, marginBottom: "8px", letterSpacing: "-0.01em",
                 }}>
                   {value}
                 </p>
-                <p style={{
-                  fontSize: "12px", fontWeight: 500, letterSpacing: "0.12em",
+                <p className="text-[10px] sm:text-[12px]" style={{
+                  fontWeight: 500, letterSpacing: "0.1em",
                   textTransform: "uppercase", color: subtle,
                 }}>
                   {label}

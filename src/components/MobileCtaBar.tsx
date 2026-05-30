@@ -18,7 +18,6 @@ import { ChevronRightIcon } from "@/components/icons";
 export function MobileCtaBar() {
   const [visible, setVisible] = useState(false);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
-  const footerSentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Observe the element the hero section renders after, and the footer.

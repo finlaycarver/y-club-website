@@ -7,7 +7,7 @@ import { Phone } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChevronRightIcon } from "@/components/icons";
 import { EventBottomSheet } from "@/components/EventBottomSheet";
-import { EVENTS, type EventItem, type Venue } from "@/data/events";
+import { isUpcomingEvent, localTodayIso, sortEventsForDisplay, EVENTS, type EventItem, type Venue } from "@/data/events";
 import { BRAND } from "@/lib/site";
 import { buildEventIcsDataUrl } from "@/lib/ics";
 
@@ -327,6 +327,7 @@ export function EventsList() {
   const [activeEvent, setActiveEvent] = useState<EventItem | null>(null);
 
   const filter = readFilterFromParams(searchParams.get("venue"));
+  const todayIso = useMemo(() => localTodayIso(), []);
 
   function setFilter(next: typeof VENUES_FILTER[number]) {
     const params = new URLSearchParams(searchParams.toString());
@@ -342,12 +343,8 @@ export function EventsList() {
 
   const filtered = useMemo(() => {
     const list = filter === "All" ? EVENTS : EVENTS.filter((e) => e.venue === filter);
-    return [...list].sort((a, b) => {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      return a.isoDate.localeCompare(b.isoDate);
-    });
-  }, [filter]);
+    return sortEventsForDisplay(list.filter((event) => isUpcomingEvent(event, todayIso)));
+  }, [filter, todayIso]);
 
   /** Featured events power the mobile carousel above the main grid.
    *  Capped at 3 so the carousel doesn't sprawl. Desktop renders these

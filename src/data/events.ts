@@ -64,8 +64,8 @@ export const EVENTS: EventItem[] = [
   {
     slug: "live-dj-set-29-may",
     title: "Live DJ Set",
-    date: "Fri 29 May",
-    isoDate: "2026-05-29",
+    date: "Fri 19 Jun",
+    isoDate: "2026-06-19",
     venue: "Y Club",
     description: "House and tech-house all night. Doors at 22:00.",
     imageUrl: "/images/9.webp",
@@ -74,8 +74,8 @@ export const EVENTS: EventItem[] = [
   {
     slug: "saturday-sessions-16-may",
     title: "Saturday Sessions",
-    date: "Sat 16 May",
-    isoDate: "2026-05-16",
+    date: "Wed 10 Jun",
+    isoDate: "2026-06-10",
     venue: "Y Club",
     description: "Two rooms, two DJs, one big Saturday night.",
     imageUrl: "/images/club-y-image-5.webp",
@@ -84,8 +84,8 @@ export const EVENTS: EventItem[] = [
   {
     slug: "bass-drop-friday-22-may",
     title: "Bass Drop Friday",
-    date: "Fri 22 May",
-    isoDate: "2026-05-22",
+    date: "Fri 3 Jul",
+    isoDate: "2026-07-03",
     venue: "Y Club",
     description: "Drum & bass night. Headliners TBA.",
     imageUrl: "/images/nadine-180.jpg",
@@ -94,8 +94,8 @@ export const EVENTS: EventItem[] = [
   {
     slug: "student-night-27-may",
     title: "Student Night",
-    date: "Wed 27 May",
-    isoDate: "2026-05-27",
+    date: "Sat 27 Jun",
+    isoDate: "2026-06-27",
     venue: "Y Club",
     description: "Midweek with Surrey Uni. Discount entry with student ID.",
     imageUrl: "/images/img-1917.jpg",
@@ -112,6 +112,27 @@ export const EVENTS: EventItem[] = [
     ticketUrl: SKIDDLE["Y Terrace"],
   },
 ];
+
+export function localTodayIso(now = new Date()): string {
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60_000);
+  return local.toISOString().slice(0, 10);
+}
+
+export function isUpcomingEvent(event: EventItem, todayIso = localTodayIso()): boolean {
+  return (event.isoEndDate ?? event.isoDate) >= todayIso;
+}
+
+export function sortEventsForDisplay(events: ReadonlyArray<EventItem>): EventItem[] {
+  return [...events].sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return a.isoDate.localeCompare(b.isoDate);
+  });
+}
+
+export function upcomingEvents(todayIso = localTodayIso()): EventItem[] {
+  return sortEventsForDisplay(EVENTS.filter((event) => isUpcomingEvent(event, todayIso)));
+}
 
 /** O(1) lookup by slug — used by the detail page route. */
 export const EVENT_BY_SLUG = Object.fromEntries(

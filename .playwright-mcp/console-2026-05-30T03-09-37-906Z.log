@@ -1,0 +1,27 @@
+[     117ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[     130ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[     209ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/:0
+[    3210ms] [WARNING] The resource http://localhost:3000/fonts/NeueHaasDisplay_Bold.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[    3210ms] [WARNING] The resource http://localhost:3000/fonts/NeueHaasDisplay_Roman.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[    3379ms] [WARNING] Image with src "/images/club-y-image-5.webp" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[    6336ms] [WARNING] The resource http://localhost:3000/fonts/NeueHaasDisplay_Bold.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[    6336ms] [WARNING] The resource http://localhost:3000/fonts/NeueHaasDisplay_Roman.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[  405768ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  405948ms] [LOG] [Fast Refresh] done in 233ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  406046ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/:0
+[  432642ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  432682ms] [LOG] [Fast Refresh] done in 32ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  432723ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/:0
+[  438050ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  438091ms] [LOG] [Fast Refresh] done in 27ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  438464ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/:0
+[  494372ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  494407ms] [LOG] [Fast Refresh] done in 71ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  515006ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  515107ms] [LOG] [Fast Refresh] done in 31ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  515144ms] [WARNING] Error while trying to use the following icon from the Manifest: http://localhost:3000/seo/favicon-y.png (Resource size is not correct - typo in the Manifest?) @ http://localhost:3000/:0
+[  530093ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  530106ms] [LOG] [Fast Refresh] done in 80ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  550199ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  550213ms] [LOG] [Fast Refresh] done in 82ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477

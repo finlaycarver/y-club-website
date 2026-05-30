@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Y handles your personal information.",
   alternates: { canonical: "/privacy-policy" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 /*

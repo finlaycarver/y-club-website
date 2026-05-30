@@ -33,8 +33,8 @@ export function SpecsCountGrid({ specs, specsStyle }: Props) {
     if (!el) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setActive(true);
-      return;
+      const id = window.setTimeout(() => setActive(true), 0);
+      return () => window.clearTimeout(id);
     }
 
     const obs = new IntersectionObserver(
@@ -87,7 +87,6 @@ export function SpecsCountGrid({ specs, specsStyle }: Props) {
       className="grid grid-cols-2"
       style={{
         border: "1px solid rgba(255,255,255,0.1)",
-        alignSelf: "start",
         // Edge-light rim — A4-VX [LOW]
         boxShadow: "0 0 32px -8px rgba(255,255,255,0.07), 0 0 0 1px rgba(255,255,255,0.04)",
       }}
@@ -121,8 +120,8 @@ function SpecCell({
   useEffect(() => {
     if (!active || !isNumeric) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setDisplayCount(numericTarget);
-      return;
+      const frameId = requestAnimationFrame(() => setDisplayCount(numericTarget));
+      return () => cancelAnimationFrame(frameId);
     }
     const DURATION = 1200;
     const start = performance.now();
@@ -138,10 +137,10 @@ function SpecCell({
   }, [active, isNumeric, numericTarget]);
 
   const fontSize = item.compact
-    ? "28px"
+    ? "clamp(22px, 5vw, 28px)"
     : specsStyle === "numeric"
-    ? "44px"
-    : "28px";
+    ? "clamp(32px, 7vw, 44px)"
+    : "clamp(22px, 5vw, 28px)";
   const lineHeight = item.compact
     ? 1.2
     : specsStyle === "numeric"
@@ -150,8 +149,8 @@ function SpecCell({
 
   return (
     <div
+      className="p-4 md:p-7"
       style={{
-        padding: "28px 24px",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
         borderRight: "1px solid rgba(255,255,255,0.08)",
       }}

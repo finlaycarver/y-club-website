@@ -633,12 +633,18 @@
 
 /* ── Mobile-specific fixes ────────────────────────────────────────── */
 
-/* Scroll-margin for fixed header (128px tall).
-   Any in-page anchor link (e.g. #y-club, #whats-on) or programmatic
-   scrollIntoView won't be obscured by the fixed nav. */
+/* Scroll-margin for fixed header.
+   Desktop: 128px header + buffer = 140px.
+   Mobile: 72px header + buffer = 84px. */
 section[id],
 div[id]:not([id^="__"]) {
-  scroll-margin-top: 140px;
+  scroll-margin-top: 84px;
+}
+@media (min-width: 768px) {
+  section[id],
+  div[id]:not([id^="__"]) {
+    scroll-margin-top: 140px;
+  }
 }
 
 /* Kicker overflow fix at narrow viewports (≤360px).

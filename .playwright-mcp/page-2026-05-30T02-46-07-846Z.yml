@@ -1,0 +1,246 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Y home" [ref=e6]:
+      - /url: /
+      - img "Y Guildford" [ref=e7]
+    - navigation "Main navigation" [ref=e8]:
+      - button "Open menu" [ref=e9]:
+        - img [ref=e10]
+  - dialog:
+    - button:
+      - img
+    - navigation:
+      - link:
+        - /url: /venues/y-club
+        - text: Y Club
+      - link:
+        - /url: /venues/y-terrace
+        - text: Y Terrace
+      - link:
+        - /url: /venues/y-bar-lounge
+        - text: Y Bar & Lounge
+      - link:
+        - /url: /whats-on
+        - text: What's On
+      - link:
+        - /url: /venue-hire
+        - text: Venue Hire
+      - link:
+        - /url: /members
+        - text: Members
+      - link:
+        - /url: /about
+        - text: About Y
+      - link:
+        - /url: /faqs
+        - text: FAQs
+      - link:
+        - /url: /about#contact
+        - text: Contact
+  - dialog:
+    - button:
+      - img
+    - generic:
+      - searchbox
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "Guests celebrating at a private hire event in Guildford" [ref=e13]
+      - generic [ref=e15]:
+        - paragraph [ref=e16]: Private Hire · Three venues · Up to 1,500 across Y Club and Y Terrace
+        - heading "Make it yours." [level=1] [ref=e17]
+        - paragraph [ref=e18]: Birthdays, corporate nights, Christmas parties, promotional events. Three venues. One enquiry. We'll handle the rest.
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - paragraph [ref=e22]: The Spaces
+        - heading "Three venues, one walk apart." [level=2] [ref=e23]
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - img "Y Club" [ref=e27]
+            - generic [ref=e29]:
+              - paragraph [ref=e30]: Up to 500
+              - paragraph [ref=e31]: Y Club
+          - list [ref=e32]:
+            - listitem [ref=e33]: Two rooms · Two dance floors
+            - listitem [ref=e34]: Two bars · DJ booth
+            - listitem [ref=e35]: State-of-the-art sound & lighting
+            - listitem [ref=e36]: Smoke machines
+          - paragraph [ref=e37]: Best forBirthdays, big nights, corporate parties
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - img "Y Terrace" [ref=e40]
+            - generic [ref=e42]:
+              - paragraph [ref=e43]: Up to 500
+              - paragraph [ref=e44]: Y Terrace
+          - list [ref=e45]:
+            - listitem [ref=e46]: Four bars · VIP roof terrace
+            - listitem [ref=e47]: Two DJ booths · Large dance floor
+            - listitem [ref=e48]: Outdoor and covered space
+            - listitem [ref=e49]: Summer-only operation
+          - paragraph [ref=e50]: Best forSummer parties, day events, corporate days
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - img "Y Bar & Lounge" [ref=e53]
+            - generic [ref=e55]:
+              - paragraph [ref=e56]: Intimate
+              - paragraph [ref=e57]: Y Bar & Lounge
+          - list [ref=e58]:
+            - listitem [ref=e59]: Cocktail bar · Lounge seating
+            - listitem [ref=e60]: Curated music · Atmospheric lighting
+            - listitem [ref=e61]: Suitable for pre-drinks & private hire
+            - listitem [ref=e62]: Bottle service available
+          - paragraph [ref=e63]: Best forPre-drinks, intimate celebrations, networking
+    - generic [ref=e65]:
+      - paragraph [ref=e66]: Why hire Y
+      - heading "Three venues, six bars, the energy of Guildford's busiest night." [level=2] [ref=e67]
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - paragraph [ref=e70]: "3"
+          - paragraph [ref=e71]: Venues
+        - generic [ref=e72]:
+          - paragraph [ref=e73]: 6+
+          - paragraph [ref=e74]: Bars
+        - generic [ref=e75]:
+          - paragraph [ref=e76]: 1,500
+          - paragraph [ref=e77]: Combined capacity
+      - generic [ref=e78]:
+        - paragraph [ref=e79]: See last night at Y on Instagram — fresh photos every weekend.
+        - link "Follow @y_bar_" [ref=e80]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e81]
+          - text: Follow @y_bar_
+          - img [ref=e83]
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - paragraph [ref=e88]: Get in Touch
+        - heading "Birthdays. Corporates. Big nights." [level=2] [ref=e89]:
+          - text: Birthdays. Corporates.
+          - text: Big nights.
+        - paragraph [ref=e90]: Tell us the night you're planning and the rough size. We aim to reply within two working days with venue options, dates and a tailored package.
+        - generic [ref=e91]:
+          - paragraph [ref=e92]: Or call us
+          - link "01483 342027" [ref=e93]:
+            - /url: tel:+441483342027
+          - paragraph [ref=e94]:
+            - link "barmanager@dreamoyster.com" [ref=e95]:
+              - /url: mailto:barmanager@dreamoyster.com
+      - generic [ref=e96]:
+        - generic "Step 1 of 4" [ref=e97]:
+          - generic [ref=e102]: 1/4
+        - generic [ref=e104]:
+          - text: Company (leave blank)
+          - textbox [ref=e105]
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - generic [ref=e109]:
+              - generic [ref=e110]: Your name*
+              - textbox "Your name" [ref=e111]
+            - generic [ref=e113]:
+              - generic [ref=e114]: Email*
+              - textbox "Email" [ref=e115]
+          - button "Continue →" [ref=e116]
+  - contentinfo [ref=e117]:
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - link "Y home" [ref=e120]:
+          - /url: /
+          - img "Y Guildford" [ref=e121]
+        - paragraph [ref=e123]: Onslow Street to The Quadrant. Three venues on one short walk. · Onslow Street to The Quadrant. Three venues on one short walk.
+        - generic [ref=e124]:
+          - paragraph [ref=e125]: Contact
+          - link "01483 342027" [ref=e126]:
+            - /url: tel:+441483342027
+          - link "barmanager@dreamoyster.com" [ref=e127]:
+            - /url: mailto:barmanager@dreamoyster.com
+          - paragraph [ref=e128]: Wed–Sat, 8pm onwards
+        - button "Find us" [ref=e129]:
+          - img [ref=e130]
+          - generic [ref=e133]: Find us
+      - generic [ref=e134]:
+        - paragraph [ref=e135]: Join our community
+        - heading "Stay in the know." [level=3] [ref=e136]
+        - paragraph [ref=e137]: Events, new nights, and what's coming next.
+        - generic [ref=e138]:
+          - textbox [ref=e139]
+          - textbox "Email address" [ref=e140]:
+            - /placeholder: Your email address
+          - button "Subscribe" [ref=e141]: Subscribe
+    - generic [ref=e142]:
+      - navigation "Footer navigation" [ref=e143]:
+        - list [ref=e144]:
+          - listitem [ref=e145]:
+            - link "Privacy Policy" [ref=e146]:
+              - /url: /privacy-policy
+          - listitem [ref=e147]:
+            - link "Terms" [ref=e148]:
+              - /url: /terms
+          - listitem [ref=e149]:
+            - link "Venue Hire" [ref=e150]:
+              - /url: /venue-hire
+          - listitem [ref=e151]:
+            - link "Careers" [ref=e152]:
+              - /url: /about#careers
+          - listitem [ref=e153]:
+            - link "FAQs" [ref=e154]:
+              - /url: /faqs
+      - generic [ref=e155]:
+        - paragraph [ref=e156]: Y © 2026. All rights reserved.
+        - paragraph [ref=e157]:
+          - text: Designed by
+          - link "First AI.D" [ref=e158]:
+            - /url: https://first-aid.agency
+      - generic [ref=e159]:
+        - link "Instagram" [ref=e160]:
+          - /url: https://instagram.com/y_bar_
+          - img [ref=e161]
+        - link "TikTok" [ref=e163]:
+          - /url: https://tiktok.com/@y_bar_
+          - img [ref=e164]
+        - link "Facebook" [ref=e166]:
+          - /url: https://facebook.com/guildford.y.bar
+          - img [ref=e167]
+        - button "Share Y Guildford" [ref=e169]:
+          - img [ref=e170]
+  - dialog "Find us" [ref=e176]:
+    - generic [ref=e179]:
+      - generic [ref=e180]:
+        - generic [ref=e181]:
+          - paragraph [ref=e182]: Guildford Town Centre
+          - heading "Find us" [level=2] [ref=e183]
+        - button "Close" [ref=e184]:
+          - img [ref=e185]
+      - generic [ref=e188]:
+        - generic [ref=e189]:
+          - paragraph [ref=e190]: Y Club
+          - generic [ref=e191]:
+            - paragraph [ref=e192]: Cornerhouse, Onslow Street, Guildford GU1 4SQ
+            - link "Directions" [ref=e193]:
+              - /url: https://maps.google.com/?q=Cornerhouse%2C%20Onslow%20Street%2C%20Guildford
+              - text: Directions
+              - img [ref=e194]
+        - generic [ref=e197]:
+          - paragraph [ref=e198]: Y Terrace
+          - generic [ref=e199]:
+            - paragraph [ref=e200]: 2–4 The Quadrant, Bridge Street, Guildford GU1 4SG
+            - link "Directions" [ref=e201]:
+              - /url: https://maps.google.com/?q=2%E2%80%934%20The%20Quadrant%2C%20Bridge%20Street%2C%20Guildford
+              - text: Directions
+              - img [ref=e202]
+        - generic [ref=e205]:
+          - paragraph [ref=e206]: Y Bar & Lounge
+          - paragraph [ref=e207]: Address coming soon
+      - link "Call us 01483 342027" [ref=e208]:
+        - /url: tel:+441483342027
+        - generic [ref=e209]: Call us
+        - generic [ref=e210]: 01483 342027
+  - generic [ref=e211]:
+    - link [ref=e212]:
+      - /url: tel:+441483342027
+      - img [ref=e213]
+      - text: 01483 342027
+    - button [ref=e216]: Enquire now ↓
+  - button "Open Next.js Dev Tools" [ref=e222] [cursor=pointer]:
+    - img [ref=e223]
+  - alert [ref=e226]

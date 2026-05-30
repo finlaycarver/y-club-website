@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 /**
  * Displays a day-aware "Open tonight" / "Open Fri" indicator alongside
  * the venue address. Client-only — reading the current date in SSR would
@@ -10,27 +8,21 @@ import { useEffect, useState } from "react";
  * @param openDays  0=Sun, 1=Mon, …, 5=Fri, 6=Sat
  */
 export function VenueOpenStatus({ openDays }: { openDays: ReadonlyArray<number> }) {
-  const [status, setStatus] = useState<string | null>(null);
+  const day = new Date().getDay();
+  let status = "Open this weekend";
 
-  useEffect(() => {
-    const day = new Date().getDay();
-    if (openDays.includes(day)) {
-      setStatus("Open tonight");
-    } else {
-      let label: string | null = null;
-      for (let i = 1; i <= 7; i += 1) {
-        const next = (day + i) % 7;
-        if (openDays.includes(next)) {
-          const names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-          label = i === 1 ? "Open tomorrow" : `Open ${names[next]}`;
-          break;
-        }
+  if (openDays.includes(day)) {
+    status = "Open tonight";
+  } else {
+    for (let i = 1; i <= 7; i += 1) {
+      const next = (day + i) % 7;
+      if (openDays.includes(next)) {
+        const names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        status = i === 1 ? "Open tomorrow" : `Open ${names[next]}`;
+        break;
       }
-      setStatus(label ?? "Open this weekend");
     }
-  }, [openDays]);
-
-  if (!status) return null;
+  }
 
   return (
     <span

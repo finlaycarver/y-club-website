@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "/members",
     // Switched to lifestyle/social shot — connects better with
     // "Members" messaging than the rooftop terrace (A4-VF [HIGH]).
-    images: [{ url: "/images/nadine-189.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/images/_MG_8068.jpg", width: 1200, height: 630 }],
   },
 };
 
@@ -57,12 +57,12 @@ export default function MembersPage() {
           style={{ minHeight: "70svh" }}
         >
           <Image
-            src="/images/nadine-189.jpg"
+            src="/images/_MG_8068.jpg"
             alt="Friends enjoying a night at Y Bar & Lounge"
             fill
             priority
             sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center 30%" }}
+            style={{ objectFit: "cover", objectPosition: "center 15%" }}
           />
           <div
             className="absolute inset-0"
@@ -172,8 +172,8 @@ export default function MembersPage() {
         {/* BenefitsGrid is a client island — handles stagger entrance
             animation + 3D card tilt on hover (A4-VX [MED] + [HIGH]). */}
         <section
-          className="bg-black text-white"
-          style={{ padding: "96px 24px", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          className="bg-black text-white py-16 px-6 md:py-24"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <div className="mb-12 md:mb-16">
@@ -207,7 +207,7 @@ export default function MembersPage() {
         </section>
 
         {/* ── SIGN UP CTA ────────────────────────────────────────────── */}
-        <section className="bg-white text-black" style={{ padding: "96px 24px" }}>
+        <section className="bg-white text-black py-16 px-6 md:py-24">
           <div
             className="flex flex-col items-center text-center"
             style={{ maxWidth: "720px", margin: "0 auto" }}
@@ -298,8 +298,8 @@ export default function MembersPage() {
         {/* ── MEMBERS FAQ ────────────────────────────────────────────── */}
         <section
           id="members-faq"
-          className="bg-black text-white scroll-mt-20"
-          style={{ padding: "96px 24px", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          className="bg-black text-white scroll-mt-20 py-16 px-6 md:py-24"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           <div style={{ maxWidth: "880px", margin: "0 auto" }}>
             <p

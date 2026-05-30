@@ -88,19 +88,27 @@ export function FindUsBottomSheet({ open, onClose }: FindUsBottomSheetProps) {
         ].join(" ")}
       />
 
-      {/* Sheet */}
+      {/* Sheet — visibility:hidden after close transition so it's
+          fully absent from screenshots and accessibility tree when closed */}
       <div
         ref={sheetRef}
         role="dialog"
         aria-modal="true"
         aria-label="Find us"
+        aria-hidden={!open}
+        inert={!open}
         className={[
           "fixed bottom-0 left-0 right-0 z-50 bg-black",
           "border-t border-white/10 rounded-t-2xl overflow-hidden",
-          "transition-transform duration-300 ease-out motion-reduce:transition-none",
-          open ? "translate-y-0" : "translate-y-full",
+          open ? "translate-y-0 visible" : "translate-y-full invisible",
         ].join(" ")}
-        style={{ maxHeight: "80vh", overflowY: "auto" }}
+        style={{
+          maxHeight: "80vh",
+          overflowY: "auto",
+          transition: open
+            ? "transform 300ms cubic-bezier(0.16,1,0.3,1)"
+            : "transform 300ms cubic-bezier(0.16,1,0.3,1), visibility 0s linear 300ms",
+        }}
       >
         {/* Drag handle */}
         <div className="flex justify-center pt-3 pb-1">

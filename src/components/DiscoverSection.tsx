@@ -209,7 +209,6 @@ function SignpostCard({
 
 // ── DiscoverSection ─────────────────────────────────────────────────
 export function DiscoverSection() {
-  const gridRef = useRef<HTMLDivElement>(null)
   const [activeSheet, setActiveSheet] = useState<Signpost | null>(null)
 
   // Body scroll lock while bottom sheet is open
@@ -217,25 +216,6 @@ export function DiscoverSection() {
     document.body.style.overflow = activeSheet ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
   }, [activeSheet])
-
-  // Stagger entrance — IntersectionObserver adds .discover-visible to the
-  // grid when it enters the viewport. CSS nth-child delays then cascade
-  // the tile animations 80ms apart.
-  useEffect(() => {
-    const grid = gridRef.current
-    if (!grid) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          grid.classList.add("discover-visible")
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 },
-    )
-    observer.observe(grid)
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <section
@@ -279,8 +259,7 @@ export function DiscoverSection() {
             discover-carousel-mobile (globals.css) overrides display:grid
             with display:flex + scroll-snap-type:x mandatory on <768px. */}
         <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 discover-grid discover-carousel-mobile"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 discover-grid discover-carousel-mobile discover-visible"
           style={{ columnGap: "20px", rowGap: "30px" }}
         >
           {signposts.map((signpost, i) => (
