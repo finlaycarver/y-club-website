@@ -131,7 +131,7 @@ export function SocialProof({
             }}
           >
             <InstagramIcon style={{ width: "18px", height: "18px", fill: fg }} />
-            Follow @y_bar_
+            Follow @yclubguildford
             <ChevronRightIcon className="size-4 group-hover:translate-x-0.5 transition-transform duration-200 motion-reduce:transition-none" />
           </a>
         </div>
