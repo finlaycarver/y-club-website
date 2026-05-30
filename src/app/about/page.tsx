@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialProof } from "@/components/SocialProof";
 import { AboutImageryGrid } from "@/components/AboutImageryGrid";
-import { ChevronRightIcon } from "@/components/icons";
+import { ChevronRightIcon, InstagramIcon, TikTokIcon, FacebookIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
 import { BRAND, VENUES } from "@/lib/site";
 import type { Metadata } from "next";
@@ -369,21 +369,22 @@ export default function AboutPage() {
                 }}>
                   Follow us
                 </p>
-                <div className="flex items-center gap-2">
-                  {[
-                    { href: BRAND.instagram, label: "Instagram" },
-                    { href: BRAND.tiktok,    label: "TikTok"    },
-                    { href: BRAND.facebook,  label: "Facebook"  },
-                  ].map(({ href, label }) => (
+                <div className="flex items-center gap-3">
+                  {([
+                    { href: BRAND.instagram, label: "Instagram", Icon: InstagramIcon },
+                    { href: BRAND.tiktok,    label: "TikTok",    Icon: TikTokIcon    },
+                    { href: BRAND.facebook,  label: "Facebook",  Icon: FacebookIcon  },
+                  ] as const).map(({ href, label, Icon }) => (
                     <a
                       key={label}
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center border border-black/15 hover:border-black hover:bg-black hover:text-white transition-colors duration-200"
-                      style={{ height: "40px", padding: "0 16px", fontSize: "13px", fontWeight: 600, color: "#080808", textDecoration: "none", letterSpacing: "0.02em" }}
+                      aria-label={label}
+                      className="inline-flex items-center justify-center bg-black hover:opacity-70 transition-opacity duration-200"
+                      style={{ width: "44px", height: "44px", textDecoration: "none", flexShrink: 0 }}
                     >
-                      {label}
+                      <Icon style={{ width: "22px", height: "22px" }} />
                     </a>
                   ))}
                 </div>
