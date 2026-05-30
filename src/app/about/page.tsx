@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SocialProof } from "@/components/SocialProof";
 import { AboutImageryGrid } from "@/components/AboutImageryGrid";
 import { ChevronRightIcon, InstagramIcon, TikTokIcon, FacebookIcon } from "@/components/icons";
+import { YLogoMark } from "@/components/YLogoMark";
 import { GRAIN_SVG } from "@/lib/grain";
 import { BRAND, VENUES } from "@/lib/site";
 import type { Metadata } from "next";
@@ -95,7 +96,7 @@ export default function AboutPage() {
               fontSize: "13px", fontWeight: 500, letterSpacing: "0.14em",
               textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "16px",
             }}>
-              About Y
+              About <YLogoMark height="0.85em" />
             </p>
             <h1 className="text-[46px] md:text-[80px]" style={{ fontWeight: 700, lineHeight: 1, letterSpacing: "-0.01em" }}>
               Guildford&apos;s<br />Late-Night Quarter.

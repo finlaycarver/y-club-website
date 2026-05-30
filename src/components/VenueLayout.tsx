@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { YLogoMark } from "@/components/YLogoMark";
 import Image from "next/image";
 import Link from "next/link";
 import { VenueVideo } from "@/components/VenueVideo";
@@ -155,11 +156,13 @@ const ENTRY_RULES: ReadonlyArray<string> = [
 ];
 
 /** Cross-link destination data — each venue links to the other two. */
+const Y = <YLogoMark height="0.82em" />;
+
 const ALL_VENUE_LINKS = [
-  { slug: "y-club",       label: "Y Club",         href: "/venues/y-club",       imageUrl: "/images/12.webp",             tagline: "Where the night goes loud" },
-  { slug: "y-terrace",    label: "Y Terrace",      href: "/venues/y-terrace",    imageUrl: "/images/club-y-image-4.webp", tagline: "Open-air, all season" },
-  { slug: "y-bar-lounge", label: "Y Bar & Lounge", href: "/venues/y-bar-lounge", imageUrl: "/images/nadine-195.jpg",      tagline: "Where the night starts" },
-] as const;
+  { slug: "y-club",       name: "Y Club",         displayLabel: <>{Y} Club</>,         href: "/venues/y-club",       imageUrl: "/images/12.webp",             tagline: "Where the night goes loud" },
+  { slug: "y-terrace",    name: "Y Terrace",      displayLabel: <>{Y} Terrace</>,      href: "/venues/y-terrace",    imageUrl: "/images/club-y-image-4.webp", tagline: "Open-air, all season" },
+  { slug: "y-bar-lounge", name: "Y Bar & Lounge", displayLabel: <>{Y} Bar &amp; Lounge</>, href: "/venues/y-bar-lounge", imageUrl: "/images/nadine-195.jpg",      tagline: "Where the night starts" },
+];
 
 const ExternalLinkIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -609,12 +612,12 @@ export function VenueLayout({ config }: { config: VenueLayoutConfig }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {siblingVenues.map((venue) => (
                 <Link key={venue.slug} href={venue.href} className="group relative block overflow-hidden" style={{ textDecoration: "none", aspectRatio: "16/7" }}>
-                  <Image src={venue.imageUrl} alt={venue.label} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover" }} className="transition-transform duration-700 ease-out group-hover:scale-105" />
+                  <Image src={venue.imageUrl} alt={venue.name} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover" }} className="transition-transform duration-700 ease-out group-hover:scale-105" />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.75) 100%)" }} />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                     <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "5px" }}>{venue.tagline}</p>
                     <div className="flex items-center justify-between">
-                      <p style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.01em" }}>{venue.label}</p>
+                      <p style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.01em" }}>{venue.displayLabel}</p>
                       <ChevronRightIcon className="size-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 motion-reduce:transition-none" />
                     </div>
                   </div>

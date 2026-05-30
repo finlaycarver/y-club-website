@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -6,6 +7,7 @@ import { VenuePanel } from "@/components/VenuePanel";
 import { ChevronRightIcon } from "@/components/icons";
 import { GRAIN_SVG } from "@/lib/grain";
 import { VenuesStickyBar } from "./VenuesStickyBar";
+import { YLogoMark } from "@/components/YLogoMark";
 
 export const metadata: Metadata = {
   title: "Our Venues — Y Club, Y Terrace, Y Bar & Lounge",
@@ -26,6 +28,7 @@ export const metadata: Metadata = {
 interface VenueIndexItem {
   slug: string;
   name: string;
+  displayName: ReactNode;
   kicker: string;
   body: string;
   imageUrl: string;
@@ -40,10 +43,13 @@ interface VenueIndexItem {
   ordinal: string;
 }
 
+const Y = <YLogoMark height="0.78em" />;
+
 const VENUES: VenueIndexItem[] = [
   {
     slug: "y-club",
     name: "Y Club",
+    displayName: <>{Y} Club</>,
     kicker: "Cornerhouse · Onslow Street",
     body: "Two rooms, two dance floors, two bars. Late nights every Friday and Saturday.",
     imageUrl: "/images/12.webp",
@@ -57,6 +63,7 @@ const VENUES: VenueIndexItem[] = [
   {
     slug: "y-terrace",
     name: "Y Terrace",
+    displayName: <>{Y} Terrace</>,
     kicker: "The Quadrant · Bridge Street",
     body: "Guildford's outdoor terrace. Cocktails, sport on the big screen, long summer evenings.",
     imageUrl: "/images/club-y-image-4.webp",
@@ -70,6 +77,7 @@ const VENUES: VenueIndexItem[] = [
   {
     slug: "y-bar-lounge",
     name: "Y Bar & Lounge",
+    displayName: <>{Y} Bar &amp; Lounge</>,
     kicker: "Guildford Town Centre",
     body: "Where the night starts. Cocktails, great music, the best warm-up in town.",
     imageUrl: "/images/nadine-195.jpg",
@@ -341,7 +349,7 @@ function PanelContent({ venue }: { venue: VenueIndexItem }) {
         className="text-[40px] md:text-[56px]"
         style={{ fontWeight: 700, lineHeight: 1.05, color: "#FAFAFA", marginBottom: "16px", letterSpacing: "-0.01em" }}
       >
-        {venue.name}
+        {venue.displayName}
       </h2>
 
       <p style={{ fontSize: "18px", color: "rgba(255,255,255,0.7)", lineHeight: "1.7", marginBottom: "20px", maxWidth: "400px" }}>

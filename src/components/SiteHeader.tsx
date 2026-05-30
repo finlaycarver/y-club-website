@@ -1,32 +1,36 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { SearchIcon } from "@/components/icons";
+import { YLogoMark } from "@/components/YLogoMark";
 
-const NAV_LINKS = [
+const Y = <YLogoMark height="0.82em" />;
+
+const NAV_LINKS: Array<{ label: ReactNode; href: string }> = [
   { label: "What's On",  href: "/whats-on"   },
   { label: "Venues",     href: "/venues"      },
   { label: "Venue Hire", href: "/venue-hire"  },
   { label: "Members",    href: "/members"     },
-  { label: "About Y",    href: "/about"       },
-] as const;
+  { label: <>About {Y}</>,  href: "/about"    },
+];
 
-const MENU_ITEMS = [
-  { label: "Venues",         href: "/venues"               },
-  { label: "Y Club",         href: "/venues/y-club"        },
-  { label: "Y Terrace",      href: "/venues/y-terrace"     },
-  { label: "Y Bar & Lounge", href: "/venues/y-bar-lounge"  },
-  { label: "What's On",      href: "/whats-on"             },
-  { label: "Venue Hire",     href: "/venue-hire"           },
-  { label: "Members",        href: "/members"              },
-  { label: "About Y",        href: "/about"                },
-  { label: "FAQs",           href: "/faqs"                 },
-  { label: "Contact",        href: "/about#contact"        },
-] as const;
+const MENU_ITEMS: Array<{ label: ReactNode; href: string }> = [
+  { label: "Venues",                   href: "/venues"               },
+  { label: <>{Y} Club</>,              href: "/venues/y-club"        },
+  { label: <>{Y} Terrace</>,           href: "/venues/y-terrace"     },
+  { label: <>{Y} Bar &amp; Lounge</>,  href: "/venues/y-bar-lounge"  },
+  { label: "What's On",                href: "/whats-on"             },
+  { label: "Venue Hire",               href: "/venue-hire"           },
+  { label: "Members",                  href: "/members"              },
+  { label: <>About {Y}</>,             href: "/about"                },
+  { label: "FAQs",                     href: "/faqs"                 },
+  { label: "Contact",                  href: "/about#contact"        },
+];
 
 // Helper: returns true if the current pathname matches the link (or is a sub-route of it).
 // Special-cased so "/" only matches the home page exactly.
@@ -237,7 +241,7 @@ export function SiteHeader() {
               const active = isActiveRoute(pathname ?? "/", href);
               return (
                 <Link
-                  key={label}
+                  key={href}
                   href={href}
                   aria-current={active ? "page" : undefined}
                   className={`underline underline-offset-[6px] decoration-[2px] transition-[text-decoration-color,color] duration-200 ease-in-out hover:text-white ${active ? "decoration-white" : "decoration-transparent hover:decoration-white"}`}
