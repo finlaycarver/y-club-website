@@ -58,10 +58,27 @@ const securityHeaders = [
   { key: "X-DNS-Prefetch-Control",   value: "on" },
 ];
 
+const immutableAssetHeaders = [
+  ...securityHeaders,
+  { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+];
+
 const nextConfig: NextConfig = {
   output: "standalone",
   async headers() {
     return [
+      {
+        source: "/images/:path*",
+        headers: immutableAssetHeaders,
+      },
+      {
+        source: "/videos/:path*",
+        headers: immutableAssetHeaders,
+      },
+      {
+        source: "/fonts/:path*",
+        headers: immutableAssetHeaders,
+      },
       {
         source: "/(.*)",
         headers: securityHeaders,
